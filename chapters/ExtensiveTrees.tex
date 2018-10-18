@@ -25,7 +25,7 @@ The normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' ex
 
 In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 2 confessing to the crime, while the column labeled \textit{D} represents prisoner 2 denying their guilt. The rows \textit{C} and \textit{D} represent the same choices for prisoner 1. For this game, $A_i$ would be the set $\{C, D\}$, as those are the two choices that each prisoner can make. The element pairs of the matrix are the utility function of each player. In this case, their utility is the number of years in jail to which a player will be sentenced. The mapping functions in $u$ correspond to the leniency of the courts. When both deny committing the crime, the prisoners each get three years in prison. If both confess to the crime, they both get one year in prison; their sentence is lighter for cooperating with the police. If only one prisoner confesses, that player gets a four year sentence, while the player who denied gets no time in jail.\\
 
-From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting. However, in the prisoner's dilemma, the two are being interrogated separately. To determine their best response, the players utilize the Nash equilibrium.
+From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. However, in the prisoner's dilemma, the two are being interrogated separately. To determine their best response, the players utilize the Nash equilibrium.
 
 \begin{define}
   Let $s_i$ be the strategy profile of agents other than agent i. A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a mixed strategy $s^*_i\in S_i$ such that $u_i(s^*_i, s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$.
@@ -37,9 +37,9 @@ To find the Nash equilibrium in this example,
 
 \_\_\_\_\_\_ Put a proof in here, possibly
 
-It is important to recognize in this example that the two prisoners are making their choice simultaneously. For games with sequential actions, the normal form is no longer sufficient to represent player choices. Instead, games with sequential actions are represented in extensive-form trees.\\
+Not all games have a Nash equilibrium. For example, the game rock-paper-scissors
 
-Not all games are easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix. Assume Player 1 has the first turn.\\
+It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix. Assume Player 1 has the first turn.\\
 \begin{table}[h]
   \centering
   \begin{tabular}{r | c | c | c | c |}
@@ -49,13 +49,34 @@ Not all games are easily expressed in normal form. For example, take a game of t
     LL & (0, 0) & (0, 0) & x & (0, 0) \\ \cline{2-5}
     LR & (0, 0) & (0, 0) & (0, 0) & x \\ \cline{2-5}
   \end{tabular}
-  \caption{The first two moves of a TicTacToe variant using a 2x2 game board.}
+  \caption{The first two moves of a Tic-Tac-Toe variant using a 2x2 game board.}
 \end{table}
 
-Table 2.1 shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else.
+Table 2.1 shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else. Both players have made their first move, and it is Player 1's turn once again.\\
+\begin{table}[h]
+  \centering
+  \begin{tabular}{r | c | c | c | c |}
+    2x2 TicTacToe & UL & UR & LL & LR \\ \cline{2-5}
+    (UL, UR) & x & x & (1, -1) & (1, -1) \\ \cline{2-5}
+    (UL, LL) & x & (1, -1) & x & (1, -1) \\ \cline{2-5}
+    (UL, LR) & x & (1, -1) & (1, -1) & x \\ \cline{2-5}
+    (UR, UL) & x & x & (1, -1) & (1, -1) \\ \cline{2-5}
+    (UR, LL) & (1, -1) & x & x & (1, -1) \\ \cline{2-5}
+    (UR, LR) & (1, -1) & x & (1, -1) & x \\ \cline{2-5}
+    (LL, UL) & x & (1, -1) & x & (1, -1) \\ \cline{2-5}
+    (LL, UR) & (1, -1) & x & x & (1, -1) \\ \cline{2-5}
+    (LL, LR) & (1, -1) & (1, -1) & x & x \\ \cline{2-5}
+    (LR, UL) & x & (1, -1) & (1, -1) & x \\ \cline{2-5}
+    (LR, UR) & (1, -1) & x & (1, -1) & x \\ \cline{2-5}
+    (LR, LL) & (1, -1) & (1, -1) & x & x \\ \cline{2-5}
+  \end{tabular}
+  \caption{The full normal form representation of a 2x2 Tic-Tac-Toe variant}
+\end{table}
+
+Since the game board was shrunk for this example, the game ends after three turns with Player 1 always winning. But even in this simplified game, the normal form quickly becomes convoluted and cluttered. For games with sequential actions, the normal form is no longer sufficient to represent player choices. Instead, games with sequential actions are represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
-\_\_\_\_\_\_ Intoduction paragraph
+In a turn-based, or extensive-form game, players do not make simultaneous actions. These games present a very different method of strategizing. Returning to the rock-paper-scissors game, knowing which 
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
   \begin{itemize}
