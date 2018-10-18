@@ -1,4 +1,4 @@
- %%
+%%  
 %% This is file `woosterthesis.cls',
 %% a modification of the book class
 %% by Dr. Jon Breitenbucher. It is
