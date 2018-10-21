@@ -38,7 +38,20 @@ To find the Nash equilibrium for a player in this example, the action of the oth
 
 \_\_\_\_\_\_ Put a proof in here, possibly
 
-Not all games have a Nash equilibrium. For example, the game rock-paper-scissors
+Not all games have a Nash equilibrium; rock-paper-scissors, for instance. Take the normal-form representation of the game in Table \ref{table:RPS}. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{r | c | c | c |}
+    \multicolumn{1}{c}{Rock-Paper-Scissors}&\multicolumn{1}{c}{Rock}&\multicolumn{1}{c}{Paper}&\multicolumn{1}{c}{Scissors} \\ \cline{2-4}
+    Rock & (0, 0) & (-1, 1) & (1, -1) \\ \cline{2-4}
+    Paper & (1, -1) & (0, 0) & (-1, 1) \\ \cline{2-4}
+    Scissors & (-1, 1) & (1, -1) & (0, 0) \\ \cline{2-4}
+  \end{tabular}
+  \caption{The normal-form representation of the game Rock-Paper-Scissors}
+  \label{table:RPS}
+\end{table}
+
+Every row and every column in this normal-form game has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. Thus, there can be no equilibrium.
 
 It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix. Assume Player 1 has the first turn.\\
 \begin{table}[h]
@@ -52,9 +65,10 @@ It is important to recognize in these two examples that both players are making 
     LR & (0, 0) & (0, 0) & (0, 0) & x \\ \cline{2-5}
   \end{tabular}
   \caption{The first two moves of a Tic-Tac-Toe variant using a 2x2 game board.}
+  \label{table:2x2TTT}
 \end{table}
 
-Table 2.1 shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else. Both players have made their first move, and it is Player 1's turn once again.\\
+Table \ref{table:2x2TTT} shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else. Both players have made their first move, and it is Player 1's turn once again.\\
 \begin{table}[h]
   \centering
   \begin{tabular}{r | c | c | c | c |}
@@ -74,12 +88,13 @@ Table 2.1 shows the normal form for the first two moves of this game. Since each
     (LR, LL) & (1, -1) & (1, -1) & x & x \\ \cline{2-5}
   \end{tabular}
   \caption{The full normal form representation of a 2x2 Tic-Tac-Toe variant}
+  \label{table:full2x2TTT}
 \end{table}
 
 Since the game board was shrunk for this example, the game ends after three turns with Player 1 always winning. But even in this simplified game, the normal form quickly becomes convoluted and cluttered. For games with sequential actions, the normal form is no longer sufficient to represent player choices. Instead, games with sequential actions are represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
-In a turn-based, or extensive-form game, players do not make simultaneous actions. These games present a very different method of strategizing. Returning to the rock-paper-scissors game, knowing which 
+In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay, as well as how players maximize their utility when a Nash equilibrium for the entire game does not exist. A simultaneous game like Rock-Paper-Scissors relies on chance; TicTacToe relies on 
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
   \begin{itemize}
