@@ -34,12 +34,18 @@ def gameLoop():
                 hitPoints[0] -= 5
             player1Actions.append(newAction)
         isPlayer0Turn = not isPlayer0Turn
-    print hitPoints
-    print turnCounter
-    print "Player 0 Actions:"
-    print player0Actions
-    print "Player 1 Actions:"
-    print player1Actions
+    output = [hitPoints[0], hitPoints[1], turnCounter]
+    for i in player0Actions:
+        output.append(i)
+    output.append('x')
+    for i in player1Actions:
+        output.append(i)
+    line = ','.join(str(x) for x in output)
+#    print(line)
+    with open('gameSims.csv', 'a') as file:
+        file.write(line)
+        file.write('\n')
 
-gameLoop()
+for x in range(500):
+    gameLoop()
 
