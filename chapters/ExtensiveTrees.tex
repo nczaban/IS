@@ -96,7 +96,8 @@ Table \ref{table:2x2TTT} shows the normal form for the first two moves of this g
 Since the game board was shrunk for this example, the game ends after three turns with Player 1 always winning. But even in this simplified game, the normal form quickly becomes convoluted and cluttered. For games with sequential actions, the normal form is no longer sufficient to represent player choices. Instead, games with sequential actions are represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
-In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay, as well as how players maximize their utility when a Nash equilibrium for the entire game does not exist. A simultaneous game like Rock-Paper-Scissors relies on chance; TicTacToe relies on 
+In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; TicTacToe relies on players anticipating the future choices their opponents will make.\\
+
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
   \begin{itemize}
@@ -111,6 +112,8 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
   \end{itemize}
 \end{define}
 
+As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns which do not end the game, while $Z$ contains all choices or turns which do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player, which determines their individual utility at each of the terminal nodes in $Z$.\\
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=10cm]{figures/ExampleTree.png}
@@ -118,4 +121,6 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
   \label{fig:sharingTree}
 \end{figure}
 
-To explore this definition, take the game of tic-tac-toe. Let $N={N_1, N_2}$ be the set of players in the game. For the first move of the game, $A$ is the set of 9 open spaces on the board; for the second move, $A$ is the set of the remaining 8 spaces. For a game of tic-tac-toe, $H$ contains configuration of the board where neither player has three in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has three in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which in tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
+An example of the extensive-form tree can be seen in Figure \ref{fig:sharingTree}. The six leaf nodes of this tree are the elements of the set $Z$, while the other nodes are contained in $H$. The $H$ nodes are labeled either 1 or 2, denoting from the $\rho$ function which player is making the choice at that node. The $Z$ nodes each have a pair, denoting the utility each player will gain if the game ends in that particular way. The actions $A$ are denoted in the lines connecting the nodes together. In this game, the three actions from the root node are the methods of sharing 2 presents between 2 people. The second player, once the first player has distributed the presents in a particular way, chooses whether to accept the distribution or not.\\
+
+To explore this definition, return to the game of tic-tac-toe. Let $N={N_1, N_2}$ be the set of players in the game. In this game, $A$ is the set of playing on one of the open spaces on the board; for the first move of the game, $A$ is the set of 9 open spaces on the board, for the second move, $A$ is the set of the remaining 8 spaces. For a game of tic-tac-toe, $H$ contains configuration of the board where neither player has three in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has three in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which in tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
