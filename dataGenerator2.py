@@ -14,10 +14,12 @@ def gameLoop():
     while (hitPoints[0]>0) and (hitPoints[1]>0):
         turnCounter += 1
         r = random()
-        if(r<0.5):
+        if(r<0.33):
             newAction = 'A'
-        else:
+        elif(r<0.67):
             newAction = 'H'
+        else:
+            newAction = 'N'
         if(isPlayer0Turn):
             if(newAction == 'H'):
                 hitPoints[0] += 4
@@ -40,7 +42,7 @@ def gameLoop():
     # output.append('x')
     line = ','.join(str(x) for x in output)
 #    print(line)
-    with open('gameSims.csv', 'a') as file:
+    with open('gameSims2.csv', 'a') as file:
         file.write(line)
         file.write('\n')
 
