@@ -36,8 +36,10 @@ def gameLoop():
         healthLevels.append(hitPoints.copy())
     output = [hitPoints[0], hitPoints[1], turnCounter]
     for i in healthLevels:
-        output.append(i)
-    # output.append('x')
+        output.append(i[0])
+    output.append(-100)
+    for i in healthLevels:
+        output.append(i[1])
     line = ','.join(str(x) for x in output)
 #    print(line)
     with open('gameSims.csv', 'a') as file:
