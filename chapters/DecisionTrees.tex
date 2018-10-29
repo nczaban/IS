@@ -1,0 +1,16 @@
+% !TEX root = ../IS.tex
+\chapter{Machine Learning}
+\section{Decision Trees}
+One common machine learning technique is the decision tree. It can approximate discrete-valued functions \cite{mitc97} and automatically classify data\cite{sega07}. Generally, decision trees focus on problems with attribute-value pairs; an attribute \textit{Temperature} may have the possible values \textit{ Hot, Cold, Warm, Cool} \cite{mitc97}.
+
+\subsection{ID3 Algorithm}
+The ID3 algorithm for decision trees, like most decision tree algorithms, uses a top-down greedy search \cite{mitc97}. The algorithm begins by evaluating the input data by individual attributes in the training set. For each attribute, the algorithm attempts to classify the entire data set using only that attribute. Whichever attribute was the most successful on its own becomes the root of the tree. Then, for each possible value of that root attribute, a descendant node is created and the training set is split accordingly. Then, for each descendant node and its respective subset of training data, the process is repeated.\\
+
+To find the best attribute at each node of the tree, the ID3 algorithm uses the statistical property information gain. Information gain utilizes entropy, or the relative impurity of a data collection.
+\begin{define}
+  For a set of training data $S$ with $n$ different target values, Entropy(S)$\equiv\sum_{i=1}^n-p_i$log$_2p_i$, where $p_i$ is the proportion of S with a target value of $i$.
+\end{define}
+Information gain is defined as the expected reduction in entropy caused by splitting the training data by a particular attribute.
+\begin{define}
+  For an attribute $A$ and a set of training data $S$, the Information Gain(S, A)$\equiv$Entropy(S)$-\sum_{v\in Values(A)}\frac{|S_v|}{|S|}$Entropy$(S_v)$, where $Values(A)$ is the set of possible values for the attribute $A$, and $S_v$ is the subset of $S$ where $A$ has value $v$.
+\end{define}
