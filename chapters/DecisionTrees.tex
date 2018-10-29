@@ -10,7 +10,35 @@ To find the best attribute at each node of the tree, the ID3 algorithm uses the 
 \begin{define}
   For a set of training data $S$ with $n$ different target values, Entropy(S)$\equiv\sum_{i=1}^n-p_i$log$_2p_i$, where $p_i$ is the proportion of S with a target value of $i$.
 \end{define}
-Information gain is defined as the expected reduction in entropy caused by splitting the training data by a particular attribute.
+Entropy calculations define 0log(0) as 0. The logarithm can have any base value, but two is often used; a base of 2 conveys the expected encoding length in bits \cite{mitc97}. Assuming the base value is 2, an entropy value of 0 occurs when all data set elements have the same target value $i$, and a  set with a 50/50 split between two target values will have an entropy value of 1. Information gain is defined as the expected reduction in entropy caused by splitting the training data by a particular attribute.
 \begin{define}
-  For an attribute $A$ and a set of training data $S$, the Information Gain(S, A)$\equiv$Entropy(S)$-\sum_{v\in Values(A)}\frac{|S_v|}{|S|}$Entropy$(S_v)$, where $Values(A)$ is the set of possible values for the attribute $A$, and $S_v$ is the subset of $S$ where $A$ has value $v$.
+  For an attribute $A$ and a set of training data $S$, the Information Gain(S, A)$\equiv$ Entropy(S) $-\sum_{v\in Values(A)}\frac{|S_v|}{|S|}$ Entropy$(S_v)$, where $Values(A)$ is the set of possible values for the attribute $A$, and $S_v$ is the subset of $S$ where $A$ has value $v$.
 \end{define}
+Each attribute $A$ for a given node is tested, with each of its possible values used in the summation. For these values, the entropy of each subset $S_v$ with is calculated, then scaled by the size of $S_v$ compared to $S$.
+
+\begin{algorithm}
+  \caption{ID3 Decision Tree Algorithm}
+  \begin{algorithmic}
+    \Procedure {ID3}{TrainingSet $S$, TargetAttribute $a$, AttributeSet $A$}
+    \State Create node $Root$
+    \If{$\forall i\in S$, $i$ has TargetAttribute value $v$}
+    \State Return $Root$ with label $v$
+    \ElsIf{AttributeSet is empty}
+    \State Return $Root$ with label most common $v$ value in TrainingSet
+    \Else
+    \State $InformationGain \gets 0$
+    \For{all $a\in$AttributeSet}
+    \State Calculate Entropy(TrainingSet)$ - \sum_{v\in Values(a)}\frac{S_v}{S}$
+    \EndFor
+    \EndIf
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+Once a tree has been created with the algorithm, it is simple to classify new data. Starting at the root of the tree, each target attribute is tested for recursively, moving from one node to another down the tree \cite{sega07}.\\
+
+\subsection{Optimizing the Tree}
+Decision trees are susceptible to overfitting, where decisions at each node are too closely tied to the training set. Overfitting is caused by an algorithm creating superfluous branches which slightly decrease entropy for the set, but are in fact arbitrary decisions \cite{sega07}. For example, a decision tree could be created to classify students to their fields of study. An overfitted tree might contain choice nodes checking the names of the students. The tree will be able to reach 0 entropy on the training set, knowing that ``John Smith'' is an English major and ``Jane Doe'' is a Chemistry major, but this tree will not be able to correctly classify a ``John Doe'' or ``Jane Smith.''\\
+
+There are two common methods to prevent overfitting. The first method is to require a minimum reduction in entropy at each split. Once the minimum is not reached, the tree stops creating additional branches. While commonly used, this method is insufficient in cases where early splits do not reduce entropy, but later splits will greatly reduce the entropy of the set \cite{sega07}. The second method is to build the tree, then prune any extraneous nodes. Working from the bottom-up, the tree examines two leaf nodes with the same parent and determines whether merging these nodes would not increase entropy more than a specified threshold. If the nodes pass this test, they are combined and their parent becomes a new leaf node.\\
+
