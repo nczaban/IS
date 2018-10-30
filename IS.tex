@@ -261,6 +261,15 @@
 \chapter{Description of Software}
 \section{AI Model}
 \section{Pygame}
+The Pygame library provides a number of Python functions that are useful in creating a two-dimensional video game. The library was originally created in 2001 to combine Python with SDL (Simple DirectMedia Layer), a library of multimedia controls written for C.\\
+
+At the top level, Pygame controls the initialization and exiting of its various modules, particularly the pygame.display module which renders the game. Pygame features two functions to update a display window, pygame.display.flip() and pygame.display.update(). display.flip() works as a standard buffer swap, reloading the entire display with the new information in a frame buffer. display.update() is an optimized version of flip(), which can take as an argument a rectangle or sequence of rectangles. These rectangles correspond to the areas of the display which need to be updated. For instance, passing the coordinates of a rectangle over a game's scoreboard will only update the scoreboard.\\
+
+The two main objects in Pygame are the Surface object and the sprite object. Surfaces can be changed with Pygame to alter their color palette, bitmasks, and alpha value. Surfaces are mostly used to load image files and to create backgrounds for the game. Sprites, on the other hand, are used for the actual in-game objects, such as enemies, player characters, and projectiles. Sprites can be stored in a Group object, which can be used to separate sprites by different purposes. Each sprite draws its image to a Surface, provided that it has a Surface.image and Surface.rect attribute.\\
+
+Once a sprite or surface has been created with an image, Pygame can also perform graphical transformations on that image. The pygame.transform module has functions to flip, rotate, and scale an image. Another Pygame feature is the ability to do collision detection on sprites and rectangles.\\
+
+For the actual gameplay of a Pygame program, there are also modules for joystick, mouse, and keyboard controls. A sound mixer module allows audio tracks to be played in the game, and the pygame.time module controls the framerate of the game.
 \chapter{Future Work}
 %\input{chapters/chapter3}
 %\input{chapters/chapter4}
