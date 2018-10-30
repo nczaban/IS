@@ -51,10 +51,20 @@ Each attribute $A$ for a given node is tested, with each of its possible values 
     \State $EntropySum\gets EntropySum + \frac{S_v}{S} * Entropy(S_v)$\\
     \Comment Add the entropy for each possible value $v$ of $a$.
     \EndFor
-    \State $InformationGain \gets InformationGain - EntropySum$
+    \State $InformationGain \gets InformationGain - EntropySum$\\
     \Comment This is the information gain from splitting the set along $a$.
     \If{$InformationGain > OptimalInformationGain$}
-    
+    \State $OptimalInformationGain \gets InformationGain$
+    \EndIf
+    \EndFor
+    \Comment The optimal information gain has been determined to be on attribute $a$.
+    \State Label for $Root\gets a$
+    \For{all values $v\in a$}
+    \State Add branch below $Root$ corresponding to $v_i$.
+    \State $NewTrainingData\gets \{s\in S:Value(a)=v_i\}$\\
+    \Comment Create a subset of $S$ containing examples where $a=v_i$
+    \If{$NewTrainingData$ is the empty set}
+    \State Create a leaf node with most common value of $t$
     \EndIf
     \EndFor
     \EndIf
