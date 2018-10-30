@@ -19,18 +19,46 @@ Each attribute $A$ for a given node is tested, with each of its possible values 
 \begin{algorithm}
   \caption{ID3 Decision Tree Algorithm}
   \begin{algorithmic}
-    \Procedure {ID3}{TrainingSet $S$, TargetAttribute $a$, AttributeSet $A$}
+    \Procedure {ID3}{TrainingSet $S$, TargetAttribute $t$, AttributeSet $A$}
     \State Create node $Root$
-    \If{$\forall i\in S$, $i$ has TargetAttribute value $v$}
-    \State Return $Root$ with label $v$
-    \ElsIf{AttributeSet is empty}
-    \State Return $Root$ with label most common $v$ value in TrainingSet
+    \State $TestEntropy\gets True$
+    \State $TestAttributeValue\gets S_0$
+    \For{$i\in S$}
+    \Comment Check whether the TrainingSet $S$ is uniform on TargetAttribute $t$
+    \If{the TargetAttribute of $i=TestAttributeValue$}
+    \State Pass
     \Else
-    \State $InformationGain \gets 0$
+    \State $TestEntropy\gets False$
+    \State Break
+    \Comment One of the elements of $S$ has a different value for $t$, exit the for loop
+    \EndIf
+    \EndFor
+    \If{$TestEntropy == True$}
+    \State Return $Root$ with label $v$\\
+    \Comment Every element in $S$ has the same value for $t$, this is a single-node tree
+    \ElsIf{AttributeSet $A$ is the empty set}
+    \State Return $Root$ with label most common value of $t$ in TrainingSet\\
+    \Comment All attributes have been examined and $S$ cannot be split further
+    \Else
+    \State $OptimalInformationGain=0$
     \For{all $a\in$AttributeSet}
-    \State Calculate Entropy(TrainingSet)$ - \sum_{v\in Values(a)}\frac{S_v}{S}$
+    \Comment Determine optimal split for the set $S$
+    \State $InformationGain \gets Entropy(S)$
+    \State $EntropySum\gets 0$
+    \For{all values $v\in a$}
+    \State $S_v \gets \{S:Value(a)=v\}$
+    \Comment $S_v$ contains elements of $S$ which have TargetAttribute $v$
+    \State $EntropySum\gets EntropySum + \frac{S_v}{S} * Entropy(S_v)$\\
+    \Comment Add the entropy for each possible value $v$ of $a$.
+    \EndFor
+    \State $InformationGain \gets InformationGain - EntropySum$
+    \Comment This is the information gain from splitting the set along $a$.
+    \If{$InformationGain > OptimalInformationGain$}
+    
+    \EndIf
     \EndFor
     \EndIf
+    \State Return $Root$
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
