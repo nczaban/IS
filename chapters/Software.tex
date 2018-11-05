@@ -1,8 +1,9 @@
 % !TEX root = ../IS.tex
 \chapter{Description of Software}
 \section{AI Model}
-\section{Pygame}
-The Pygame library provides a number of Python functions that are useful in creating a two-dimensional video game. The library was originally created in 2001 to combine Python with SDL (Simple DirectMedia Layer), a library of multimedia controls written for C.\\
+\section{Game Engine}
+\subsection{The Pygame Library}
+The Pygame library provides a number of Python functions that are useful in creating a two-dimensional video game. The library was originally created in 2001 to combine Python with SDL (Simple DirectMedia Layer), a library of multimedia controls written for C \cite{shinners}. Pygame can utilize a variety of different graphics libraries, including OpenGL, DirectX, the Linux frame buffer, and an ASCII art backend \cite{shinners}. The pygame library is supported by a dearth of operating systems, and the core functions of pygame use highly optimized C or assembly code.\\
 
 At the top level, Pygame controls the initialization and exiting of its various modules, particularly the pygame.display module which renders the game. Pygame features two functions to update a display window, pygame.display.flip() and pygame.display.update(). display.flip() works as a standard buffer swap, reloading the entire display with the new information in a frame buffer. display.update() is an optimized version of flip(), which can take as an argument a rectangle or sequence of rectangles. These rectangles correspond to the areas of the display which need to be updated. For instance, passing the coordinates of a rectangle over a game's scoreboard will only update the scoreboard.\\
 
