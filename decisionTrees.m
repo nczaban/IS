@@ -19,9 +19,38 @@ for i=1:gameNums
         p1Wins(i) = 0;
     end
 end
+
+for i=1:gameNums
+    for j=1:gameLength
+        if(M(i,j)==-100)
+            p2DataStart(i,1) = j+1;
+        end
+    end
+end
+
 testData = M(:,3:end);
 T = fitctree(testData(1:4000,:), p1Wins(1:4000));
-view(T, 'Mode', 'Graph')
 
-P=predict(T, testData(4001:4500, :));
-mse=sum((p1Wins(4001:4500)-P).^2)/length(p1Wins(4001:4500))
+PrunedT = prune(T, 'level', 35);
+view(PrunedT, 'Mode', 'Graph')
+P=predict(PrunedT, testData(4001:4500, :));
+mse=sum((p1Wins(4001:4500)-P).^2)/length(P)
+
+pause
+
+j=1;
+for i=1:gameNums
+    if(testData(i, 96) > 20.5)
+        trainingTurnNums(j,1) = testData(i,1);
+        trainingTurnNumsSolutions(j,1) = p1Wins(i,1);
+        trainingTurnNums(j,2) = 96 - p2DataStart(i,1);
+        j=j+1;
+    end
+end
+
+for
+
+TwoColumnT = fitctree(trainingTurnNums(1:400,:), trainingTurnNumsSolutions(1:400));
+view(TwoColumnT, 'Mode', 'Graph')
+P=predict(TwoColumnT, trainingTurnNums(401:488, :));
+mse=sum((trainingTurnNumsSolutions(401:488,1)-P).^2)/length(P)
