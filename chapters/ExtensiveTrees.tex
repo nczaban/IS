@@ -1,9 +1,12 @@
 % !TEX root = ../IS.tex
 \chapter{Extensive Form Games}
 \section{Basics of Game Theory}
-Game theory is the study of interactions between decision-makers. A game is defined as an interaction constraining the actions a player can perform and the interests of players; Game theory involves the techniques used to analyze and determine solutions and outcomes of various games \cite{osbo94}. It is assumed that players in these games are both rational and strategic; they pursue their objectives and take the behavior of other players into account.\\
+Frequently used, and originally explored, in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies in 1838 using the concept of strategic behavior \cite{webs14}. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
 
-The goals of these players are represented using a utility function. This function quantifies the desirability of various outcomes. A highly desired outcome for a player will have a higher utility than an undesirable outcome. This utility function can be based on monetary returns, point values, or general happiness, depending on the structure of the ``game.''
+A game is defined as an interaction constraining the actions a player can perform and the interests of players; Game theory involves the techniques used to analyze and determine solutions and outcomes of various games \cite{osbo94}. It is assumed that players in these games are both rational and strategic; they pursue their objectives and take the behavior of other players into account.\\
+
+The goals of these players are represented using a utility function. This function quantifies the desirability of various outcomes. A highly desired outcome for a player will have a higher utility than an undesirable outcome. This utility function can be based on monetary returns, point values, or general happiness, depending on the structure of the ``game.'' Utility is the core of ``zero-sum games'' where the increase of one player's utility results in an equivalent loss in another player's utility.
+
 \section{Normal Form Games}
 In the vast majority of human choices, a person will attempt to maximize their utility function; they will perform actions that benefit themselves. When there are two or more agents trying to maximize their utility, the interactions and choices between these agents, or players, become more and more complex. These interactions can be studied with game theory using the normal or strategic form.
 \begin{define}
@@ -19,81 +22,116 @@ In an arbitrary normal-form game, there are $n$ different players contained in t
 
 The normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' example. This game is expressed in a 2x2 matrix, with one player's choices represented in the columns and the other player's choices represented in the rows of said matrix.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=5cm]{figures/ExampleGrid.png}
+  \includegraphics[width=7cm]{figures/ExampleGrid.png}
   \caption{The Prisoner's Dilemma, represented in a normal form matrix \cite{shoh09}.}
   \label{fig:prisoner}
 \end{figure}
 
-In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 2 confessing to the crime, while the column labeled \textit{D} represents prisoner 2 denying their guilt. The rows \textit{C} and \textit{D} represent the same choices for prisoner 1. For this game, $A_i$ would be the set $\{C, D\}$, as those are the two choices that each prisoner can make. The element pairs of the matrix are the utility function of each player. In this case, their utility is the number of years in jail to which a player will be sentenced. The mapping functions in $u$ correspond to the leniency of the courts. When both deny committing the crime, the prisoners each get three years in prison. If both confess to the crime, they both get one year in prison; their sentence is lighter for cooperating with the police. If only one prisoner confesses, that player gets a four year sentence, while the player who denied gets no time in jail.\\
+In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 2 confessing to the crime, while the column labeled \textit{D} represents prisoner 2 denying their guilt. The rows \textit{C} and \textit{D} represent the same choices for prisoner 1. For this game, $A_i$ would be the set $\{C, D\}$, as those are the two choices that each prisoner can make. Thus, $A=A_1\times A_2 = \{(C, C), (C, D), (D, C), (D, D)\}$, or all four possible outcomes for this game. An action profile $a$ in this game would then be any of the ordered pairs in $A$; $(C,D)$, for instance, is an action profile. The element pairs of the matrix are the utility function of each player. In this case, their utility is the number of years in jail to which a player is sentenced. The mapping functions in $u$ correspond to the leniency of the courts; unfortunately, the quantitative functions in $u$ which the courts use in this example are unknown, and only the values at these specific points are known. When both deny committing the crime, the prisoners each get three years in prison. If both confess to the crime, they both get one year in prison; their sentence is lighter for cooperating with the police. If only one prisoner confesses, that player gets a four year sentence, while the player who denied gets no time in jail.\\
 
-From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. However, in the prisoner's dilemma, the two are being interrogated separately. To determine their best response, the players utilize the Nash equilibrium.
+From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. This would be a \textit{pure strategy} option, where the player selects a single action and always that action. However, in the prisoner's dilemma, the two are being interrogated separately, and one player does not know the other player's choice. Thus, the prisoners must create a \textit{mixed strategy} by introducing probability to their decisions.
 
 \begin{define}
-  Let $s_i$ be the strategy profile of agents other than agent i. A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a mixed strategy $s^*_i\in S_i$ such that $u_i(s^*_i, s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$.
+  Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_i\in A_i$ will be played is denoted $s_i(a_i)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$.
 \end{define}
 
-Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. 
+A pure strategy is a special case of mixed strategy, where the probability $s_i(a_i)$ is 1. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
 
-To find the Nash equilibrium for a player in this example, the action of the other player is assumed to be constant. For example, while determining player 1's Nash equilibrium, it is assumed that player 2 always confesses. This assumption limits player 1's decision to a single column in the normal form. In this column, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 2's confession is for player 1 to deny the charge: 1 year in prison or no time in prison. These steps are repeated for each of player 2's possible strategies. So, assuming player 2 denies the charge, player 1's best response is again to deny the charge: 3 years in prison or 4 years in prison. Since the best response is the same for all of player 2's strategies, this player will always choose this option. Using the same process for player 2 returns the same best response. Thus, the Nash equilibrium is that both prisoners will deny the crime, and both will get 3 years in prison.
+\begin{define}
+  Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$
+\end{define}
+
+Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium
+
+\begin{define}
+  A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-1}$.
+\end{define}
+
+To find the Nash equilibrium for a player in this example, the action of the other player is assumed to be constant. For example, while determining player 1's Nash equilibrium, it is assumed that player 2 always confesses. This assumption limits player 1's decision to a single column in the normal form.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5cm]{figures/ExamplePartialGrid1.png}
+  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 confesses to the charges}
+  \label{fig:NashCol1}
+\end{figure}
+
+In Figure \ref{fig:NashCol1}, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 2's confession is for player 1 to deny the charge: 1 year in prison or no time in prison. These steps are repeated for each of player 2's possible strategies.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5cm]{figures/ExamplePartialGrid2.png}
+  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 denies all charges}
+  \label{fig:NashCol2}
+\end{figure}
+So, assuming player 2 denies the charge, player 1's best response is again to deny the charge: 3 years in prison or 4 years in prison. Since the best response is the same for all of player 2's strategies, this player will always choose this option. Using the same process for player 2 returns the same best response. Thus, the Nash equilibrium is that both prisoners will deny the crime, and both will get 3 years in prison.
 
 \_\_\_\_\_\_ Put a proof in here, possibly
 
-Not all games have a Nash equilibrium; rock-paper-scissors, for instance. Take the normal-form representation of the game in Table \ref{table:RPS}. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
-\begin{table}[h]
+Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
+\begin{figure}[H]
   \centering
-  \begin{tabular}{r | c | c | c |}
-    \multicolumn{1}{c}{Rock-Paper-Scissors}&\multicolumn{1}{c}{Rock}&\multicolumn{1}{c}{Paper}&\multicolumn{1}{c}{Scissors} \\ \cline{2-4}
-    Rock & (0, 0) & (-1, 1) & (1, -1) \\ \cline{2-4}
-    Paper & (1, -1) & (0, 0) & (-1, 1) \\ \cline{2-4}
-    Scissors & (-1, 1) & (1, -1) & (0, 0) \\ \cline{2-4}
+  \begin{tabular}{r r | c | c | c |}
+    &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
+    Rock-Paper-Scissors &\multicolumn{1}{c}{}&\multicolumn{1}{c}{Rock}&\multicolumn{1}{c}{Paper}&\multicolumn{1}{c}{Scissors} \\ \cline{3-5}
+    & Rock & (0, 0) & (-1, 1) & (1, -1) \\ \cline{3-5}
+    Player 1 & Paper & (1, -1) & (0, 0) & (-1, 1) \\ \cline{3-5}
+    & Scissors & (-1, 1) & (1, -1) & (0, 0) \\ \cline{3-5}
   \end{tabular}
   \caption{The normal-form representation of the game Rock-Paper-Scissors}
-  \label{table:RPS}
-\end{table}
+  \label{fig:RPS}
+\end{figure}
 
-Every row and every column in this normal-form game has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. Thus, there can be no equilibrium.
+Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. Thus, there can be no equilibrium.
 
 It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix. Assume Player 1 has the first turn.\\
-\begin{table}[h]
+\begin{figure}[H]
   \centering
-  \begin{tabular}{r | c | c | c | c |}
-    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{UL}&\multicolumn{1}{c}{UR}&
-    \multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{2-5}
-    UL & x & (0, 0) & (0, 0) & (0, 0) \\ \cline{2-5}
-    UR & (0, 0) & x & (0, 0) & (0, 0) \\ \cline{2-5}
-    LL & (0, 0) & (0, 0) & x & (0, 0) \\ \cline{2-5}
-    LR & (0, 0) & (0, 0) & (0, 0) & x \\ \cline{2-5}
+  \begin{tabular}{r r | c | c | c | c |}
+    &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
+    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
+    \multicolumn{1}{c}{UR}&\multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{3-6}
+    & UL & x & (0, 0) & (0, 0) & (0, 0) \\ \cline{3-6}
+    Player 1 & UR & (0, 0) & x & (0, 0) & (0, 0) \\ \cline{3-6}
+    & LL & (0, 0) & (0, 0) & x & (0, 0) \\ \cline{3-6}
+    & LR & (0, 0) & (0, 0) & (0, 0) & x \\ \cline{3-6}
   \end{tabular}
   \caption{The first two moves of a Tic-Tac-Toe variant using a 2x2 game board.}
-  \label{table:2x2TTT}
-\end{table}
+  \label{fig:2x2TTT}
+\end{figure}
 
-Table \ref{table:2x2TTT} shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else. Both players have made their first move, and it is Player 1's turn once again.\\
-\begin{table}[h]
+Figure \ref{fig:2x2TTT} shows the normal form for the first two moves of this game. Since each player has only placed a single piece, neither one has won yet; thus, the utility for each space is (0,0). There are four spaces in the matrix marked with an 'x'. These spaces are infeasible; it is against the rules for someone to play on the same square as someone else. Both players have made their first move, and it is Player 1's turn once again.\\
+\begin{figure}[H]
   \centering
-  \begin{tabular}{r | c | c | c | c |}
-    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{UL}&\multicolumn{1}{c}{UR}&
-    \multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{2-5}
-    (UL, UR) & x & x & (1, -1) & (1, -1) \\ \cline{2-5}
-    (UL, LL) & x & (1, -1) & x & (1, -1) \\ \cline{2-5}
-    (UL, LR) & x & (1, -1) & (1, -1) & x \\ \cline{2-5}
-    (UR, UL) & x & x & (1, -1) & (1, -1) \\ \cline{2-5}
-    (UR, LL) & (1, -1) & x & x & (1, -1) \\ \cline{2-5}
-    (UR, LR) & (1, -1) & x & (1, -1) & x \\ \cline{2-5}
-    (LL, UL) & x & (1, -1) & x & (1, -1) \\ \cline{2-5}
-    (LL, UR) & (1, -1) & x & x & (1, -1) \\ \cline{2-5}
-    (LL, LR) & (1, -1) & (1, -1) & x & x \\ \cline{2-5}
-    (LR, UL) & x & (1, -1) & (1, -1) & x \\ \cline{2-5}
-    (LR, UR) & (1, -1) & x & (1, -1) & x \\ \cline{2-5}
-    (LR, LL) & (1, -1) & (1, -1) & x & x \\ \cline{2-5}
+  \begin{tabular}{r r | c | c | c | c |}
+    &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
+    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
+    \multicolumn{1}{c}{UR}&\multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{3-6}
+    & (UL, UR) & x & x & (1, -1) & (1, -1) \\ \cline{3-6}
+    & (UL, LL) & x & (1, -1) & x & (1, -1) \\ \cline{3-6}
+    & (UL, LR) & x & (1, -1) & (1, -1) & x \\ \cline{3-6}
+    & (UR, UL) & x & x & (1, -1) & (1, -1) \\ \cline{3-6}
+    & (UR, LL) & (1, -1) & x & x & (1, -1) \\ \cline{3-6}
+    Player 1 & (UR, LR) & (1, -1) & x & (1, -1) & x \\ \cline{3-6}
+    & (LL, UL) & x & (1, -1) & x & (1, -1) \\ \cline{3-6}
+    & (LL, UR) & (1, -1) & x & x & (1, -1) \\ \cline{3-6}
+    & (LL, LR) & (1, -1) & (1, -1) & x & x \\ \cline{3-6}
+    & (LR, UL) & x & (1, -1) & (1, -1) & x \\ \cline{3-6}
+    & (LR, UR) & (1, -1) & x & (1, -1) & x \\ \cline{3-6}
+    & (LR, LL) & (1, -1) & (1, -1) & x & x \\ \cline{3-6}
   \end{tabular}
   \caption{The full normal form representation of a 2x2 Tic-Tac-Toe variant}
-  \label{table:full2x2TTT}
-\end{table}
+  \label{fig:full2x2TTT}
+\end{figure}
 
-Since the game board was shrunk for this example, the game ends after three turns with Player 1 always winning. But even in this simplified game, the normal form quickly becomes convoluted and cluttered. For games with sequential actions, the normal form is no longer sufficient to represent player choices. Instead, games with sequential actions are represented in extensive-form trees.\\
+Since the game board was shrunk for this example, the game ends with Player 1 always winning on their second turn. But even in this simplified game, the normal form in Figure \ref{fig:full2x2TTT} quickly becomes convoluted and cluttered. While the infeasible actions were fairly self-evident in Figure \ref{fig:2x2TTT}, illegal moves are less obvious in Figure \ref{fig:full2x2TTT}. There are also repeated game configurations: the outcome \{(UL, UR), (LR)\} is rotationally symmetrical to \{(LL, UL), (UR)\}, \{(LR, LL), (UL)\}, and \{(UR, LR), (LL)\}.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=6cm]{figures/TTTRotation.png}
+  \caption{Rotational symmetry in a 2x2 Tic-Tac-Toe game}
+  \label{fig:2x2TTTRotation}
+\end{figure}
+Furthermore, the game \{(UL, UR), (LR)\} is identical to \{(UR, UL), (LR)\}. With so many extraneous spaces in the normal-form representation, it is no longer sufficient to represent player choices for games with sequential actions. Instead, these games are better represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
 In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; TicTacToe relies on players anticipating the future choices their opponents will make.\\
@@ -114,7 +152,7 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
 
 As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns which do not end the game, while $Z$ contains all choices or turns which do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player, which determines their individual utility at each of the terminal nodes in $Z$.\\
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=10cm]{figures/ExampleTree.png}
   \caption{An extensive-form tree for The Sharing Game}
@@ -127,3 +165,4 @@ To explore this definition, return to the game of tic-tac-toe. Let $N={N_1, N_2}
 
 \_\_\_\_\_\_ Add tree for TicTacToe (once I figure out LaTeXDraw)
 
+Any decision tree of this type can be represented as a collection of sets ordered by set inclusion, without loss of generality \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.
