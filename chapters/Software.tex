@@ -1,6 +1,16 @@
 % !TEX root = ../IS.tex
 \chapter{Description of Software}
 \section{AI Model}
+To begin building an AI model, I first created a simulation of the game. The simulation had two players, each with 25 health points (HP). Both players had two possible actions per turn, which were randomly selected: attack the other player, reducing their opponents HP by 5 points, or heal themselves, increasing their HP by 4 points. Each action had a 50\% chance of occuring. The game ran until one player's HP was reduced to 0. The total number of turns and the sequence of actions were recorded into a CSV file. After running 4500 simulations, the data was imported into Matlab. A subset of the games were used as a training set for a decision tree, which would predict which player would win the game.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{figures/firstDecisionTree.png}
+  \caption{The decision tree generated from 4000 simulations of the game. This tree predicts 0 when player 1 wins and 1 when player 2 wins.}
+  \label{fig:decisionTree1}
+\end{figure}
+
+However, this method was inconclusive, for a number of reasons. Firstly, the decision tree included a large number of branches, as seen in Figure \ref{fig:decisionTree1}. Secondly, the actual criteria being evaluated at each branch of the tree is different for each game. Aside from the first column, which contained the total number of turns in the game, and the second column, which contained the starting HP of player 1, the values in any particular column will differ from game to game. For instance, the root node used the value in column 96 as its classifier. In one game, column 96 may contain a HP value for player 2. In another, longer game, that column may contain a HP value for player 1. Thirdly, the individual games 
 \section{Game Engine}
 \subsection{The Pygame Library}
 The Pygame library provides a number of Python functions that are useful in creating a two-dimensional video game. The library was originally created in 2001 to combine Python with SDL (Simple DirectMedia Layer), a library of multimedia controls written for C \cite{shinners}. Pygame can utilize a variety of different graphics libraries, including OpenGL, DirectX, the Linux frame buffer, and an ASCII art backend \cite{shinners}. The pygame library is supported by a dearth of operating systems, and the core functions of pygame use highly optimized C or assembly code.\\
