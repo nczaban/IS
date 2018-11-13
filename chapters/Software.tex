@@ -10,7 +10,37 @@ To begin building an AI model, I first created a simulation of the game. The sim
   \label{fig:decisionTree1}
 \end{figure}
 
-However, this method was inconclusive, for a number of reasons. Firstly, the decision tree included a large number of branches, as seen in Figure \ref{fig:decisionTree1}. Secondly, the actual criteria being evaluated at each branch of the tree is different for each game. Aside from the first column, which contained the total number of turns in the game, and the second column, which contained the starting HP of player 1, the values in any particular column will differ from game to game. For instance, the root node used the value in column 96 as its classifier. In one game, column 96 may contain a HP value for player 2. In another, longer game, that column may contain a HP value for player 1. Thirdly, the individual games 
+However, this method was inconclusive, for a number of reasons. Firstly, the decision tree included a large number of branches, as seen in Figure \ref{fig:decisionTree1}. Secondly, the actual criteria being evaluated at each branch of the tree is different for each game. Aside from the first column, which contained the total number of turns in the game, and the second column, which contained the starting HP of player 1, the values in any particular column will differ from game to game. For instance, the root node used the value in column 96 as its classifier. In one game, column 96 may contain a HP value for player 2. In another, longer game, that column may contain a HP value for player 1. Thirdly, the individual games were mostly determined in streaks: a longer game was not the result of better strategy, but instead were caused by streaks where both players were choosing to heal on their turns.
+
+For my second attempt, I approached the problem from a different angle. The HP of both players was reduced to 10, and two restrictions were added on healing: a player could not heal when they had full health, and a player could only heal themselves twice. With these new rules in place, I created an extensive-form tree for the new game.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=15cm]{figures/GameTree.png}
+  \caption{The extensive-form tree for a simplified game. Each player has 10 HP, and can only heal themselves twice.}
+  \label{fig:gameTree}
+\end{figure}
+
+In Figure \ref{fig:gameTree}, player 1's nodes are denoted by a small dash to the left of the node. The HP values at each node are recorded, and leaf nodes are enclosed in a circle. There are 21 unique outcomes for this game; of these, only 4 of them result in a win for player 2, while the other 17 result in wins for player 1. In fact, with optimal play, player 1 will always win in this game.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4cm]{figures/GameSubtree.png}
+  \caption{A subtree of the extensive-form representation}
+  \label{fig:gameSubtree}
+\end{figure}
+
+For example, in this subtree, both player 1 and 2 have a winning outcome. However, the critical decision is made by player 1. Thus, in any game which reaches this subtree, player 1 will choose to attack on their turn, since that choice will lead to their victory.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=7cm]{figures/GameSubtree2.png}
+  \caption{A larger subtree of the extensive-form representation}
+  \label{fig:gameSubtree2}
+\end{figure}
+
+The remainder of player 2's winning outcomes can be seen in the subtree in Figure \ref{fig:gameSubtree2}. At the root node of this subtree, player 1 is making their choice. If they choose to heal, the game moves into the right child. Player 2's first choice on the right child's subtree will either result in a win (if player 2 attacks) or a loss (if player 2 heals).
+
 \section{Game Engine}
 \subsection{The Pygame Library}
 The Pygame library provides a number of Python functions that are useful in creating a two-dimensional video game. The library was originally created in 2001 to combine Python with SDL (Simple DirectMedia Layer), a library of multimedia controls written for C \cite{shinners}. Pygame can utilize a variety of different graphics libraries, including OpenGL, DirectX, the Linux frame buffer, and an ASCII art backend \cite{shinners}. The pygame library is supported by a dearth of operating systems, and the core functions of pygame use highly optimized C or assembly code.\\
