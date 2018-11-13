@@ -89,14 +89,14 @@ It is important to recognize in these two examples that both players are making 
   \centering
   \begin{tabular}{r r | c | c | c | c |}
     &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
-    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
+    \multicolumn{1}{c}{2x2 tic-tac-toe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
     \multicolumn{1}{c}{UR}&\multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{3-6}
     & UL & x & (0, 0) & (0, 0) & (0, 0) \\ \cline{3-6}
     Player 1 & UR & (0, 0) & x & (0, 0) & (0, 0) \\ \cline{3-6}
     & LL & (0, 0) & (0, 0) & x & (0, 0) \\ \cline{3-6}
     & LR & (0, 0) & (0, 0) & (0, 0) & x \\ \cline{3-6}
   \end{tabular}
-  \caption{The first two moves of a Tic-Tac-Toe variant using a 2x2 game board.}
+  \caption{The first two moves of a tic-tac-toe variant using a 2x2 game board.}
   \label{fig:2x2TTT}
 \end{figure}
 
@@ -105,7 +105,7 @@ Figure \ref{fig:2x2TTT} shows the normal form for the first two moves of this ga
   \centering
   \begin{tabular}{r r | c | c | c | c |}
     &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
-    \multicolumn{1}{c}{2x2 TicTacToe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
+    \multicolumn{1}{c}{2x2 tic-tac-toe}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{UL}&
     \multicolumn{1}{c}{UR}&\multicolumn{1}{c}{LL}&\multicolumn{1}{c}{LR}\\ \cline{3-6}
     & (UL, UR) & x & x & (1, -1) & (1, -1) \\ \cline{3-6}
     & (UL, LL) & x & (1, -1) & x & (1, -1) \\ \cline{3-6}
@@ -120,7 +120,7 @@ Figure \ref{fig:2x2TTT} shows the normal form for the first two moves of this ga
     & (LR, UR) & (1, -1) & x & (1, -1) & x \\ \cline{3-6}
     & (LR, LL) & (1, -1) & (1, -1) & x & x \\ \cline{3-6}
   \end{tabular}
-  \caption{The full normal form representation of a 2x2 Tic-Tac-Toe variant}
+  \caption{The full normal form representation of a 2x2 tic-tac-toe variant}
   \label{fig:full2x2TTT}
 \end{figure}
 
@@ -128,13 +128,13 @@ Since the game board was shrunk for this example, the game ends with Player 1 al
 \begin{figure}[H]
   \centering
   \includegraphics[width=6cm]{figures/TTTRotation.png}
-  \caption{Rotational symmetry in a 2x2 Tic-Tac-Toe game}
+  \caption{Rotational symmetry in a 2x2 tic-tac-toe game}
   \label{fig:2x2TTTRotation}
 \end{figure}
 Furthermore, the game \{(UL, UR), (LR)\} is identical to \{(UR, UL), (LR)\}. With so many extraneous spaces in the normal-form representation, it is no longer sufficient to represent player choices for games with sequential actions. Instead, these games are better represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
-In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; TicTacToe relies on players anticipating the future choices their opponents will make.\\
+In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; tic-tac-toe relies on players anticipating the future choices their opponents will make. There are two types of extensive-form games: perfect-information and imperfect-information. In perfect-information games, all players know which turn of the game they are at, while imperfect-information games have turns which are indistinguishable from others based on information available to the player. We will be dealing with perfect-information games.\\
 
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
@@ -163,6 +163,20 @@ An example of the extensive-form tree can be seen in Figure \ref{fig:sharingTree
 
 To explore this definition, return to the game of tic-tac-toe. Let $N={N_1, N_2}$ be the set of players in the game. In this game, $A$ is the set of playing on one of the open spaces on the board; for the first move of the game, $A$ is the set of 9 open spaces on the board, for the second move, $A$ is the set of the remaining 8 spaces. For a game of tic-tac-toe, $H$ contains configuration of the board where neither player has three in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has three in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which in tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
 
-\_\_\_\_\_\_ Add tree for TicTacToe (once I figure out LaTeXDraw)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=16cm]{figures/TTTExtTree.png}
+  \caption{The extensive-form representation of a 2x2 tic-tac-toe game}
+  \label{fig:2x2TTTExtForm}
+\end{figure}
 
-Any decision tree of this type can be represented as a collection of sets ordered by set inclusion, without loss of generality \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.
+Figure \ref{fig:2x2TTTExtForm} shows the extensive-form version of the 2x2 tic-tac-toe variant in Figure \ref{fig:full2x2TTT}. In comparison to the normal-form representation, the extensive-form tree can convey the sequence and flow of the game more clearly. Since the $\chi$ function of an extensive-form game only maps possible actions, the tree does not have the same infeasible nodes as the normal-form representation. This tree has the same issues of rotational symmetry as in the normal form, but in this particular example, the four subtrees connected to the root are all rotationally symmetrical to each other.
+
+Any decision tree of this type can be represented as a collection of sets ordered by set inclusion, without loss of generality \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.\\
+
+Nash equilibria can be found in extensive-form games as well, and are defined the same as in normal-form games. However, a pure strategy in an extensive-form game requires the player's strategy to contain the decision at every choice node, even if that node is unreachable by other choices in said strategy.
+\begin{define}
+  Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$
+\end{define}
+
+Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each choice node $h$.
