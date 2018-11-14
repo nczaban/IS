@@ -1,7 +1,7 @@
 % !TEX root = ../IS.tex
 \chapter{Extensive Form Games}
 \section{Basics of Game Theory}
-Frequently used, and originally explored, in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies in 1838 using the concept of strategic behavior \cite{webs14}. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
+Frequently used, and originally explored in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies in 1838 using the concept of strategic behavior \cite{webs14}. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
 
 A game is defined as an interaction constraining the actions a player can perform and the interests of players; Game theory involves the techniques used to analyze and determine solutions and outcomes of various games \cite{osbo94}. It is assumed that players in these games are both rational and strategic; they pursue their objectives and take the behavior of other players into account.\\
 
@@ -14,7 +14,7 @@ In the vast majority of human choices, a person will attempt to maximize their u
   \begin{itemize}
   \item $N$ is a finite set of $n$ players, indexed by $i$
   \item $A=A_1\times\cdots\times A_n$, where $A_i$ is a finite set of actions available to player $i$. Each vector $a=(a_1,\cdots ,a_n)\in A$ is called an action profile.
-    \item $u=(u_1,\cdots ,u_n)$ where $u_i : A \mapsto\mathbb{R}$ is a real-valued utility function for player $i$.
+    \item $u=(u_1,\cdots ,u_n)$ where $u_i : A \mapsto\mathbb{R}$ is a real-valued utility function for player $i$. \cite{shoh09}
 \end{itemize}
 \end{define}
 
@@ -34,19 +34,19 @@ In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 
 From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. This would be a \textit{pure strategy} option, where the player selects a single action and always that action. However, in the prisoner's dilemma, the two are being interrogated separately, and one player does not know the other player's choice. Thus, the prisoners must create a \textit{mixed strategy} by introducing probability to their decisions.
 
 \begin{define}
-  Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_i\in A_i$ will be played is denoted $s_i(a_i)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$.
+  Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_i\in A_i$ will be played is denoted $s_i(a_i)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$ \cite{shoh09}.
 \end{define}
 
 A pure strategy is a special case of mixed strategy, where the probability $s_i(a_i)$ is 1. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
 
 \begin{define}
-  Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$
+  Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$ \cite{shoh09}.
 \end{define}
 
 Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium
 
 \begin{define}
-  A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-1}$.
+  A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-1}$ \cite{shoh09}.
 \end{define}
 
 To find the Nash equilibrium for a player in this example, the action of the other player is assumed to be constant. For example, while determining player 1's Nash equilibrium, it is assumed that player 2 always confesses. This assumption limits player 1's decision to a single column in the normal form.
@@ -58,15 +58,13 @@ To find the Nash equilibrium for a player in this example, the action of the oth
 \end{figure}
 
 In Figure \ref{fig:NashCol1}, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 2's confession is for player 1 to deny the charge: 1 year in prison or no time in prison. These steps are repeated for each of player 2's possible strategies.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=5cm]{figures/ExamplePartialGrid2.png}
   \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 denies all charges}
   \label{fig:NashCol2}
 \end{figure}
 So, assuming player 2 denies the charge, player 1's best response is again to deny the charge: 3 years in prison or 4 years in prison. Since the best response is the same for all of player 2's strategies, this player will always choose this option. Using the same process for player 2 returns the same best response. Thus, the Nash equilibrium is that both prisoners will deny the crime, and both will get 3 years in prison.
-
-\_\_\_\_\_\_ Put a proof in here, possibly
 
 Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
 \begin{figure}[H]
@@ -146,7 +144,7 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
   \item $\chi: H\mapsto 2^A$ is the action function, mapping a set of possible actions to each choice node;
   \item $\rho: H\mapsto N$ is the player function, mapping to each non-terminal node a player who makes an action at said node;
   \item $\sigma: H\times A\mapsto H\bigcup Z$ is the successor function, mapping a choice node and an action to a new choice or terminal node. $\forall h_1, h_2\in H$ and $a_1, a_2\in A$, if $\sigma(h_1, a_1)=\sigma(h_2, a_2)$, then $h_1=h_2$ and $a_1=a_2$;
-  \item $u=(u_1,...,u_n)$, where $u_i:Z\mapsto \mathbb{R}$ is a real-valued utility function for each player $i$ on a terminal node $Z$
+  \item $u=(u_1,...,u_n)$, where $u_i:Z\mapsto \mathbb{R}$ is a real-valued utility function for each player $i$ on a terminal node $Z$ \cite{shoh09}.
   \end{itemize}
 \end{define}
 
@@ -155,7 +153,7 @@ As in the normal-form definition, there are $n$ players in the game, contained i
 \begin{figure}[H]
   \centering
   \includegraphics[width=10cm]{figures/ExampleTree.png}
-  \caption{An extensive-form tree for The Sharing Game}
+  \caption{An extensive-form tree for The Sharing Game \cite{shoh09}}
   \label{fig:sharingTree}
 \end{figure}
 
@@ -174,9 +172,11 @@ Figure \ref{fig:2x2TTTExtForm} shows the extensive-form version of the 2x2 tic-t
 
 Any decision tree of this type can be represented as a collection of sets ordered by set inclusion, without loss of generality \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.\\
 
-Nash equilibria can be found in extensive-form games as well, and are defined the same as in normal-form games. However, a pure strategy in an extensive-form game requires the player's strategy to contain the decision at every choice node, even if that node is unreachable by other choices in said strategy.
+Nash equilibria can be found in extensive-form games as well, and are defined the same as in normal-form games. However, a pure strategy in an extensive-form game requires the player's strategy to contain the decision at every choice node, even if that node is unreachable by other choices in said strategy.\\
 \begin{define}
-  Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$
+  Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$ \cite{shoh09}.
 \end{define}
-
-Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each choice node $h$.
+Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form games, it is not necessary to introduce probabilities to find a Nash equilibrium. This can be seen in examples of backwards induction.
+\begin{define}
+  
+\end{define}
