@@ -1,7 +1,7 @@
 % !TEX root = ../IS.tex
 \chapter{Extensive Form Games}
 \section{Basics of Game Theory}
-Frequently used, and originally explored in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies in 1838 using the concept of strategic behavior \cite{webs14}. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
+Frequently used, and originally explored in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies (markets with only two sellers producing a product) in 1838 using the concept of strategic behavior \cite{webs14}. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
 
 A game is defined as an interaction constraining the actions a player can perform and the interests of players; Game theory involves the techniques used to analyze and determine solutions and outcomes of various games \cite{osbo94}. It is assumed that players in these games are both rational and strategic; they pursue their objectives and take the behavior of other players into account.\\
 
@@ -20,7 +20,7 @@ In the vast majority of human choices, a person will attempt to maximize their u
 
 In an arbitrary normal-form game, there are $n$ different players contained in the set $N$, where $n$ is a positive integer. For each of these players, there is also a finite set of actions that they can take. Player $N_i$ will have the action set $A_i$. The complete action set $A$ is determined by the Cartesian product of the action sets of each player. Within $A$, a vector $a$ is the action profile; an action profile, or outcome, represents the choice that each player made \cite{osbo94}. The collection of mappings $u$ gives each action profile a particular value; these values determine which outcome is preferred by a player. In normal-form games, players are utility-maximizing agents; they will gravitate towards action profiles which give them higher utility.\\
 
-The normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' example. This game is expressed in a 2x2 matrix, with one player's choices represented in the columns and the other player's choices represented in the rows of said matrix.
+An example of a normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' example. This game is expressed in a 2x2 matrix, with one player's choices represented in the columns and the other player's choices represented in the rows of said matrix.
 
 \begin{figure}[H]
   \centering
@@ -29,7 +29,7 @@ The normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' ex
   \label{fig:prisoner}
 \end{figure}
 
-In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 2 confessing to the crime, while the column labeled \textit{D} represents prisoner 2 denying their guilt. The rows \textit{C} and \textit{D} represent the same choices for prisoner 1. For this game, $A_i$ would be the set $\{C, D\}$, as those are the two choices that each prisoner can make. Thus, $A=A_1\times A_2 = \{(C, C), (C, D), (D, C), (D, D)\}$, or all four possible outcomes for this game. An action profile $a$ in this game would then be any of the ordered pairs in $A$; $(C,D)$, for instance, is an action profile. The element pairs of the matrix are the utility function of each player. In this case, their utility is the number of years in jail to which a player is sentenced. The mapping functions in $u$ correspond to the leniency of the courts; unfortunately, the quantitative functions in $u$ which the courts use in this example are unknown, and only the values at these specific points are known. When both deny committing the crime, the prisoners each get three years in prison. If both confess to the crime, they both get one year in prison; their sentence is lighter for cooperating with the police. If only one prisoner confesses, that player gets a four year sentence, while the player who denied gets no time in jail.\\
+In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 2 confessing to the crime, while the column labeled \textit{D} represents prisoner 2 denying their guilt. The rows \textit{C} and \textit{D} represent the same choices for prisoner 1. For this game, $A_i$ would be the set $\{C, D\}$, as those are the two choices that each prisoner can make. Thus, $A=A_1\times A_2 = \{(C, C), (C, D), (D, C), (D, D)\}$, or all four possible outcomes for this game. An action profile $a$ in this game would then be any of the ordered pairs in $A$; $(C,D)$, for instance, is an action profile. The ordered pairs of the matrix represent the values of each player's respective utility function in that outcome. In this case, their utility is the number of years in jail to which a player is sentenced. The mapping functions in $u$ correspond to the leniency of the courts; unfortunately, the quantitative functions in $u$ which the courts use in this example are unknown, and only the values at these specific points are known. When both deny committing the crime, the prisoners each get three years in prison. If both confess to the crime, they both get one year in prison; their sentence is lighter for cooperating with the police. If only one prisoner confesses, that player gets a four year sentence, while the player who denied gets no time in jail.\\
 
 From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. This would be a \textit{pure strategy} option, where the player selects a single action and always that action. However, in the prisoner's dilemma, the two are being interrogated separately, and one player does not know the other player's choice. Thus, the prisoners must create a \textit{mixed strategy} by introducing probability to their decisions.
 
@@ -37,16 +37,18 @@ From the perspective of an individual player, they must consider their options b
   Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_i\in A_i$ will be played is denoted $s_i(a_i)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$ \cite{shoh09}.
 \end{define}
 
-A pure strategy is a special case of mixed strategy, where the probability $s_i(a_i)$ is 1. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
+For example of both pure and mixed strategies, consider a game where one player offers the other a choice of two different toys. The choosing player wants one of the toys, but not the other. Suppose that the identity of these toys are not hidden. In this case, the selecting player would use pure strategy and choose whichever toy gave them the most utility. Suppose instead that the toys are inside gift boxes. Since the choosing player does not know which box contains their desired toy, they have a 50-50 chance of picking the toy they want. Thus, they must use a mixed strategy. A pure strategy is a special case of mixed strategy, where the probability $s_i(a_i)$ is 1. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
 
 \begin{define}
   Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$ \cite{shoh09}.
 \end{define}
 
-Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium
+For the toy choosing game, the mixed-strategy profile is the Cartesian product of player 1 and player 2's strategy sets. Player 1, the player offering the gifts, chooses to put the desired toy in box 1 or 2. Player 2, the selecting player, chooses either box 1 or box 2. In this case, there is no best response: player 2 either gets the toy they want, or they don't.
+
+Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium.
 
 \begin{define}
-  A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-1}$ \cite{shoh09}.
+  A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-i}$ \cite{shoh09}.
 \end{define}
 
 To find the Nash equilibrium for a player in this example, the action of the other player is assumed to be constant. For example, while determining player 1's Nash equilibrium, it is assumed that player 2 always confesses. This assumption limits player 1's decision to a single column in the normal form.
@@ -65,6 +67,17 @@ In Figure \ref{fig:NashCol1}, it is trivial to find the utility-maximizing strat
   \label{fig:NashCol2}
 \end{figure}
 So, assuming player 2 denies the charge, player 1's best response is again to deny the charge: 3 years in prison or 4 years in prison. Since the best response is the same for all of player 2's strategies, this player will always choose this option. Using the same process for player 2 returns the same best response. Thus, the Nash equilibrium is that both prisoners will deny the crime, and both will get 3 years in prison.
+
+\begin{proof}
+  Let $G=(N, A, u)$ be a normal-form game. $N = \{n_1, n_2\}$ is the set of players in the game. $A=A_1\times A_2$ is the set of actions in the game, where $A_1=\{c_1, d_1\}$ is the set of actions available to player 1, and $A_2=\{c_2, d_2\}$ is the set of actions available to player 2. Therefore, $A=\{(c_1, c_2), (c_1, d_2), (d_1, c_2), (d_1, d_2)\}$. The utility function $u=(u_1, u_2)$. $u_1=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto -4, (d_1, c_2)\mapsto 0, (d_1, d_2)\mapsto -3$, and $u_2=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto 0, (d_1, c_2)\mapsto -4, (d_1, d_2)\mapsto -3$.\\
+
+  Let $s^*_1$ be a mixed strategy for $n_1$ where $n_1$ chooses action $c_1$. Since there are only two other players, the set of strategy profiles disjoint from $s_1$ is the same as $s_2$, the set of strategy profiles for $n_2$. Thus, $n_1$ has $s^*_1$ as a best response to $s_2$ if $u_1(s^*_1, s_2)\ge u_1(s_i, s_2)$ for all possible actions $s_i\in A_1$ and all strategies in $s_2$.\\
+  
+  $u_1(c_1, c_2)\ge u_1(c_1, c_2) \Rightarrow -1\ge -1$\\
+  $u_1(c_1, c_2)\ge u_1(d_1, c_2) \Rightarrow -1\ge $\\
+  $u_1(c_1, d_2)\ge u_1(c_1, d_2) \Rightarrow -1\ge $\\
+  $u_1(c_1, d_2)\ge u_1(d_1, d_2) \Rightarrow -1\ge $\\
+\end{proof}
 
 Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
 \begin{figure}[H]
