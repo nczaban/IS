@@ -1,7 +1,7 @@
 % !TEX root = ../IS.tex
 \chapter{Description of Software}
 \section{AI Model}
-To begin building an AI model, I first created a simulation of the game. The simulation had two players, each with 25 health points (HP). Both players had two possible actions per turn, which were randomly selected: attack the other player, reducing their opponents HP by 5 points, or heal themselves, increasing their HP by 4 points. Each action had a 50\% chance of occuring. The game ran until one player's HP was reduced to 0. The total number of turns and the sequence of actions were recorded into a CSV file. After running 4500 simulations, the data was imported into Matlab. A subset of the games were used as a training set for a decision tree, which would predict which player would win the game.\\
+To begin building an AI model, we first created a simulation of the game. The simulation had two players, each with 25 health points (HP). Both players had two possible actions per turn, which were randomly selected: attack the other player, reducing their opponents HP by 5 points, or heal themselves, increasing their HP by 4 points. Each action had a 50\% chance of occuring. The game ran until one player's HP was reduced to 0. The total number of turns and the sequence of actions were recorded into a CSV file. After running 4500 simulations, the data was imported into Matlab. A subset of the games were used as a training set for a decision tree, which would predict which player would win the game.\\
 
 \begin{figure}[H]
   \centering
@@ -12,7 +12,7 @@ To begin building an AI model, I first created a simulation of the game. The sim
 
 However, this method was inconclusive, for a number of reasons. Firstly, the decision tree included a large number of branches, as seen in Figure \ref{fig:decisionTree1}. Secondly, the actual criteria being evaluated at each branch of the tree is different for each game. Aside from the first column, which contained the total number of turns in the game, and the second column, which contained the starting HP of player 1, the values in any particular column will differ from game to game. For instance, the root node used the value in column 96 as its classifier. In one game, column 96 may contain a HP value for player 2. In another, longer game, that column may contain a HP value for player 1. Thirdly, the individual games were mostly determined in streaks: a longer game was not the result of better strategy, but instead were caused by streaks where both players were choosing to heal on their turns.
 
-For my second attempt, I approached the problem from a different angle. The HP of both players was reduced to 10, and two restrictions were added on healing: a player could not heal when they had full health, and a player could only heal themselves twice. With these new rules in place, I created an extensive-form tree for the new game.\\
+In the second attempt, the problem was approached from a different angle. The HP of both players was reduced to 10, and two restrictions were added on healing: a player could not heal when they had full health, and a player could only heal themselves twice. With these new rules in place, we created an extensive-form tree for the new game.\\
 
 \begin{figure}[H]
   \centering
