@@ -71,12 +71,29 @@ So, assuming player 2 denies the charge, player 1's best response is again to de
 \begin{proof}
   Let $G=(N, A, u)$ be a normal-form game. $N = \{n_1, n_2\}$ is the set of players in the game. $A=A_1\times A_2$ is the set of actions in the game, where $A_1=\{c_1, d_1\}$ is the set of actions available to player 1, and $A_2=\{c_2, d_2\}$ is the set of actions available to player 2. Therefore, $A=\{(c_1, c_2), (c_1, d_2), (d_1, c_2), (d_1, d_2)\}$. The utility function $u=(u_1, u_2)$. $u_1=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto -4, (d_1, c_2)\mapsto 0, (d_1, d_2)\mapsto -3$, and $u_2=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto 0, (d_1, c_2)\mapsto -4, (d_1, d_2)\mapsto -3$.\\
 
-  Let $s^*_1$ be a mixed strategy for $n_1$ where $n_1$ chooses action $c_1$. Since there are only two other players, the set of strategy profiles disjoint from $s_1$ is the same as $s_2$, the set of strategy profiles for $n_2$. Thus, $n_1$ has $s^*_1$ as a best response to $s_2$ if $u_1(s^*_1, s_2)\ge u_1(s_i, s_2)$ for all possible actions $s_i\in A_1$ and all strategies in $s_2$.\\
+  Let $s^*_1$ be a mixed strategy for $n_1$ where $n_1$ chooses action $d_1$. Since there are only two other players, the set of strategy profiles disjoint from $s_1$ is the same as $s_2$, the set of strategy profiles for $n_2$. Thus, $n_1$ has $s^*_1$ as a best response to $s_2$ if $u_1(s^*_1, s_2)\ge u_1(s_i, s_2)$ for all possible actions $s_i\in A_1$ and all strategies in $s_2$.\\
   
-  $u_1(c_1, c_2)\ge u_1(c_1, c_2) \Rightarrow -1\ge -1$\\
-  $u_1(c_1, c_2)\ge u_1(d_1, c_2) \Rightarrow -1\ge $\\
-  $u_1(c_1, d_2)\ge u_1(c_1, d_2) \Rightarrow -1\ge $\\
-  $u_1(c_1, d_2)\ge u_1(d_1, d_2) \Rightarrow -1\ge $\\
+  $u_1(d_1, c_2)\ge u_1(c_1, c_2) \Rightarrow 0\ge -1$\\
+  
+  $u_1(d_1, c_2)\ge u_1(d_1, c_2) \Rightarrow 0\ge 0$\\
+
+  $u_1(d_1, d_2)\ge u_1(c_1, d_2) \Rightarrow -3\ge -4$\\
+
+  $u_1(d_1, d_2)\ge u_1(d_1, d_2) \Rightarrow -3\ge -3$\\
+
+  $s^*_1$ is greater than or equal to all possible actions in $A_1$ and for all strategies in $s_2$. Thus, $s^*_1=d_1$ is the best response for player $n_1$.\\
+
+  Let $s^*_2$ be a mixed strategy for $n_2$ where $n_2$ chooses action $d_2$. Since there are only two other players, the set of strategy profiles disjoint from $s_2$ is the same as $s_1$, the set of strategy profiles for $n_1$. Thus, $n_2$ has $s^*_2$ as a best response to $s_1$ if $u_2(s^*_2, s_1)\ge u_2(s_i, s_1)$ for all possible actions $s_i\in A_2$ and all strategies in $s_1$.\\
+  
+  $u_1(c_1, d_2)\ge u_1(c_1, c_2) \Rightarrow 0\ge -1$\\
+
+  $u_1(c_1, d_2)\ge u_1(c_1, d_2) \Rightarrow 0\ge 0$\\
+
+  $u_1(d_1, d_2)\ge u_1(d_1, c_2) \Rightarrow -3\ge -4$\\
+
+  $u_1(d_1, d_2)\ge u_1(d_1, d_2) \Rightarrow -3\ge -3$\\
+
+  $s^*_2$ is greater than or equal to all possible actions in $A_2$ and for all strategies in $s_1$. Thus, $s^*_2=d_2$ is the best response for player $n_1$. A strategy set $(s_1,\dots ,s_n)$ is a Nash equilibrium if $s_i$ is the best response for all players $i$. Therefore, the strategy profile $(d_1, d_2)$ is a Nash equilibrium for game $G$.
 \end{proof}
 
 Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance. Let the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let Player 1 be on the left side of the matrix, and let Player 2 be on the top of the matrix.
