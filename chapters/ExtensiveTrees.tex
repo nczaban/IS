@@ -207,11 +207,27 @@ Nash equilibria can be found in extensive-form games as well, and are defined th
   Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$ \cite{shoh09}.
 \end{define}
 Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form games, it is not necessary to introduce probabilities to find a Nash equilibrium. This can be seen in examples of backwards induction.
-%\begin{algorithm}
-%  \caption{Backwards Induction}
-%  \begin{algorithmic}
-%    Procedure {BackwardsInduction}{node $h$}
-%    \If{$h\in Z$}
-%    \State Return $u(h)$
-%  \end{algorithmic}
-%\end{algorithm}
+\begin{algorithm}
+  \caption{Backwards Induction}
+  \begin{algorithmic}
+    \Procedure {BackwardInduction}{node $h$}
+    \If{$h\in Z$}
+    \State Return $u(h)$
+    \Comment If $h$ is a leaf node, return the utility of that outcome
+    \EndIf
+    \For{$a\in\chi(h)$}
+    \State $util\_at\_child \gets BackwardInduction(\sigma(h, a))$
+    \Comment Recursively check each child of $h$
+    \If{$util\_at\_child_{\rho(h)}>best\_util_{\rho(h)}$}
+    \State $best\_util\gets util\_at\_child$\\
+    \Comment $best\_util$ holds the utility which maximized for the player $\rho(h)$
+    \EndIf
+    \EndFor
+    \State Return $best\_util$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at the terminal nodes in $Z$, the leaves of the extensive-form tree. At these leaves, the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children, which may have children of their own. Whichever child provides the player at that node (as determined by the mapping function $\rho$) the most utility will be the choice made by that player, assuming optimal play.\\
+
+For example, suppose an extensive-form tree with a root and two child nodes.
