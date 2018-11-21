@@ -206,7 +206,7 @@ Nash equilibria can be found in extensive-form games as well, and are defined th
 \begin{define}
   Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$ \cite{shoh09}.
 \end{define}
-Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form games, it is not necessary to introduce probabilities to find a Nash equilibrium. This can be seen in examples of backwards induction.
+Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form games, it is not necessary to introduce probabilities to determine a Nash equilibrium. Instead, Nash equilibria can be found using backwards induction.
 \begin{algorithm}
   \caption{Backwards Induction}
   \begin{algorithmic}
@@ -230,4 +230,10 @@ Given a perfect-information game, a player's pure strategy is the set of choices
 
 Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at the terminal nodes in $Z$, the leaves of the extensive-form tree. At these leaves, the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children, which may have children of their own. Whichever child provides the player at that node (as determined by the mapping function $\rho$) the most utility will be the choice made by that player, assuming optimal play.\\
 
-For example, suppose an extensive-form tree with a root and two child nodes.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4cm]{figures/ExampleBackwardInduction.png}
+  \caption{A small extensive-form tree. The outcome is dependant on the player mapped by $\rho(h)$.}
+  \label{fig:BackwardInduction}
+\end{figure}
+For example, examine the extensive-form tree for a two-player game in Figure \ref{fig:BackwardInduction}. with a root and two child, terminal nodes. At the leaf node $a$, player 1 has positive utility while player 2 has negative utility; at leaf node $b$, player 2 has positive utility and player 1 has negative utility. Since both players are utility-maximizing agents, the choice of the outcome is determined by whichever player happens to be making the decision, as mapped by $\rho(h)$. Suppose that Figure \ref{fig:BackwardInduction} is a subtree in a larger game. Further suppose that, in this larger game, the subtree in Figure \ref{fig:BackwardInduction} always has player 1 making the choice at node $h$. Given this scenario, player 1 will always perform the action that gets them to node $a$. Thus, node $h$ can be replaced by $a$, with $b$ being removed from the tree entirely, and the rest of the game will be unchanged. 
