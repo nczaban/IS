@@ -45,6 +45,7 @@
 \usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{listings}
 \usepackage{float}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,6 +61,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{styles/personal}
+\lstdefinelanguage{pseudocode}{
+  tabsize=4,
+  morecomment=[l][#],
+  commentstyle={\it}
+  morekeywords={if, in, Procedure, node, return, end}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -251,13 +258,13 @@
 \input{chapters/Intro.tex}
 \input{chapters/ExtensiveTrees.tex}
 \input{chapters/DecisionTrees.tex}
-\chapter{Fuzzy Logic}
-\section{Fuzzy Sets}
-\section{Fuzzy Constraint Satisfaction Problem}
-\chapter{Video Game AI}
-\section{Fuzzy-State Machines}
+%\chapter{Fuzzy Logic}
+%\section{Fuzzy Sets}
+%\section{Fuzzy Constraint Satisfaction Problem}
+%\chapter{Video Game AI}
+%\section{Fuzzy-State Machines}
 \input{chapters/Software.tex}
-\chapter{Future Work}
+%\chapter{Future Work}
 %\input{chapters/chapter3}
 %\input{chapters/chapter4}
 %\input{chapters/chapter5}
@@ -300,9 +307,9 @@
 
 \renewcommand\bibname{References} % changes the name of the Bibliography
 
-\nocite{*}% This command forces all the bibliography references to be printed -- not just 
-          % those that were explicitly cited in the text.  If you comment this out, the bibliography
-          % will only include cited references.
+%\nocite{*}% This command forces all the bibliography references to be printed -- not just 
+           % those that were explicitly cited in the text.  If you comment this out, the
+           % bibliography will only include cited references.
 \ifthenelse{\boolean{woosterchicago}}{
 \bibliographystyle{woosterchicago}}{\ifthenelse{\boolean{achemso}}{
 \bibliographystyle{achemso}}{\bibliographystyle{plainnat}}}

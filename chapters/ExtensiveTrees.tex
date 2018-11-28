@@ -18,7 +18,7 @@ In the vast majority of human choices, a person will attempt to maximize their u
 \end{itemize}
 \end{define}
 
-In an arbitrary normal-form game, there are $n$ different players contained in the set $N$, where $n$ is a positive integer. For each of these players, there is also a finite set of actions that they can take. Player $N_i$ will have the action set $A_i$. The complete action set $A$ is determined by the Cartesian product of the action sets of each player. Within $A$, a vector $a$ is the action profile; an action profile, or outcome, represents the choice that each player makes \cite{osbo94}. The collection of mappings $u$ gives each action profile a particular value; these values determine which outcome is preferred by a player. In normal-form games, players are utility-maximizing agents; they will gravitate towards action profiles which give them higher utility.\\
+In an arbitrary normal-form game, there are $n$ different players contained in the set $N$, where $n$ is a positive integer. For each of these players, there is also a finite set of actions that they can take. Player $N_i$ will have the action set $A_i$. The complete action set $A$ is determined by the Cartesian product of the action sets of each player. Within $A$, a vector $a$ is the action profile; an action profile, or outcome, represents the choice that each player makes \cite{osbo94}. The collection of mappings $u$ gives each action profile a particular value; these values determine which outcome is preferred by a player. In normal-form games, players are utility-maximizing agents; they will gravitate towards action profiles that give them higher utility.\\
 
 An example of a normal-form game can be seen in the quintessential ``Prisoner's Dilemma'' example. This game is expressed in a 2x2 matrix, with one player's choices represented in the columns and the other player's choices represented in the rows of said matrix.
 
@@ -164,7 +164,7 @@ Since the game board was shrunk for this example, the game ends with Player 1 al
 There are also repeated game configurations: the outcome \{(UL, UR), (LR)\} is rotationally symmetrical to \{(LL, UL), (UR)\}, \{(LR, LL), (UL)\}, and \{(UR, LR), (LL)\}, as is evident in Figure \ref{fig:2x2TTTRotation}. Furthermore, the game \{(UL, UR), (LR)\} is identical to \{(UR, UL), (LR)\}. With so many extraneous spaces in the normal-form representation, it is no longer sufficient to represent player choices for games with sequential actions. Instead, these games are better represented in extensive-form trees.\\
 
 \section{Extensive Form Trees}
-In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; tic-tac-toe relies on players anticipating the future choices their opponents will make. There are two types of extensive-form games: perfect-information and imperfect-information. In perfect-information games, all players know which turn of the game they are at, while imperfect-information games have turns which are indistinguishable from others based on information available to the player. We will be dealing with perfect-information games.\\
+In a turn-based, or extensive-form game, players do not make simultaneous actions. This leads to larger variety in gameplay. A simultaneous game like Rock-Paper-Scissors relies on chance; tic-tac-toe relies on players anticipating the future choices their opponents will make. There are two types of extensive-form games: perfect-information and imperfect-information. In perfect-information games, all players know which turn of the game they are at, while imperfect-information games have turns that are indistinguishable from others based on information available to the player. We will be dealing with perfect-information games.\\
 
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
@@ -180,7 +180,7 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
   \end{itemize}
 \end{define}
 
-As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns which do not end the game, while $Z$ contains all choices or turns which do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player, which determines their individual utility at each of the terminal nodes in $Z$.\\
+As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns that do not end the game, while $Z$ contains all choices or turns that do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player that determines their individual utility at each of the terminal nodes in $Z$.\\
 
 \begin{figure}[H]
   \centering
@@ -202,8 +202,6 @@ To explore this definition, return to the game of tic-tac-toe. Let $N={N_1, N_2}
 
 Figure \ref{fig:2x2TTTExtForm} shows the extensive-form version of the 2x2 tic-tac-toe variant in Figure \ref{fig:full2x2TTT}. In comparison to the normal-form representation, the extensive-form tree can convey the sequence and flow of the game more clearly. Since the $\chi$ function of an extensive-form game only maps possible actions, the tree does not have the same infeasible nodes as the normal-form representation. This tree has the same issues of rotational symmetry as in the normal form, but in this particular example, the four subtrees connected to the root are all rotationally symmetrical to each other.
 
-Any decision tree of this type can be represented as a collection of sets ordered by set inclusion, or vice versa \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.\\
-
 \subsection{Equilibria in Extensive-Form}
 Nash equilibria can be found in extensive-form games as well, and are defined the same as in normal-form games. However, a pure strategy in an extensive-form game requires the player's strategy to contain the decision at every choice node, even if that node is unreachable by other choices in said strategy.\\
 \begin{define}
@@ -211,8 +209,8 @@ Nash equilibria can be found in extensive-form games as well, and are defined th
 \end{define}
 Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form game, it is not necessary to introduce probabilities to determine a Nash equilibrium. Instead, Nash equilibria can be found using backwards induction.
 \begin{algorithm}
-  \caption{Backwards Induction}
-  \begin{algorithmic}
+  \caption{Backwards Induction \cite{shoh09}}
+  \begin{algorithmic}[1]
     \Procedure {BackwardInduction}{node $h$}
     \If{$h\in Z$}
     \State Return $u(h)$
@@ -223,7 +221,7 @@ Given a perfect-information game, a player's pure strategy is the set of choices
     \Comment Recursively check each child of $h$
     \If{$util\_at\_child_{\rho(h)}>best\_util_{\rho(h)}$}
     \State $best\_util\gets util\_at\_child$\\
-    \Comment $best\_util$ holds the utility which maximized for the player $\rho(h)$
+    \Comment $best\_util$ holds the utility which is maximized for the player $\rho(h)$
     \EndIf
     \EndFor
     \State Return $best\_util$
@@ -231,7 +229,15 @@ Given a perfect-information game, a player's pure strategy is the set of choices
   \end{algorithmic}
 \end{algorithm}
 
-Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at the terminal nodes in $Z$, the leaves of the extensive-form tree. At these leaves, the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children, which may have children of their own. Whichever child provides the player at that node (as determined by the mapping function $\rho$) the most utility will be the choice made by that player, assuming optimal play.\\
+\begin{lstlisting}[language=pseudocode]
+  Procedure BackwardInduction(node h)
+  if(h in Z)
+      return u(h)
+  end if
+      
+\end{lstlisting}
+
+Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 5. Since the child nodes may have their own children, line 6 recursively checks each child and gets the utility of that node. In lines 7 and 8, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 12.\\
 
 \begin{figure}[H]
   \centering
