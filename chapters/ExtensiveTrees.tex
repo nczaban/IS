@@ -113,7 +113,6 @@ Not all games have a Nash equilibrium; take the normal-form representation of ro
 Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. Thus, there can be no equilibrium.
 
 \subsection{Non-Simultaneous Games}
-
 It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Assume the utility function award players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. We position Player 1 on the left side of the matrix, and Player 2 on the top of the matrix. Assume Player 1 has the first turn.\\
 \begin{figure}[H]
   \centering
@@ -248,7 +247,7 @@ Given a perfect-information game, a player's pure strategy is the set of choices
   end Procedure
 \end{lstlisting}
 
-Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 6. Since the child nodes may have their own children, line 7 recursively checks each child and gets the utility of that node. In lines 9 and 10, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 14.\\
+Backwards induction determines a dominant strategy for a particular game. The algorithm in Listing \ref{lst:BackwInd} has a base case is at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 6. Since the child nodes may have their own children, line 7 recursively checks each child and gets the utility of that node. In lines 9 and 10, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 14.\\
 
 \begin{figure}[H]
   \centering
