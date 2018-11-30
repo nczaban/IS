@@ -1,7 +1,9 @@
 % !TEX root = ../IS.tex
 \chapter{Machine Learning}
 \section{Decision Trees}
-One common machine learning technique is the decision tree. It can approximate discrete-valued functions \cite{mitc97} and automatically classify data\cite{sega07}. Generally, decision trees focus on problems with attribute-value pairs; an attribute \textit{Temperature} may have the possible values \textit{ Hot, Cold, Warm, Cool} \cite{mitc97}.
+The goal of a machine learning problem is, of course, to learn; given a task with a particular performance measure, the performance can be improved through some kind of training or experience. Often, this involves evaluating a general case for the task from a set of specific examples \cite{mitc97}. One of the more common machine learning techniques is the decision tree. It can approximate discrete-valued functions \cite{mitc97} and automatically classify data \cite{sega07}. Generally, decision trees focus on problems with attribute-value pairs; an attribute \textit{Temperature} may have the possible values \textit{Hot, Cold, Warm, Cool} \cite{mitc97}.\\
+
+When creating a decision tree, one must begin with example data to analyze. This may be historical data, looking at the same problem from previous years, or a set of example problems. In order to form an effective tree, these data are split into two groups: a training set, and a testing set. The training set is used to create the tree, while the testing set is used to find the approximate error of the tree. It is important that these two sets are disjoint; the error of a tree cannot be accurately determined if it isn't analyzing new data in the testing phase.
 
 \subsection{ID3 Algorithm}
 The ID3 algorithm for decision trees, like most decision tree algorithms, uses a top-down greedy search \cite{mitc97}. The algorithm begins by evaluating the input data by individual attributes in the training set. For each attribute, the algorithm attempts to classify the entire data set using only that attribute. Whichever attribute was the most successful on its own becomes the root of the tree. Then, for each possible value of that root attribute, a descendant node is created and the training set is split accordingly. Then, for each descendant node and its respective subset of training data, the process is repeated.\\
@@ -10,73 +12,92 @@ To find the best attribute at each node of the tree, the ID3 algorithm uses the 
 \begin{define}
   For a set of training data $S$ with $n$ different target values, Entropy(S)$\equiv\sum_{i=1}^n-p_i$log$_2p_i$, where $p_i$ is the proportion of S with a target value of $i$.
 \end{define}
-Entropy calculations define 0log(0) as 0. The logarithm can have any base value, but two is often used; a base of 2 conveys the expected encoding length in bits \cite{mitc97}. Assuming the base value is 2, an entropy value of 0 occurs when all data set elements have the same target value $i$, and a  set with a 50/50 split between two target values will have an entropy value of 1. Information gain is defined as the expected reduction in entropy caused by splitting the training data by a particular attribute.
+Entropy calculations define 0log(0) as 0. The logarithm can have any base value, but two is often used; a base of 2 conveys the expected encoding length in bits \cite{mitc97}. Assuming the base value is 2, an entropy value of 0 occurs when all data set elements have the same target value $i$, and a  set with a 50/50 split between two target values will have an entropy value of 1. Ideally, a decision tree will classify data into sets with low entropy, as this would indicate an accurate tree structure.\\
+
+In order to minimize entropy in the classified data, the information gain of each attribute is calculated. Information gain is defined as the expected reduction in entropy caused by splitting the training data by a particular attribute.
 \begin{define}
-  For an attribute $A$ and a set of training data $S$, the Information Gain(S, A)$\equiv$ Entropy(S) $-\sum_{v\in Values(A)}\frac{|S_v|}{|S|}$ Entropy$(S_v)$, where $Values(A)$ is the set of possible values for the attribute $A$, and $S_v$ is the subset of $S$ where $A$ has value $v$.
+  For an attribute $A$ and a set of training data $S$, the Information Gain(S, A)$\equiv$ Entropy(S) $-\sum_{v\in Values(A)}\frac{||S_v||}{||S||}$ Entropy$(S_v)$, where $Values(A)$ is the set of possible values for the attribute $A$, and $S_v$ is the subset of $S$ where $A$ has value $v$.
 \end{define}
-Each attribute $A$ for a given node is tested, with each of its possible values used in the summation. For these values, the entropy of each subset $S_v$ with is calculated, then scaled by the size of $S_v$ compared to $S$.
+Each attribute $A$ for a given node is tested, with each of its possible values used in the summation. For these values, the entropy of each subset $S_v$ with is calculated, then scaled by the size of $S_v$ compared to $S$.\\
 
-\begin{algorithm}
-  \caption{ID3 Decision Tree Algorithm}
-  \begin{algorithmic}
-    \Procedure {ID3}{TrainingSet $S$, TargetAttribute $t$, AttributeSet $A$}
-    \State Create node $Root$
-    \State $TestEntropy\gets True$
-    \State $TestAttributeValue\gets S_0$
-    \For{$i\in S$}
-    \Comment Check whether the TrainingSet $S$ is uniform on TargetAttribute $t$
-    \If{the TargetAttribute of $i=TestAttributeValue$}
-    \State Pass
-    \Else
-    \State $TestEntropy\gets False$
-    \State Break
-    \Comment One of the elements of $S$ has a different value for $t$, exit the for loop
-    \EndIf
-    \EndFor
-    \If{$TestEntropy == True$}
-    \State Return $Root$ with label $v$\\
-    \Comment Every element in $S$ has the same value for $t$, this is a single-node tree
-    \ElsIf{AttributeSet $A$ is the empty set}
-    \State Return $Root$ with label most common value of $t$ in TrainingSet\\
-    \Comment All attributes have been examined and $S$ cannot be split further
-    \Else
-    \State $OptimalInformationGain=0$
-    \For{all $a\in$AttributeSet}
-    \Comment Determine optimal split for the set $S$
-    \State $InformationGain \gets Entropy(S)$
-    \State $EntropySum\gets 0$
-    \For{all values $v\in a$}
-    \State $S_v \gets \{S:Value(a)=v\}$
-    \Comment $S_v$ contains elements of $S$ which have TargetAttribute $v$
-    \State $EntropySum\gets EntropySum + \frac{S_v}{S} * Entropy(S_v)$\\
-    \Comment Add the entropy for each possible value $v$ of $a$.
-    \EndFor
-    \State $InformationGain \gets InformationGain - EntropySum$\\
-    \Comment This is the information gain from splitting the set along $a$.
-    \If{$InformationGain > OptimalInformationGain$}
-    \State $OptimalInformationGain \gets InformationGain$
-    \EndIf
-    \EndFor
-    \Comment The optimal information gain has been determined to be on attribute $a$.
-    \State Label for $Root\gets a$
-    \For{all values $v\in a$}
-    \State Add branch below $Root$ corresponding to $v_i$.
-    \State $NewTrainingData\gets \{s\in S:Value(a)=v_i\}$\\
-    \Comment Create a subset of $S$ containing examples where $a=v_i$
-    \If{$NewTrainingData$ is the empty set}
-    \State Create a leaf node with most common value of $t$
-    \EndIf
-    \EndFor
-    \EndIf
-    \State Return $Root$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
+\begin{figure}
+  \centering
+  \begin{tabular}{c | c | c}
+    Month & Tickets & Weekend \\ \hline
+    3 & 25 & 0 \\ \hline
+    8 & 45 & 1 \\ \hline
+    8 & 25 & 0 \\ \hline
+  \end{tabular}
+  \caption{A sample data set with three attributes and three entries}
+  \label{fig:ExampleEntropy}
+\end{figure}
 
-Once a tree has been created with the algorithm, it is simple to classify new data. Starting at the root of the tree, each target attribute is tested for recursively, moving from one node to another down the tree \cite{sega07}.\\
+For example, consider the data set in Figure \ref{fig:ExampleEntropy}. The \textit{Month} attribute is the numeric value of the calendar month, \textit{Tickets} is the number of tickets sold to an event, and \textit{Weekend} is a boolean value whether the event is on a weekend or not. Supposing that the target attribute of this set is \textit{Weekend}, the entropy will be the sum $-.66$log$_2(0.66) + -.33$log$_2(.33)$, or approximately 0.9235.\\
+
+To reduce this entropy, the ID3 algorithm finds the information gain for the two non-target attributes: \textit{Month} and \textit{Tickets}. Beginning with \textit{Month}, the information gain will be $0.9235 - \frac{1}{3}$(Entropy(v=3)) $+ \frac{2}{3}$(Entropy(v=8)). At \textit{Month} 3, the entropy of the set is 0, as it contains a single element. The entropy of the subset at \textit{Month}=8 will be 1, as the set has a 50/50 split along the target \textit{Weekend} attribute. Thus, the information gain for \textit{Month} is $0.9235 - \frac{2}{3}$, or 0.2568. Separating the data set along the \textit{Month} attribute does help in classifying the events by weekend, but the August events are now split 50/50.\\
+
+The \textit{Tickets} attribute has an information gain of $0.9235 - \frac{2}{3}$(Entropy(v=25)) $+ \frac{1}{3}$(Entropy(v=45)). Since all elements in the subset of $S$ where \textit{Tickets}=25 have a target values of 0, the entropy will be 0. The same is true of the subset where \textit{Tickets}=45. Thus, the information gain from this attribute is 0.9235. This does not indicate that no information was gained, this indicates that all entropy was removed from the set. All subsets are homogenous when separating subsets by \textit{Tickets}.
+
+Once the maximum information gain for a set has been determined, the ID3 algorithm uses the resulting subsets and recursively creates new subtrees for the subsets. This process continues until the entropy for the entire tree is 0. Once a tree has been created with the algorithm, it is simple to classify new data. Starting at the root of the tree, each target attribute is tested for recursively, moving from one node to another down the tree \cite{sega07}.\\
+
+\lstset{language=pseudocode, label=lst:ID3, caption={The ID3 Decision Tree algorithm \cite{mitc97}.}}
+\begin{lstlisting}
+  Procedure ID3(TrainingSet S, TargetAttribute t, AttributeSet A)
+  create node Root
+  TestEntropy = True
+  TestAttributeValue = S[0]
+  for(i in S)
+      //Check whether the TrainingSet is uniform on t
+      if(TargetAttribute[i]!=TestAttributeValue)
+          TestEntropy=False
+          //One of the elements has a different value for t
+      end if
+  end for
+  if(TestEntropy is True)
+      return root with label value of t
+      //This is a single-node tree; all elements in S have the same value for t
+  else if(A is EmptySet)
+      return Root with mode(t)
+      //There are no more attributes to check, return most common value of t
+  else
+      //Determine optimal split for S
+      OptimalInformationGain = 0
+      for(attr in A)
+          InformationGain = Entropy(S)
+          EntropySum = 0
+          for(val in attr)
+              S_v = {S:Value(attribute)=val}
+              //S_v contains the elements of S which have val for attr
+              EntropySum = EntropySum + size(S_v)/size(S) * Entropy(S_v)
+              //Add the entropy for each possible val for attr
+          end for
+          InformationGain = InformationGain - EntropySum
+          //This is the information gain from splitting S on attr
+          if(InformationGain > OptimalInformationGain)
+              OptimalInformationGain = InformationGain
+              //The maximum InformationGain value is stored
+          end if
+      end for
+      //The optimal information gain has been found on attr
+      Root.Label = attr
+      for(val in attr)
+          create Branch(val_i)
+          NewTrainingData = {s in S:Value(attr)=val_i}
+          if(NewTrainingData is EmptySet)
+              create Leaf with mode(t) on S
+          else
+              add ID3(NewTrainingData, t, A-attr) as subtree
+          end if
+      end for
+  end if
+  return Root
+  end Procedure
+\end{lstlisting}
+
+In line 2 of the algorithm in Listing \ref{lst:ID3}, the root of the tree (or subtree) is created. The first base case to test is whether or not the TargetAttribute $t$ has the same value for every element in the TrainingSet $S$. This base case refers to a set $S$ with an entropy of 0, that requires no further classification, and begins at line 5. The second base case, starting on line 15, occurs when no non-target attributes remain in $A$. Without attributes, there is no way to further classify $S$, and the most common value for $t$ is used as the label for this node. This leaves the recursive case. The first step is to find the optimal information gain, and thus the next attribute used to split $S$. The loop at line 21 checks each attribute in $A$ for the largest reduction in entropy, and the attribute that created this reduction is saved as the label for the Root node on line 38. Line 39's loop prepares the data to be analyzed by the next levels of the decision tree. First, a new branch is created linking Root and the to-be-created subtree, with each branch labelled with a possible value of the attribute used in the split. Training data is split along this same value. If one of the new training data splits has no elements, a leaf node is labelled with the most common value of $t$ in $S$. All other splits of $S$ are recursively passed to ID3() in line 45, along with $t$ and the AttributeSet $A$ (sans the attribute just used). 
 
 \subsection{Optimizing the Tree}
-Decision trees are susceptible to overfitting, where decisions at each node are too closely tied to the training set. Overfitting is caused by an algorithm creating superfluous branches which slightly decrease entropy for the set, but are in fact arbitrary decisions \cite{sega07}. For example, a decision tree could be created to classify students to their fields of study. An overfitted tree might contain choice nodes checking the names of the students. The tree will be able to reach 0 entropy on the training set, knowing that ``John Smith'' is an English major and ``Jane Doe'' is a Chemistry major, but this tree will not be able to correctly classify a ``John Doe'' or ``Jane Smith.''\\
+Decision trees are susceptible to overfitting, where decisions at each node are too closely tied to the training set. Overfitting is caused by an algorithm creating superfluous branches that slightly decrease entropy for the set, but are in fact arbitrary decisions \cite{sega07}. For example, a decision tree could be created to classify students to their fields of study. An overfitted tree might contain choice nodes checking the names of the students. The tree is able to reach 0 entropy on the training set, knowing that ``John Smith'' is an English major and ``Jane Doe'' is a Chemistry major, but this tree is not able to correctly classify a ``John Doe'' or ``Jane Smith.''\\
 
-There are two common methods to prevent overfitting. The first method is to require a minimum reduction in entropy at each split. Once the minimum is not reached, the tree stops creating additional branches. While commonly used, this method is insufficient in cases where early splits do not reduce entropy, but later splits will greatly reduce the entropy of the set \cite{sega07}. The second method is to build the tree, then prune any extraneous nodes. Working from the bottom-up, the tree examines two leaf nodes with the same parent and determines whether merging these nodes would not increase entropy more than a specified threshold. If the nodes pass this test, they are combined and their parent becomes a new leaf node.\\
+There are two common methods to prevent overfitting. The first method is to require a minimum reduction in entropy at each split. Once the minimum is not reached, the tree stops creating additional branches. While commonly used, this method is insufficient in cases where early splits do not reduce entropy, but later splits greatly reduce the entropy of the set \cite{sega07}. The second method is to build the tree, then prune any extraneous nodes. Working from the bottom-up, the tree examines two leaf nodes with the same parent and determines whether merging these nodes would not increase entropy more than a specified threshold. If the nodes pass this test, they are combined and their parent becomes a new leaf node.\\
 
