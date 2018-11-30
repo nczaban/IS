@@ -208,33 +208,44 @@ Nash equilibria can be found in extensive-form games as well, and are defined th
   Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$ \cite{shoh09}.
 \end{define}
 Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form game, it is not necessary to introduce probabilities to determine a Nash equilibrium. Instead, Nash equilibria can be found using backwards induction.
-\begin{algorithm}
-  \caption{Backwards Induction \cite{shoh09}}
-  \begin{algorithmic}[1]
-    \Procedure {BackwardInduction}{node $h$}
-    \If{$h\in Z$}
-    \State Return $u(h)$
-    \Comment If $h$ is a leaf node, return the utility of that outcome
-    \EndIf
-    \For{$a\in\chi(h)$}
-    \State $util\_at\_child \gets BackwardInduction(\sigma(h, a))$
-    \Comment Recursively check each child of $h$
-    \If{$util\_at\_child_{\rho(h)}>best\_util_{\rho(h)}$}
-    \State $best\_util\gets util\_at\_child$\\
-    \Comment $best\_util$ holds the utility which is maximized for the player $\rho(h)$
-    \EndIf
-    \EndFor
-    \State Return $best\_util$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
+%\begin{algorithm}
+%  \caption{Backwards Induction \cite{shoh09}}
+%  \begin{algorithmic}[1]
+%    \Procedure {BackwardInduction}{node $h$}
+%    \If{$h\in Z$}
+%    \State Return $u(h)$
+%    \Comment If $h$ is a leaf node, return the utility of that outcome
+%    \EndIf
+%    \For{$a\in\chi(h)$}
+%    \State $util\_at\_child \gets BackwardInduction(\sigma(h, a))$
+%    \Comment Recursively check each child of $h$
+%    \If{$util\_at\_child_{\rho(h)}>best\_util_{\rho(h)}$}
+%    \State $best\_util\gets util\_at\_child$\\
+%    \Comment $best\_util$ holds the utility which is maximized for the player $\rho(h)$
+%    \EndIf
+%    \EndFor
+%    \State Return $best\_util$
+%    \EndProcedure
+%  \end{algorithmic}
+%\end{algorithm}
 
+\lstset{language=pseudocode, label={lst:BackwInd}, caption={The Backward Induction algorithm for extensive-form game trees \cite{shoh09}.}}
 \begin{lstlisting}[language=pseudocode]
   Procedure BackwardInduction(node h)
   if(h in Z)
       return u(h)
+      //If h is a leaf node, return the utility of that outcome
   end if
-      
+  for(a in %*$\chi$*(h))
+      util_at_child = BackwardInduction(%*$\sigma(h, a)$*)
+      //Recursively check each child of h
+      if(util_at_child%*$_{\rho(h)}$* > best_util%*$_{\rho(h)}$*)
+          best_util = util_at_child
+          //best_util holds the node which maximizes the utility of player %*$\rho$*(h)
+      end if
+  end for
+  return best_util
+  end Procedure
 \end{lstlisting}
 
 Backwards induction determines a dominant strategy for a particular game. The algorithm's base case is at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 5. Since the child nodes may have their own children, line 6 recursively checks each child and gets the utility of that node. In lines 7 and 8, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 12.\\
