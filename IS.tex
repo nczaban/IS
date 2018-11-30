@@ -61,11 +61,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{styles/personal}
+\lstdefinelanguage{ff9code}{
+  morekeywords={set, if, elseif},
+  keywordstyle=\color{black}\bfseries,
+  breaklines=true,
+  numbers=left,
+  numberstyle=\small\color{gray},
+  stepnumber=2
+}
 \lstdefinelanguage{pseudocode}{
-  tabsize=4,
-  morecomment=[l][#],
-  commentstyle={\it}
-  morekeywords={if, in, Procedure, node, return, end}
+  morecomment=[l]{//},
+  commentstyle=\textit,
+  morekeywords={if, in, Procedure, node, return, end, for},
+  keywordstyle=\color{black}\bfseries,
+  escapeinside={\%*}{*},
+  breaklines=true,
+  numbers=left,
+  numberstyle=\small\color{gray},
+  stepnumber=2
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -220,7 +233,7 @@
 \tableofcontents
 \listoffigures %Use if you have a list of figures.
 %\listoftables %Use if you have a list of tables.
-%\lstlistoflistings %Use if you are using the code option
+\lstlistoflistings %Use if you are using the code option
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -241,19 +254,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\input{chapters/introduction}
-%\section{Extensive-Form Game Trees}
-%The quintessential example of Game Theory, the prisoner's dilemma, expresses the possible outcomes in a matrix form. Both players have two possible choices, resulting in the 2x2 matrix. However, for games with sequential actions or numerous choices, the matrix representation quickly becomes unreadable. Thus, games where players take turns performing actions are represented in extensive- or tree-form. In these trees, each node is a possible choice for one of the players, and the edges are the actions that they can take for that choice. At the leaves of this tree are the results of each player's utility function\cite{shoh09}.\\
-
 %Specifically, these trees are most useful for perfect-information, constant-sum games. For a game to be perfect-information, each player must know the series of actions that led to a particular node. In contrast, imperfect-information games have nodes which are indistinguishable from other nodes, at least with the information available to a player \cite{shoh09}. Consider a game where a player picks between three doors, one of which has a reward behind it. For multiple rounds of this game, the player has no way of knowing which door has the prize; thus, any choice node for that player is indistinguishable from another and no pure strategy exists. In constant-sum games, any gain one player makes to their utility function causes a constant value loss in another player's utility function. This behavior is expressed as $\forall a\in A_1\times A_2, u_1(a)+u_2(a) = c$ where $a$ is a strategy profile in sets of actions $A_1,A_2$ for players 1 and 2 and $u_1,u_2$ are the utility functions for these players. For convenience, $u$ is often set as 0, meaning that any positive action by one player causes an equivalent loss in the other player. These cases are referred to as zero-sum games \cite{schw04}. Certain nonzero-sum games, such as Monopoly, can be represented as zero-sum games if the ``board'' (or the bank, as in Monopoly) is treated as a player. Thus, two players forming an alliance would be working against this nonexistent player, and all properties of zero-sum games can be applied.\\
 
 %In these game trees, the first player to make a choice is referred to as \textbf{max} and the second player as \textbf{min}. A choice for a particular player is thus referred to as either a max-node or a min-node, depending on the turn. Another crucial concept is \textit{ply}, the number of actions required to travel from one node to another \cite{smed06}. When a game is expressed in this form, it is trivial to see which move will be taken one ply above the leaves: if player \textbf{max} can win, they will take the action that leads to their victory; if they cannot win, they will try to reach a draw if possible. With this idea in mind, the strategy for additional plys above the leaves can be determined recursively.\\
-
-%It was proven that any decision tree of this type can be represented as a collection of sets ordered by set inclusion, without loss of generality \cite{alos08}. This definition of a ``set-tree'' is able to encompass numerous types of games. These include stochastic games, where the environment of the game changes with a player's decision \cite{sola15}; repeated games, where the incentives of a repeated interaction differs from an isolated interaction \cite{mail06}; and differential games, where players make continuous decisions \cite{alos08}. There are two desired traits for these game trees: every strategy or combination of actions produces an outcome, and the outcome of a particular strategy is unique \cite{alos08}. If an extensive-form game has these qualities, then the game can also be expressed in normal form; these traits are necessary and sufficient for normal-form representation.
-
-
-%\section{Pygame and Game Design}
-%The example Pygame files create classes for each entity in the game (alien, player, projectile, scoreboard) and has one main loop. These classes contain elements such as speed, their sprite images, and \_\_init\_\_ and update functions. The main loop is fairly iterative, but there does not seem to be any restriction on doing things more functionally.
 
 \input{chapters/Intro.tex}
 \input{chapters/ExtensiveTrees.tex}
