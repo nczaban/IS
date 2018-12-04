@@ -18,18 +18,15 @@ def gameLoop():
         turnCounter += 1
         r = random()
         if(isPlayer0Turn):
-            if(r<0.5):
-                newAction = 'A'
-            else:
-                newAction = 'H'
+            newAction = userInput(hitPoints)
             if(newAction == 'H' and hitPoints[0] <= 25):
                 hitPoints[0] += 4
                 if(hitPoints[0] > 25):
                     hitPoints[0] = 25
-                else:
-                    hitPoints[1] -= 5
+            else:
+                hitPoints[1] -= 5
         else:
-            if(r<agressiveness):
+            if(r<.5):
                 newAction = 'A'
             else:
                 newAction = 'H'
@@ -37,8 +34,8 @@ def gameLoop():
                 hitPoints[1] += 4
                 if(hitPoints[1] > 25):
                     hitPoints[1] = 25
-                else:
-                    hitPoints[0] -= 5
+            else:
+                hitPoints[0] -= 5
         isPlayer0Turn = not isPlayer0Turn
         healthLevels.append(hitPoints.copy())
     output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
@@ -51,6 +48,13 @@ def gameLoop():
         file.write(line)
         file.write('\n')
 
-for x in range(500):
-    gameLoop()
+def userInput(hitPoints):
+    print("----------------------------------")
+    print("Player 1: ", hitPoints[0])
+    print("Player 2: ", hitPoints[1])
+    action = input("Type A to attack, H to heal: ")
+    action = action.upper()
+    return action
+
+gameLoop()
 
