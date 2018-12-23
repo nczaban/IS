@@ -4,9 +4,38 @@
 # and healing restores 4 hit points. The first player has a 50-50 chance of either action. The second
 # player has a randomly generated "agressiveness" value, determining how likely they are to heal.
 from random import random
+import os, sys
 import pygame
-size = width, height = 320, 240
 
+if not pygame.font: print("Fonts are unavailable and have been disabled")
+if not pygame.mixer: print("Sounds are unavailable and have been disabled")
+
+def load_image(name, colorkey=None):
+    fullname = os.path.join('data', name)
+    try:
+        image = pygame.image.load(fullname)
+    except pygame.error:
+        print("Cannot load image: ", name)
+        raise SystemExit
+    image = image.convert()
+    if colorkey is not None:
+        if colorkey is -1:
+            colorkey = image.get_at((0,0))
+        image.set_colorkey(colorkey, RLEACCEL)
+    return image, image.get_rect()
+
+def load_sound(name):
+    class NoneSound:
+        def play(self): pass
+    if not pygame.mixer:
+        return NoneSound()
+    fullname = os.path.join('data', name)
+    try:
+        sound = pygame.mixer.Sound(fullname)
+    except pygame.error:
+        print("Cannot load sound: ", name)
+        raise SystemExit
+    return sound
 
 def gameLoop():
     hitPoints = [25, 25]
