@@ -7,6 +7,11 @@ from random import random
 import os, sys
 import pygame
 
+from time import sleep
+
+# ----------
+# Functions from the pygame tutorial
+# ----------
 if not pygame.font: print("Fonts are unavailable and have been disabled")
 if not pygame.mixer: print("Sounds are unavailable and have been disabled")
 
@@ -37,6 +42,63 @@ def load_sound(name):
         raise SystemExit
     return sound
 
+
+
+# Begin my code sections
+min_coord = (0, 0)
+max_coord = (720, 720)
+screen_res = max_coord
+delay = 100 # milliseconds
+interval = 50 # milliseconds
+
+def main():
+    pygame.init()
+    pygame.display.set_caption("Cave Escape")
+    pygame.key.set_repeat(delay, interval)
+    screen = pygame.display.set_mode(screen_res)
+    background_path = os.path.join('sprites', 'CaveTest.png')
+    player_path = os.path.join('sprites', 'PlayerTest.png')
+    ending_path = os.path.join('sprites', 'GameOver.png')
+    
+    background = pygame.image.load(background_path).convert()
+    background = pygame.transform.scale(background, screen.get_size())
+    ending = pygame.image.load(ending_path).convert()
+    ending = pygame.transform.scale(ending, screen.get_size())
+    player = pygame.image.load(player_path).convert_alpha()
+    player = pygame.transform.scale(player, (128, 256))
+
+    hitPoints = [25, 25]
+    turnCounter = 0
+    isPlayer0Turn = True
+    agressiveness = random()
+    healthLevels = []
+    healthLevels.append(hitPoints.copy())
+    newAction = ''
+
+    while True:
+        screen.blit(background, min_coord)
+        screen.blit(player, (300, 400))
+        game_over = False
+        while not game_over:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    game_over = True
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                    game_over = True
+            pygame.display.flip()
+        break
+    screen.blit(ending, min_coord)
+    pygame.display.flip()
+    sleep(5)
+
+class PlayerAvatar:
+    def __init__(self):
+        self.hp = 25
+        self.healTurns = 4
+        
+            
 def gameLoop():
     hitPoints = [25, 25]
     turnCounter = 0
@@ -90,5 +152,4 @@ def userInput(hitPoints):
     action = action.upper()
     return action
 
-gameLoop()
-
+main()
