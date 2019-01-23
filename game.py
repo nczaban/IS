@@ -8,12 +8,15 @@ import os, sys
 import pygame
 
 from time import sleep
+from menu import Menu
 
-# ----------
+# ------------------------------------------
 # Functions from the pygame tutorial
-# ----------
+# ------------------------------------------
 if not pygame.font: print("Fonts are unavailable and have been disabled")
 if not pygame.mixer: print("Sounds are unavailable and have been disabled")
+
+font_file = 'SadanaSquare.ttf'
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
@@ -59,6 +62,43 @@ def main():
     background_path = os.path.join('sprites', 'CaveTest.png')
     player_path = os.path.join('sprites', 'PlayerTest.png')
     ending_path = os.path.join('sprites', 'GameOver.png')
+    menu_path = os.path.join('sprites', 'White.png')
+    
+    background = pygame.image.load(background_path).convert()
+    background = pygame.transform.scale(background, screen.get_size())
+    ending = pygame.image.load(ending_path).convert()
+    ending = pygame.transform.scale(ending, screen.get_size())
+    player = pygame.image.load(player_path).convert_alpha()
+    player = pygame.transform.scale(player, (128, 256))
+
+    while True:
+        screen.blit(background, min_coord)
+        screen.blit(player, (300, 400))
+        game_over = False
+        while not game_over:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    game_over = True
+            pygame.display.flip()
+        break
+    screen.blit(ending, min_coord)
+    pygame.display.flip()
+    sleep(5)
+    output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
+
+
+
+def old_main():
+    pygame.init()
+    pygame.display.set_caption("Cave Escape")
+    pygame.key.set_repeat(delay, interval)
+    screen = pygame.display.set_mode(screen_res)
+    background_path = os.path.join('sprites', 'CaveTest.png')
+    player_path = os.path.join('sprites', 'PlayerTest.png')
+    ending_path = os.path.join('sprites', 'GameOver.png')
+    menu_path = os.path.join('sprites', 'White.png')
     
     background = pygame.image.load(background_path).convert()
     background = pygame.transform.scale(background, screen.get_size())
@@ -75,30 +115,77 @@ def main():
     healthLevels.append(hitPoints.copy())
     newAction = ''
 
+    menu_items = ['Attack', 'Heal']
+    ability = Menu('Abilities', menu_path, (360, 360), font_file, (75, 75))
+    for item in menu_items:
+        ability.add_item(item)
+
     while True:
         screen.blit(background, min_coord)
         screen.blit(player, (300, 400))
         game_over = False
         while not game_over:
+            stat_string1 = "Player 1: " + str(hitPoints[0])
+            stat_string2 = "Player 2: " + str(hitPoints[1])
+            print(stat_string1)
+            print(stat_string2)
+            print("------------------------------------")
+            turnCounter += 1
+            r = random()
+            if(isPlayer0Turn):
+                display_menu=True
+                while display_menu:
+                    ability.show(screen)
+                    pygame.display.flip()
+                    event = pygame.event.wait()
+                    user_input = ability.check_input(event)
+                    if(user_input == menu_items[1] and hitPoints[0] <= 25):
+                        hitPoints[0] += 4
+                        if(hitPoints[0] > 25):
+                            hitPoints[0] = 25
+                        display_menu = False
+                    elif(user_input == menu_items[0]):
+                        hitPoints[1] -= 5
+                        display_menu = False
+            else:
+                sleep(.5)
+                if(r<.5):
+                    newAction = 'A'
+                else:
+                    newAction = 'H'
+                if(newAction == 'H' and hitPoints[1] <= 25):
+                    hitPoints[1] += 4
+                    if(hitPoints[1] > 25):
+                        hitPoints[1] = 25
+                else:
+                    hitPoints[0] -= 5
+            isPlayer0Turn = not isPlayer0Turn
+            healthLevels.append(hitPoints.copy())
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit()
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     game_over = True
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
-                    game_over = True
+            if hitPoints[0]<1 or hitPoints[1]<1:
+                game_over = True
             pygame.display.flip()
         break
     screen.blit(ending, min_coord)
     pygame.display.flip()
     sleep(5)
+    output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
+
+
+
+    
 
 class PlayerAvatar:
     def __init__(self):
         self.hp = 25
         self.healTurns = 4
-        
-            
+
+
 def gameLoop():
     hitPoints = [25, 25]
     turnCounter = 0
@@ -152,4 +239,5 @@ def userInput(hitPoints):
     action = action.upper()
     return action
 
-main()
+#main()
+old_main()
