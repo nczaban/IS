@@ -54,34 +54,63 @@ From the perspective of an individual player, they must consider their options b
   Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_x\in A_i$ will be played is denoted $s_i(a_x)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$ \cite{shoh09}.
 \end{define}
 
-For an example of both pure and mixed strategies, consider a game where one player offers the other a choice of two different toys. The choosing player wants one of the toys, but not the other. Suppose that the identities of these toys are not hidden. In this case, the selecting player would use pure strategy and choose whichever toy gives them the most utility. Suppose instead that the toys are inside gift boxes. Since the choosing player does not know which box contains their desired toy, they have a 50-50 chance of picking the toy they want. Thus, they must use a mixed strategy. A pure strategy is a special case of mixed strategy, where the probability $s_i(a_x)=1$ for a particular value of $i$ and $s_i(a_k)=0 \forall a_k\in A_i, a_k \neq a_x$. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
+For an example of both pure and mixed strategies, consider a game where one player offers the other a choice of two different toys.
+
+\begin{exmp}
+  There are two players and two presents containing toys. One player is designated the offering player, and the other player is designated the choosing player. The choosing player wants one of the toys, but not the other. The offering player picks which box to place the toy in, and the choosing player selects which present they want to open.
+\end{exmp}
+
+Suppose that the identities of these toys are not hidden. In this case, both the offering player and the choosing player would use pure strategy. The offering player chooses which box to put the toy in, and the choosing player picks whichever toy gives them the most utility. Suppose instead that the toys are inside gift boxes. Once again, the offering player uses pure strategy to decide in which box to place each toy. But, since the choosing player does not know which box contains their desired toy, they have a 50-50 chance of picking the toy they want. Thus, they must use a mixed strategy. A pure strategy is a special case of mixed strategy, where the probability $s_i(a_x)=1$ for a particular value of $i$ and $s_i(a_k)=0 \forall a_k\in A_i, a_k \neq a_x$. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
 
 \begin{define}
   Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$ \cite{shoh09}.
 \end{define}
 
-For the toy choosing game, the mixed-strategy profile is the Cartesian product of player 1 and player 2's strategy sets. Player 1, the player offering the gifts, chooses to put the desired toy in box a or b. Player 2, the selecting player, chooses either box a or box b. The mixed-strategy profile would therefore be $(a, a), (a, b), (b, a), (b, b)$. Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium.
+In two-player games, like the toy choosing game, finding $s_{-i}$ is simple: if $i=1$, then $s_{-i}=s_2$, the strategy profile for player 2. In a three-player game with $i=1$, $s_{-i}$ would be $\{s_2, s_3\}$, the set containing player 2's strategy and player 3's strategy. For player $i$ to determine their best response, they must find a mixed strategy which maximizes utility against $s_{-i}$. In rare cases, this mixed strategy will actually be a unique pure strategy. Most of the time, there will be an infinite number of best responses with two or more actions in $s_i$ \cite{shoh09}. These actions must have the same value to the player, or else that player would want to minimize the probablilty of one such action. And therefore, since neither option is preferred over another, every possible combination of probabilities for actions in $s_i$ is a best response.\\
+
+For the toy choosing game, the mixed-strategy profile is the Cartesian product of player 1 and player 2's strategy sets. To better illustrate the mixed-strategy profile, assume Player 1, the player offering the gifts, chooses to put the desired toy in box a or b by flipping a coin, rather than by pure strategy. Player 1's mixed-strategy set $S_1$ is therefore $\{.5a_1, .5b_1\}$. Player 2, the selecting player, chooses either box a or box b. Thus, player 2's mixed-strategy $S_2$ is $\{.5a_2, .5b_2\}$. The mixed-strategy profile for the entire game is therefore $\{(.5a_1, .5a_2), (.5a_1, .5b_2), (.5b_1, .5a_2), (.5b_1, .5b_2)\}$. In this example game, $S_1$ and $S_2$ is both a best response. Player 1 has no preference to box a or box b; Player 2 does not know which box they prefer, and treats both equally.\\
+
+Without knowing the strategy of other players, the most an agent can do is choose a strategy that is better than other strategies in all possible scenarios. This is known as the Nash equilibrium.
 
 \begin{define}
   A strategy profile $s=(s_1,\dots ,s_n)$ is a Nash equilibrium if, for all agents i, $s_i$ is a best response to $s_{-i}$ \cite{shoh09}.
 \end{define}
 
-To find the Nash equilibrium for a player in the prisoner's dilemma example, the action of the other player is assumed to be a constant, pure strategy. For example, while determining player 1's Nash equilibrium, it is assumed that player 2 always confesses. This assumption limits player 1's decision to a single column in the normal form.
+To find the Nash equilibrium for a player in the prisoner's dilemma example, the action of the other player is assumed to be a constant, pure strategy. So, while determining player 1's Nash equilibrium, it is assumed that player 2 always cooperates with player 1. This assumption limits player 1's decision to a single column in the normal form.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5cm]{figures/ExamplePartialGrid1.png}
-  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 cooperates with Player 1}
+  \includegraphics[width=5cm]{figures/ExamplePartialCol1.png}
+  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 cooperates with Player 1.}
   \label{fig:NashCol1}
 \end{figure}
 
-In Figure \ref{fig:NashCol1}, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 2's cooperation is for player 1 to defect and accuse their partner: 1 year in prison or no time in prison. These steps are repeated for each of player 2's possible strategies.
+In Figure \ref{fig:NashCol1}, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 2's cooperation is for player 1 to defect and accuse their partner: 1 year in prison by cooperating or no time in prison by defecting.\\
+
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5cm]{figures/ExamplePartialGrid2.png}
-  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 will defect against Player 1}
+  \includegraphics[width=5cm]{figures/ExamplePartialCol2.png}
+  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 will defect against Player 1.}
   \label{fig:NashCol2}
 \end{figure}
-So, assuming player 2 will defect to the police, player 1's best response is to defect as well: 3 years in prison or 4 years in prison. Since the best response is the same for all of player 2's strategies, this player will always choose this option. Using the same process for player 2 returns the same best response.
+Next, it is assumed that player 2 always defects. In Figure \ref{fig:NashCol2}, it is again trivial to find the utility-maximizing strategy for player 1. Assuming player 2 will defect to the police, player 1's best response is to defect as well: 3 years in prison by defecting or 4 years in prison by cooperating. So, for all of player 2's possible strategies, player 1's best response is to defect.\\
+
+Using the same process for player 2, it is assumed that player 1 uses pure strategy, and that their pure strategy is to cooperate with player 2.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=7cm]{figures/ExamplePartialRow1.png}
+  \caption{Player 2's best response in the Prisoner's Dilemma, assuming Player 1 will cooperate with Player 2.}
+  \label{fig:NashRow1}
+\end{figure}
+
+In Figure \ref{fig:NashRow1}, it is trivial to find the utility-maximizing strategy. In this case, the best response to player 1's cooperation is for player 2 to defect and accuse their partner: 1 year in prison by cooperating or no time in prison by defecting.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=7cm]{figures/ExamplePartialRow2.png}
+  \caption{Player 1's best response in the Prisoner's Dilemma, assuming Player 2 will defect against Player 1.}
+  \label{fig:NashRow2}
+\end{figure}
+Next, it is assumed that player 2 always defects. In Figure \ref{fig:NashRow2}, it is again trivial to find the utility-maximizing strategy for player 1. Assuming player 2 will defect to the police, player 1's best response is to defect as well: 3 years in prison by defecting or 4 years in prison by cooperating.\\
 
 \begin{figure}[H]
   \centering
@@ -90,15 +119,20 @@ So, assuming player 2 will defect to the police, player 1's best response is to 
   \label{fig:NashEquil}
 \end{figure}
 
-Thus, the Nash equilibrium is that both prisoners will defect and get 3 years in prison, as seen in Figure \ref{fig:NashEquil}. A more robust proof of the Nash equilibrium is shown below.
+So, for all of player 2's possible strategies, player 1's best response is to defect. Thus, the Nash equilibrium is that both prisoners will defect and get 3 years in prison, as seen in Figure \ref{fig:NashEquil}. A more robust proof of the Nash equilibrium is shown below.
 
+
+
+%% ------------------------------------------------
+%% Proof of Nash Equilibrium for Prisoner's Dilemma
+%% ------------------------------------------------
 \begin{thm}
   Assume a normal form game $G = (N, A, u)$, $N=\{n_1, n_2\}$, and $A=\{A_1\times A_2\} = \{c_1, d_1\}\times\{c_2, d_2\}$. If the set of utility functions $u = \{u_1=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto -4, (d_1, c_2)\mapsto 0, (d_1, d_2)\mapsto -3\}, u_2=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto 0, (d_1, c_2)\mapsto -4, (d_1, d_2)\mapsto -3$, then the Nash equilibrium of $G$ is the strategy profile $(d_1, d_2)$, where $d_1$ is the choice for player 1 to defect and $d_2$ is the choice for player 2 to defect.
 \end{thm}
 \begin{proof}
   Let $G=(N, A, u)$ be a normal-form game. $N = \{n_1, n_2\}$ is the set of players in the game. $A=A_1\times A_2$ is the set of actions in the game, where $A_1=\{c_1, d_1\}$ is the set of actions available to player 1, and $A_2=\{c_2, d_2\}$ is the set of actions available to player 2. Therefore, $A=\{(c_1, c_2), (c_1, d_2), (d_1, c_2), (d_1, d_2)\}$. The utility function $u=(u_1, u_2)$. $u_1=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto -4, (d_1, c_2)\mapsto 0, (d_1, d_2)\mapsto -3$, and $u_2=(c_1, c_2)\mapsto -1, (c_1, d_2)\mapsto 0, (d_1, c_2)\mapsto -4, (d_1, d_2)\mapsto -3$.\\
 
-  Let $s^*_1$ be a mixed strategy for $n_1$ where $n_1$ chooses action $d_1$. Since there are only two other players, the set of strategy profiles disjoint from $s_1$ is the same as $s_2$, the set of strategy profiles for $n_2$. Thus, $n_1$ has $s^*_1$ as a best response to $s_2$ if $u_1(s^*_1, s_2)\ge u_1(s_i, s_2)$ for all possible actions $s_i\in A_1$ and all strategies in $s_2$.\\
+  Let $s^*_1$ be a mixed strategy for $n_1$ where $n_1$ chooses action $d_1$ with a probability of 1. Since there are only two other players, the set of strategy profiles disjoint from $s_1$ is the same as $s_2$, the set of strategy profiles for $n_2$. Thus, $n_1$ has $s^*_1$ as a best response to $s_2$ if $u_1(s^*_1, s_2)\ge u_1(s_i, s_2)$ for all possible actions $s_i\in A_1$ and all strategies in $s_2$.\\
   
   $u_1(d_1, c_2)\ge u_1(c_1, c_2) \Rightarrow 0\ge -1$\\
   
@@ -110,7 +144,7 @@ Thus, the Nash equilibrium is that both prisoners will defect and get 3 years in
 
   $s^*_1$ is greater than or equal to all possible actions in $A_1$ and for all strategies in $s_2$. Thus, $s^*_1=d_1$ is the best response for player $n_1$.\\
 
-  Let $s^*_2$ be a mixed strategy for $n_2$ where $n_2$ chooses action $d_2$. Since there are only two other players, the set of strategy profiles disjoint from $s_2$ is the same as $s_1$, the set of strategy profiles for $n_1$. Thus, $n_2$ has $s^*_2$ as a best response to $s_1$ if $u_2(s^*_2, s_1)\ge u_2(s_i, s_1)$ for all possible actions $s_i\in A_2$ and all strategies in $s_1$.\\
+  Let $s^*_2$ be a mixed strategy for $n_2$ where $n_2$ chooses action $d_2$ with a probability of 1. Since there are only two other players, the set of strategy profiles disjoint from $s_2$ is the same as $s_1$, the set of strategy profiles for $n_1$. Thus, $n_2$ has $s^*_2$ as a best response to $s_1$ if $u_2(s^*_2, s_1)\ge u_2(s_i, s_1)$ for all possible actions $s_i\in A_2$ and all strategies in $s_1$.\\
   
   $u_1(c_1, d_2)\ge u_1(c_1, c_2) \Rightarrow 0\ge -1$\\
 
@@ -120,22 +154,29 @@ Thus, the Nash equilibrium is that both prisoners will defect and get 3 years in
 
   $u_1(d_1, d_2)\ge u_1(d_1, d_2) \Rightarrow -3\ge -3$\\
 
-  $s^*_2$ is greater than or equal to all possible actions in $A_2$ and for all strategies in $s_1$. Thus, $s^*_2=d_2$ is the best response for player $n_1$. A strategy set $(s_1,\dots ,s_n)$ is a Nash equilibrium if $s_i$ is the best response for all players $i$. Therefore, the strategy profile $(d_1, d_2)$ is a Nash equilibrium for game $G$.
-\end{proof}
+  $s^*_2$ is greater than or equal to all possible actions in $A_2$ and for all strategies in $s_1$. Thus, $s^*_2=d_2$ is the best response for player $n_1$.\\
 
-Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance. Assume that the utility function awards players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. We position Player 1 on the left side of the matrix, and Player 2 on the top of the matrix.
-\begin{figure}[H]
-  \centering
-  \begin{tabular}{r r | c | c | c |}
-    &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
-    Rock-Paper-Scissors &\multicolumn{1}{c}{}&\multicolumn{1}{c}{Rock}&\multicolumn{1}{c}{Paper}&\multicolumn{1}{c}{Scissors} \\ \cline{3-5}
-    & Rock & (0, 0) & (-1, 1) & (1, -1) \\ \cline{3-5}
-    Player 1 & Paper & (1, -1) & (0, 0) & (-1, 1) \\ \cline{3-5}
-    & Scissors & (-1, 1) & (1, -1) & (0, 0) \\ \cline{3-5}
-  \end{tabular}
-  \caption{The normal-form representation of the game Rock-Paper-Scissors}
-  \label{fig:RPS}
-\end{figure}
+  A strategy set $(s_1,\dots ,s_n)$ is a Nash equilibrium if $s_i$ is the best response for all players $i$. Therefore, the strategy profile $(d_1, d_2)$ is a Nash equilibrium for game $G$.
+\end{proof}
+Using the definition of a best response, it can be shown that choosing to defect is the best response in the prisoner's dilemma for both player 1 and player 2. The utility payout of these responses is -3 for both players.
+
+Not all games have a Nash equilibrium; take the normal-form representation of rock-paper-scissors, for instance.
+
+\begin{exmp}
+  In Rock-Paper-Scissors, two players choose a hand sign at the same time. If both play the same sign, the round is a draw. If two different signs are played, a winner is determined using the following rules: rock beats scissors, scissors beat paper, and paper beats rock. Assume that this is a zero-sum game, and the utility function awards players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. We position Player 1 on the left side of the matrix, and Player 2 on the top of the matrix.
+  \begin{figure}[H]
+    \centering
+    \begin{tabular}{r r | c | c | c |}
+      &\multicolumn{1}{c}{}&\multicolumn{1}{c}{}&\multicolumn{1}{c}{Player 2}&\multicolumn{1}{c}{}\\
+      Rock-Paper-Scissors &\multicolumn{1}{c}{}&\multicolumn{1}{c}{Rock}&\multicolumn{1}{c}{Paper}&\multicolumn{1}{c}{Scissors} \\ \cline{3-5}
+      & Rock & (0, 0) & (-1, 1) & (1, -1) \\ \cline{3-5}
+      Player 1 & Paper & (1, -1) & (0, 0) & (-1, 1) \\ \cline{3-5}
+      & Scissors & (-1, 1) & (1, -1) & (0, 0) \\ \cline{3-5}
+    \end{tabular}
+    \caption{The normal-form representation of the game Rock-Paper-Scissors}
+    \label{fig:RPS}
+  \end{figure}
+\end{exmp}
 
 Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. Thus, there can be no equilibrium.
 
@@ -206,16 +247,20 @@ In a turn-based, or extensive-form game, players do not make simultaneous action
   \end{itemize}
 \end{define}
 
-As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns that do not end the game, while $Z$ contains all choices or turns that do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player that determines their individual utility at each of the terminal nodes in $Z$.\\
+As in the normal-form definition, there are $n$ players in the game, contained in the set $N$. $A$ is the set of all actions that could be performed in the course of the game. The set $H$ contains any and all choices or turns that do not end the game, while $Z$ contains all choices or turns that do end the game. The mapping function $\chi$ allocates the choices in $H$ a subset of possible actions from the set $A$, and the mapping function $\rho$ assigns these choices to the players who make them. $\sigma$ takes the actions assigned with $\chi$ and uses them to connect various nodes in $H$ and $Z$ together, creating the sequence of events in the game. Finally, $u$ contains utility functions for each player that determines their individual utility at each of the terminal nodes in $Z$. An example of the extensive-form tree can be seen in The Sharing Game\\
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=10cm]{figures/ExampleTree.png}
-  \caption{An extensive-form tree for The Sharing Game \cite{shoh09}}
-  \label{fig:sharingTree}
-\end{figure}
+\begin{exmp}
+  In The Sharing Game, a variation of the toy-offering game in Example 2.2.2, two children recieve two identical presents from their parents, both equally valuable to the children. Player 1 suggests one of three splits: Player 1 recieves both presents, Player 2 recieves both presents, or each player recieves one present. Once the split has been suggested, Player 2 chooses to accept the split or not. If the split is declined, neither player recieves any presents.
 
-An example of the extensive-form tree can be seen in Figure \ref{fig:sharingTree}. The six leaf nodes of this tree are the elements of the set $Z$, while the other nodes are contained in $H$. The $H$ nodes are labeled either 1 or 2, denoting from the $\rho$ function which player is making the choice at that node. The $Z$ nodes each have a pair, denoting the utility each player will gain if the game ends in that particular way. The actions $A$ are denoted in the lines connecting the nodes together. In this game, the three actions from the root node are the methods of sharing 2 presents between 2 people. The second player, once the first player has distributed the presents in a particular way, chooses whether to accept the distribution or not.\\
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{figures/ExampleTree.png}
+    \caption{An extensive-form tree for The Sharing Game \cite{shoh09}}
+    \label{fig:sharingTree}
+  \end{figure}
+\end{exmp}
+
+Figure \ref{fig:sharingTree} shows six leaf nodes of this tree - the elements of the set $Z$ - while the other nodes are contained in $H$. The $H$ nodes are labeled either 1 or 2, denoting from the $\rho$ function which player is making the choice at that node. The $Z$ nodes each have a pair, denoting the utility each player will gain if the game ends in that particular way. The actions $A$ are denoted in the lines connecting the nodes together. In this game, the three actions from the root node are the methods of sharing 2 presents between 2 people. The second player, once the first player has distributed the presents in a particular way, chooses whether to accept the distribution or not.\\
 
 To explore this definition, return to the game of tic-tac-toe. Let $N={N_1, N_2}$ be the set of players in the game. In this game, $A$ is the set of playing on one of the open spaces on the board; for the first move of the game, $A$ is the set of 9 open spaces on the board, for the second move, $A$ is the set of the remaining 8 spaces. For a game of tic-tac-toe, $H$ contains configuration of the board where neither player has three in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has three in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which in tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
 
