@@ -10,20 +10,20 @@ As the computing power of personal computers has increased, the depth and variet
 \end{figure}
 Galaga, for example, uses curves and loops in the flight paths of enemy spaceships, as can be seen in Figure \ref{fig:Galaga}. Compared to the straight lines of \textit{Space Invaders}, the spaceships became more challenging to hit. Furthermore, the spaceships were programmed to fire when the player was directly below them, while \textit {Space Invaders} had enemies shooting seemingly at random \cite{schw04}.\\
 
-
+In more recent titles, AI systems begin to show more intelligence. Some of this comes from more complex routines, as seen in the final boss of the game \textit{Final Fantasy IX}.
 
 \lstset{caption={Section of AI script for Necron, a boss fight in the game \textit{Final Fantasy IX} \protect\cite{ff9necron}.}, language=ff9code, label={lst:ff9Necron}}
 \begin{lstlisting}
-set selectedattack = RandomAttack( attacklist )
-if ( selectedattack == Flare )
-    set SV_Target = RandomInTeam( NotMatching(SV_PlayerTeam[STATUS_CURRENT], PETRIFY | DEATH | ZOMBIE | REFLECT) & NotMatching(SV_PlayerTeam[STATUS_AUTO], REFLECT) )
-elseif ( selectedattack == Holy )
-    set SV_Target = RandomInTeam( NotMatching(SV_PlayerTeam[STATUS_CURRENT], PETRIFY | DEATH | ZOMBIE | REFLECT) & NotMatching(SV_PlayerTeam[STATUS_AUTO], REFLECT) )
-elseif ( selectedattack == Meteor )
-    set SV_Target = SV_PlayerTeam
+  set selectedattack = RandomAttack( attacklist )
+  if ( selectedattack == Flare )
+  set SV_Target = RandomInTeam( NotMatching(SV_PlayerTeam[STATUS_CURRENT], PETRIFY | DEATH | ZOMBIE | REFLECT) & NotMatching(SV_PlayerTeam[STATUS_AUTO], REFLECT) )
+  elseif ( selectedattack == Holy )
+  set SV_Target = RandomInTeam( NotMatching(SV_PlayerTeam[STATUS_CURRENT], PETRIFY | DEATH | ZOMBIE | REFLECT) & NotMatching(SV_PlayerTeam[STATUS_AUTO], REFLECT) )
+  elseif ( selectedattack == Meteor )
+  set SV_Target = SV_PlayerTeam
 \end{lstlisting}
 
-In more recent titles, AI systems begin to show more intelligence. Some of this comes from more complex routines, as seen in the final boss of the game \textit{Final Fantasy IX}. The boss, named Necron, has a variety of possible actions, three of which are shown in Listing \ref{lst:ff9Necron}. A random attack is selected from the list in line 1. For two of these attacks, a random character in the player's team is selected, provided that they do not have one of the listed special statuses, in lines 3 and 5. Two of these statuses (PETRIFY and DEATH) refer to when a character controlled by the player can no longer perform actions of their own. The REFLECT status, on the other hand, prevents a player character from being affected by magic spells and inflicting the spell on its caster instead. These checks improve the percieved ``intelligence'' of the boss; the AI does not waste actions attacking incapacitated players or causing itself harm from reflected magic.\\
+The boss, named Necron, has a variety of possible actions, three of which are shown in Listing \ref{lst:ff9Necron}. A random attack is selected from the list in line 1. For two of these attacks, a random character in the player's team is selected, provided that they do not have one of the listed special statuses, in lines 3 and 5. Two of these statuses (PETRIFY and DEATH) refer to when a character controlled by the player can no longer perform actions of their own. The REFLECT status, on the other hand, prevents a player character from being affected by magic spells and inflicting the spell on its caster instead. These checks improve the percieved ``intelligence'' of the boss; the AI does not waste actions attacking incapacitated players or causing itself harm from reflected magic.\\
 
 While the \textit{Final Fantasy IX} example employs predetermined choices (apart from some random selection), other forms of intelligence come from more open-ended coding. For example, stealth games feature guards who must react to a variety of situations. One technique for such AI is to use fuzzy logic \cite{schw04}. Fuzzy logic deals with sets where membership is on a continuum \cite{zade65}; this concept will be discussed in detail later. For now, it is sufficient to understand that a guard in a stealth game would use this type of logic to transition from a calm state to a suspicious state to an alerted state as the player's presence is detected \cite{schw04}. But, since a player may intentionally create distractions to exploit this suspicion, the AI for that guard cannot be too strongly scripted; what one player may do as a distraction another player may do accidentally, and the AI must account for these differences in play.\\
 
