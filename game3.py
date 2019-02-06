@@ -79,13 +79,8 @@ def main():
     healthLevels.append(hitPoints.copy())
     newAction = ''
 
-    menu_items = ['Attack', 'Heal']
-    ability = Menu('Abilities', menu_path, (160, 100), font_file, (75, 75))
-    for item in menu_items:
-        ability.add_item(item)
-
     player = PlayerAvatar(1)
-    enemy = PlayerAvatar(1)
+    enemy = PlayerAvatar(3)
     while True:
         screen.blit(background, min_coord)
         screen.blit(character, (300, 400))
@@ -93,10 +88,7 @@ def main():
         while not game_over:
             stat_string1 = "Player 1: " + str(hitPoints[0]) + "   "
             stat_string2 = "Player 2: " + str(hitPoints[1])
-            if player.healTurns > 0:
-                menu_items = ['Attack', 'Strong Attack', 'Parry', 'Heal']
-            else:
-                menu_items = ['Attack', 'Strong Attack', 'Parry']
+            menu_items = ['Attack', 'Strong Attack', 'Parry', 'Heal']
             ability = Menu(stat_string1 + stat_string2, menu_path, (500, 350), font_file, (250, 25))
             for item in menu_items:
                 ability.add_item(item)
@@ -109,11 +101,12 @@ def main():
                     pygame.display.flip()
                     event = pygame.event.wait()
                     user_input = ability.check_input(event)
-                    if(user_input == menu_items[3] and hitPoints[0] <= 25):
+                    if(user_input == menu_items[3] and hitPoints[0] <= 25 and player.healTurns>0):
                         hitPoints[0] += 4
                         if(hitPoints[0] > 25):
                             hitPoints[0] = 25
                         print("Player healed")
+                        player.healTurns -= 1
                         display_menu = False
                     elif(user_input == menu_items[0]):
                         if enemy.isParrying:
@@ -127,7 +120,7 @@ def main():
                         display_menu = False
                     elif(user_input == menu_items[1]):
                         r=random()
-                        if r<.7:
+                        if r<.6:
                             hitPoints[1] -= 7
                             print("Player made a strong attack!")
                             print("Enemy lost 7 HP")
@@ -148,6 +141,7 @@ def main():
                     if(hitPoints[1] > 25):
                         hitPoints[1] = 25
                     print("Enemy healed")
+                    enemy.healTurns -= 1
                 elif(newAction == 'A'):
                     if player.isParrying:
                         hitPoints[1] -= 3
@@ -159,7 +153,7 @@ def main():
                         print("Player lost 5 HP")
                 elif(newAction == 'S'):
                     r=random()
-                    if r<.7:
+                    if r<.6:
                         hitPoints[0] -= 7
                         print("Enemy made a strong attack")
                         print("Player lost 7 HP")
@@ -202,7 +196,7 @@ class PlayerAvatar:
     # information
     def helperAIFunc(self, enemyHP):
         if self.AI_MODEL == 1:
-            return self.randomAI()
+            return self.limitedRandomAI()
         elif self.AI_MODEL == 2:
             return self.aggressiveRandomAI()
         elif self.AI_MODEL == 3:
@@ -210,7 +204,7 @@ class PlayerAvatar:
         elif self.AI_MODEL == 4:
             return self.comparitiveAI(enemyHP)
         else:
-            return self.limitedRandomAI()
+            return self.randomAI()
             
     # AI Model 1 - Ramdonly choose to attack or heal. If no heal turns remain, the AI does a
     # normal attack
@@ -234,7 +228,7 @@ class PlayerAvatar:
             newAction = "A"
         elif(r<.75):
             newAction = "S"
-        elif():
+        else:
             newAction = "P"
         return newAction
 
@@ -256,6 +250,7 @@ class PlayerAvatar:
             newAction = "H"
         else:
             newAction = "A"
+        return newAction
 
     # AI Model 5 - Whenever the HP of the AI drops below the HP of the opponent, 
             
