@@ -258,18 +258,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Specifically, these trees are most useful for perfect-information, constant-sum games. For a game to be perfect-information, each player must know the series of actions that led to a particular node. In contrast, imperfect-information games have nodes which are indistinguishable from other nodes, at least with the information available to a player \cite{shoh09}. Consider a game where a player picks between three doors, one of which has a reward behind it. For multiple rounds of this game, the player has no way of knowing which door has the prize; thus, any choice node for that player is indistinguishable from another and no pure strategy exists. In constant-sum games, any gain one player makes to their utility function causes a constant value loss in another player's utility function. This behavior is expressed as $\forall a\in A_1\times A_2, u_1(a)+u_2(a) = c$ where $a$ is a strategy profile in sets of actions $A_1,A_2$ for players 1 and 2 and $u_1,u_2$ are the utility functions for these players. For convenience, $u$ is often set as 0, meaning that any positive action by one player causes an equivalent loss in the other player. These cases are referred to as zero-sum games \cite{schw04}. Certain nonzero-sum games, such as Monopoly, can be represented as zero-sum games if the ``board'' (or the bank, as in Monopoly) is treated as a player. Thus, two players forming an alliance would be working against this nonexistent player, and all properties of zero-sum games can be applied.\\
-
-%In these game trees, the first player to make a choice is referred to as \textbf{max} and the second player as \textbf{min}. A choice for a particular player is thus referred to as either a max-node or a min-node, depending on the turn. Another crucial concept is \textit{ply}, the number of actions required to travel from one node to another \cite{smed06}. When a game is expressed in this form, it is trivial to see which move will be taken one ply above the leaves: if player \textbf{max} can win, they will take the action that leads to their victory; if they cannot win, they will try to reach a draw if possible. With this idea in mind, the strategy for additional plys above the leaves can be determined recursively.\\
-
 \input{chapters/Intro.tex}
 \input{chapters/ExtensiveTrees.tex}
 \input{chapters/DecisionTrees.tex}
-\chapter{Fuzzy Logic}
-\section{Fuzzy Sets}
-\section{Fuzzy Constraint Satisfaction Problem}
-\chapter{Video Game AI}
-\section{Fuzzy-State Machines}
 \input{chapters/Software.tex}
 %\chapter{Future Work}
 
