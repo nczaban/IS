@@ -4,31 +4,36 @@
 Frequently used, and originally explored in economic contexts, game theory is the study of interactions between decision-makers. Antoine Cournot attempted to explain the decisions of duopolies (markets with only two sellers producing a product) in 1838 using the concept of strategic behavior \cite{webs14}. In this case, strategic behavior refers to scenarios where one person's decisions both affect and are affected by the decisions of other persons. Cournot later influenced Joseph Bertrand's 1883 work, which examined strategic decisions in product pricing. These early efforts were limited by standard economic methodologies; it wasn't until John von Neumann's 1928 proof of the minimax theorem and his later collaboration with economist Oskar Morgenstern that the modern field of game theory began \cite{webs14}. The strategies involved with game theory are used to explain collusion and subsequent breakdown of oligopolies like OPEC, and the symbiosis between sharks and pilot fish.\\
 
 As we begin our study of game theory, it is important to precisely define what games are.
-\begin{defn}
+\begin{define}
   A game is a description of strategic interaction which constrains the actions a player can perform and the interests of players, but does not describe which actions are \cite{osbo94}.
-\end{defn}
+\end{define}
 
 Game theory involves the techniques used to analyze and determine solutions, strategies, and outcomes for various games \cite{osbo94}.
-\begin{defn}
+\begin{define}
   A solution of a game is the description of outcomes which may arise from the game \cite{osbo94}.
-\end{defn}
+\end{define}
 There are several types of solutions used in game theory, each being more useful in some games than in others \cite{osbo94}. Three solutions - Nash equilibrium, mixed strategies, and subgame equilibria - will be discussed later in this chapter.
 
 It is assumed that players in these games are both rational - they pursue well-defined objectives, generally in their own self-interest - and strategic - they take the knowledge and behavior of other decision-makers into account \cite{osbo94}. With these assumptions, each decision made by a player is deliberate and involves optimization of some sort. Players consider their actions and the consequences therein, and choose actions that best fit their preferences \cite{osbo94}.\\
 
-The preferences of these players are represented using a utility function. In game theory, utility is the quantitative measure of a choice's value; this could be a monetary value or it could be expressed in terms of the happiness a player gains from that outcome, depending on the structure of the ``game''. A highly desired outcome for a player will have a higher utility than an undesirable outcome. In many games, the desired outcome for each player stands in diametric opposition to the desires of other players, referred to as a ``strictly competitive game'' \cite{osbo94}. One type of strictly competitive game is the ``zero-sum games,'' where one player's increase in utility corresponds to an equal loss in utility for the other player \cite{shoh09}. By definition, these games only have two players \cite{shoh09}.
+The preferences of these players are represented using a utility function. In game theory, utility is the quantitative measure of a choice's value; this could be a monetary value or it could be expressed in terms of the happiness, measured with some metric, a player gains from that outcome, depending on the structure of the ``game''. A highly desired outcome for a player will have a higher utility than an undesirable outcome. In many games, the desired outcome for each player stands in diametric opposition to the desires of other players, referred to as a ``strictly competitive game'' \cite{osbo94}. One type of strictly competitive game is a ``zero-sum game.''
+\begin{define}
+  A game is ``zero-sum'' if an action made by one player increases their utility by an amount equal to the loss in utility for the second player from that same action. Specifically, for an action $a$ and utility functions $u_1$ for player 1 and $u_2$ for player 2, $u_1(a)+u_2(a)=0$. Zero-sum games can only have two players \cite{shoh09}.
+\end{define}
+
+In a zero-sum game, . Zero-sum games are a subset of ``constant-sum'' games. In contrast with zero-sum, a constant-sum game will have an action $a$ where $u_1(a)+u_2(a)$ equal to a constant $c$ \cite{shoh09}.
 
 \begin{exmp}
-  The card game War is a zero-sum game. In War, two players play the top card of their deck simultaneously. Whoever played the higher value card takes both cards and places them at the bottom of their deck. In the event of a tie, both players play two cards face-down and a third card face-up. The winner of this exchange takes all cards in play. This game is a zero-sum game. The utility of each card can be measured by their face value, and the utility of each player is the sum of utilities in their deck. Suppose a round where Player 1 plays a 10 and Player 2 plays a Queen. Player 2 would take the 10, gaining 10 utility points while Player 1 loses those same 10 points.
+  The card game War is a zero-sum game. In War, two players play the top card of their deck simultaneously. Whoever played the higher value card takes both cards and places them at the bottom of their deck. In the event of a tie, both players play two cards face-down and a third card face-up. The winner of this exchange takes all cards in play. This game is a zero-sum game. The utility of each card can be measured by its face value, and the utility of each player is equal to the sum of the utility of all cards in their deck. Suppose that there is a round where Player 1 plays a 10 and Player 2 plays a Queen. Player 2 takes the 10, gaining 10 utility points while Player 1 loses those same 10 points.
 \end{exmp}
 
-In comparison, a non-zero-sum game does not have an equal exchange of utility. Interactions between players are unequal. One player may gain 5 utility while another player loses 3 utility, or one player may gain utility with no effect on other players.
+In comparison, a non-zero-sum game does not have an equal exchange of utility. Interactions between players are unequal. One player may gain five utility points while another player loses three utility points, or one player may gain utility with no effect on other players.
 
 \begin{exmp}
   Golf is not a zero-sum game. Suppose two players are competing on the same course for the best score. In golf, players are scored by the number of strokes it takes to reach each hole, with lower scores being more valuable than higher scores. If Player 1 takes two strokes on a particular hole, this only affects Player 1's score/utility; Player 2's utility is unaffected.
 \end{exmp}
 
-When games can be expressed in the normal form, this zero-sum quality affects the solutions of these games.
+When games can be expressed in what is known as the normal form, this zero-sum quality affects the strategies and solutions of these games.
 
 \section{Normal Form Games}
 In the vast majority of human choices, a person will attempt to maximize their utility function; they will perform actions that benefit themselves. When there are two or more agents trying to maximize their utility, the interactions and choices between these agents, or players, become more and more complex. These interactions can be studied with game theory using the normal or strategic form.
@@ -59,7 +64,7 @@ In Figure \ref{fig:prisoner}, the column labeled \textit{C} represents prisoner 
 
 The prisoner's dilemma is not a zero-sum game. Supposing prisoner 1 chooses to defect ($D$), prisoner 2 could increase their utility from $-4$ to $-3$ by also defecting - a $+1$ change in utility for prisoner 2, but a $-3$ change in utility for prisoner 1.\\
 
-From the perspective of an individual player, they must consider their options before proceeding. The best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. This would be a \textit{pure strategy} option, where the player selects a single action and always that action. The other option is for a player to create a \textit{mixed strategy} profile by introducing randomness into their own choice.
+From the perspective of an individual player, they must consider their options before proceeding. In considering their options, the best strategy can be determined using a game theory solution. In this example, the best strategy of a player would be trivial if that player also knew which strategies the other player(s) were adopting \cite{shoh09}. This would be a \textit{pure strategy} option, where the player selects a single action and always that action. The other option is for a player to create a \textit{mixed strategy} profile by introducing randomness into their own choice.
 
 \begin{define}
   Let $(N,A,u)$ be a normal-form game, and for any set $X$ let $\Pi(X)$ be the set of all probability distributions over $X$. The set of mixed strategies for player $i$ is $S_i = \Pi(A_i)$, and the probability an action $a_x\in A_i$ will be played is denoted $s_i(a_x)$. A mixed-strategy profile is the Cartesian product of individual strategy sets $S_1\times\cdots\times S_n$ \cite{shoh09}.
@@ -71,7 +76,7 @@ For an example of both pure and mixed strategies, consider a game where one play
   There are two players and two presents containing toys. One player is designated the offering player, and the other player is designated the choosing player. The choosing player wants one of the toys, but not the other. The offering player picks which box to place each toy in, and the choosing player selects which present they want to open.
 \end{exmp}
 
-Suppose that the toys are placed in transparent boxes, and thus the contents of the boxes are not hidden. In this case, both the offering player and the choosing player would use pure strategy. The offering player places each toy in a box, and the choosing player picks whichever toy gives them the most utility. In this case, the decision made by the offering player is meaningless. It does not matter whether the toy desired by the choosing player is in box a or box b, since they can see which transparent box contains the toy they want. Suppose instead that the toys are inside gift boxes. Once again, the offering player uses pure strategy to decide in which box to place each toy. But, since the choosing player does not know which box contains their desired toy, they have a 50-50 chance of picking the toy they want. Thus, they must use a mixed strategy. A pure strategy is a special case of mixed strategy, where the probability $s_i(a_x)=1$ for a particular value of $i$ and $s_i(a_k)=0 \forall a_k\in A_i, a_k \neq a_x$. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
+Suppose that the toys are placed in transparent boxes, and thus the contents of the boxes are not hidden. The offering player places each toy in a box, and the choosing player picks whichever toy gives them the most utility. In this case, the decision made by the offering player is virtually meaningless. It does not matter whether the toy desired by the choosing player is in box a or box b, since they can see which transparent box contains the toy they want. In this case, both the offering player and the choosing player use pure strategy. Suppose instead that the toys are inside gift boxes. Once again, the offering player uses pure strategy to decide in which box to place each toy; they make a choice at the beginning of the game and stick with that choice. But, since the choosing player does not know which box contains their desired toy, they have a 50-50 chance of picking the toy they want. Thus, they must use a mixed strategy. A pure strategy is a special case of mixed strategy, where the probability $s_i(a_x)=1$ for a particular value of $i$ and $s_i(a_k)=0 \forall a_k\in A_i, a_k \neq a_x$. With the mixed strategies determined, the players can find their best response to a mixed-strategy profile.
 
 \begin{define}
   Let $S$ be the mixed-strategy profile for a normal-form game, and $s_{-i}$ be the set of strategy profiles disjoint from player $i$'s strategy profile $s_i$. Player $i$'s best response to $s_{-i}$ is a mixed strategy $s_i^*\in S_i$, such that $u_i(s_i^*,s_{-i}) \ge u_i(s_i, s_{-i})$ for all strategies $s_i\in S_i$ \cite{shoh09}.
@@ -189,7 +194,9 @@ Not all games have a Nash equilibrium; take the normal-form representation of ro
   \end{figure}
 \end{exmp}
 
-Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. For every situation Player 1's choice provides the most utility, there exists another, equally-likely situation where the same choice would provide the least utility (in this case, negative utility) and a third equally likely situation where that choice provides no utility. Therefore, there can be no Nash equilibrium.
+Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. For every situation Player 1's choice provides the most utility, there exists another, equally-likely situation where the same choice would provide the least utility (in this case, negative utility) and a third equally likely situation where that choice provides no utility. Therefore, there can be no Nash equilibrium.\\
+
+
 
 \subsection{Non-Simultaneous Games}
 It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Assume the utility function awards players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. We position Player 1 on the left side of the matrix, and Player 2 on the top of the matrix. Assume Player 1 has the first turn.\\
