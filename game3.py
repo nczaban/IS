@@ -61,30 +61,60 @@ def main():
     screen = pygame.display.set_mode(screen_res)
     background_path = os.path.join('sprites', 'CaveTest.png')
     character_path = os.path.join('sprites', 'PlayerTest.png')
-    ending_path = os.path.join('sprites', 'GameOver.png')
+    loss_path = os.path.join('sprites', 'GameOver.png')
+    win_path = os.path.join('sprites', 'Victory.png')
     menu_path = os.path.join('sprites', 'Blue.png')
     
     background = pygame.image.load(background_path).convert()
     background = pygame.transform.scale(background, screen.get_size())
-    ending = pygame.image.load(ending_path).convert()
-    ending = pygame.transform.scale(ending, screen.get_size())
+    loss = pygame.image.load(loss_path).convert()
+    loss = pygame.transform.scale(loss, screen.get_size())
+    win = pygame.image.load(win_path).convert()
+    win = pygame.transform.scale(win, screen.get_size())
     character = pygame.image.load(character_path).convert_alpha()
     character = pygame.transform.scale(character, (128, 256))
     
-    hitPoints = [25, 25]
-    turnCounter = 0
-    isPlayer0Turn = True
-    agressiveness = random()
-    healthLevels = []
-    healthLevels.append(hitPoints.copy())
-    newAction = ''
-
     player = PlayerAvatar(1)
     enemy = PlayerAvatar(3)
+
     while True:
+        menu_items = ['Goblin', 'Troll', 'Orc', 'Elf', 'Slime']
+        menu = Menu("Choose an Opponent", menu_path, screen_res, font_file, (350, 75))
+        for item in menu_items:
+            menu.add_item(item)
+        display_menu = True
+        while display_menu:
+            menu.show(screen)
+            pygame.display.flip()
+            event = pygame.event.wait()
+            user_input = menu.check_input(event)
+            if user_input == menu_items[0]:
+                enemy = PlayerAvatar(1)
+                display_menu = False
+            elif user_input == menu_items[1]:
+                enemy = PlayerAvatar(2)
+                display_menu = False
+            elif user_input == menu_items[2]:
+                enemy = PlayerAvatar(3)
+                display_menu = False
+            elif user_input == menu_items[3]:
+                enemy = PlayerAvatar(4)
+                display_menu = False
+            elif user_input == menu_items[4]:
+                enemy = PlayerAvatar(5)
+                display_menu = False
+
         screen.blit(background, min_coord)
         screen.blit(character, (300, 400))
         game_over = False
+
+        hitPoints = [25, 25]
+        turnCounter = 0
+        isPlayer0Turn = True
+        healthLevels = []
+        healthLevels.append(hitPoints.copy())
+        newAction = ''
+
         while not game_over:
             stat_string1 = "Player 1: " + str(hitPoints[0]) + "   "
             stat_string2 = "Player 2: " + str(hitPoints[1])
@@ -176,11 +206,14 @@ def main():
             if hitPoints[0]<1 or hitPoints[1]<1:
                 game_over = True
             pygame.display.flip()
-        break
-    screen.blit(ending, min_coord)
-    pygame.display.flip()
-    sleep(3)
-    output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
+        
+        if hitPoints[0]<=0:
+            screen.blit(loss, min_coord)
+            pygame.display.flip()
+        else:
+            screen.blit(win, min_coord)
+            pygame.display.flip()
+        output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
 
         
 class PlayerAvatar:
