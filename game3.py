@@ -119,9 +119,6 @@ def main():
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
 
-        screen.blit(background, min_coord)
-        screen.blit(character, (100, 400))
-        screen.blit(enemy_sprite, (500, 400))
         game_over = False
 
         hitPoints = [25, 25]
@@ -132,6 +129,10 @@ def main():
         newAction = ''
 
         while not game_over:
+            screen.blit(background, min_coord)
+            screen.blit(character, (100, 400))
+            screen.blit(enemy_sprite, (500, 400))
+
             stat_string1 = "Player: " + str(hitPoints[0]) + "   "
             stat_string2 = "Enemy: " + str(hitPoints[1])
             menu_items = ['Attack', 'Strong Attack', 'Parry', 'Heal']
@@ -152,15 +153,28 @@ def main():
                         if(hitPoints[0] > 25):
                             hitPoints[0] = 25
                         print("Player healed")
+
+                        damage = Menu("+4 HP", menu_path, (100, 100), font_file, (150, 380))
+                        damage.show(screen)
+                        pygame.display.flip()
+                        sleep(.2)
                         player.healTurns -= 1
                         display_menu = False
                     elif(user_input == menu_items[0]):
                         if enemy.isParrying:
                             hitPoints[0] -= 3
+                            damage = Menu("-3 HP", menu_path, (100, 100), font_file, (150, 380))
+                            damage.show(screen)
+                            pygame.display.flip()
+                            sleep(.2)
                             print("Player attacked, but the enemy parried!")
                             print("Player lost 3 HP")
                         else:
                             hitPoints[1] -= 5
+                            damage = Menu("-5 HP", menu_path, (100, 100), font_file, (550, 380))
+                            damage.show(screen)
+                            pygame.display.flip()
+                            sleep(.2)
                             print("Player attacked")
                             print("Enemy lost 5 HP")
                         display_menu = False
@@ -168,9 +182,17 @@ def main():
                         r=random()
                         if r<.6:
                             hitPoints[1] -= 7
+                            damage = Menu("-7 HP", menu_path, (100, 100), font_file, (550, 380))
+                            damage.show(screen)
+                            pygame.display.flip()
+                            sleep(.2)
                             print("Player made a strong attack!")
                             print("Enemy lost 7 HP")
                         else:
+                            damage = Menu("Miss!", menu_path, (100, 100), font_file, (550, 380))
+                            damage.show(screen)
+                            pygame.display.flip()
+                            sleep(.2)
                             print("Player made a strong attack, but missed!")
                         display_menu = False
                     elif(user_input == menu_items[2]):
@@ -186,24 +208,44 @@ def main():
                     hitPoints[1] += 4
                     if(hitPoints[1] > 25):
                         hitPoints[1] = 25
+                    damage = Menu("+4 HP", menu_path, (100, 100), font_file, (550, 380))
+                    damage.show(screen)
+                    pygame.display.flip()
+                    sleep(.2)
                     print("Enemy healed")
                     enemy.healTurns -= 1
                 elif(newAction == 'A'):
                     if player.isParrying:
                         hitPoints[1] -= 3
+                        damage = Menu("-3 HP", menu_path, (100, 100), font_file, (550, 380))
+                        damage.show(screen)
+                        pygame.display.flip()
+                        sleep(.2)
                         print("Enemy attacked, but the player parried!")
                         print("Enemy lost 3 HP")
                     else:
                         hitPoints[0] -= 5
+                        damage = Menu("-5 HP", menu_path, (100, 100), font_file, (150, 380))
+                        damage.show(screen)
+                        pygame.display.flip()
+                        sleep(.2)
                         print("Enemy attacked")
                         print("Player lost 5 HP")
                 elif(newAction == 'S'):
                     r=random()
                     if r<.6:
                         hitPoints[0] -= 7
+                        damage = Menu("-7 HP", menu_path, (100, 100), font_file, (150, 380))
+                        damage.show(screen)
+                        pygame.display.flip()
+                        sleep(.2)
                         print("Enemy made a strong attack")
                         print("Player lost 7 HP")
                     else:
+                        damage = Menu("Miss!", menu_path, (100, 100), font_file, (150, 380))
+                        damage.show(screen)
+                        pygame.display.flip()
+                        sleep(.2)
                         print("Enemy made a strong attack, but missed!")
                 elif(newAction == 'P'):
                     enemy.isParrying = True
@@ -304,7 +346,12 @@ class PlayerAvatar:
         return newAction
 
     # AI Model 5 - Whenever the HP of the AI drops below the HP of the opponent, 
-            
+    def comparativeAI(self, enemyHP):
+        newAction = ""
+        if (self.hp < enemyHP) and (self.healTurns > 0):
+            newAction = "H"
+        else:
+            newAction = "A"x
 def writeGame(output, healthLevels):
     for i in healthLevels:
         output.append(i)
