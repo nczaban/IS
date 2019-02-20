@@ -78,7 +78,7 @@ def main():
     enemy = PlayerAvatar(3)
 
     while True:
-        menu_items = ['Goblin', 'Troll', 'Orc', 'Elf', 'Slime']
+        menu_items = ['Goblin', 'Troll', 'Orc', 'Elf', 'Magician']
         menu = Menu("Choose an Opponent", menu_path, screen_res, font_file, (350, 75))
         for item in menu_items:
             menu.add_item(item)
@@ -89,23 +89,39 @@ def main():
             event = pygame.event.wait()
             user_input = menu.check_input(event)
             if user_input == menu_items[0]:
-                enemy = PlayerAvatar(1)
+                enemy = PlayerAvatar(0)
+                enemy_path = os.path.join('sprites', 'Goblin.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
             elif user_input == menu_items[1]:
-                enemy = PlayerAvatar(2)
+                enemy = PlayerAvatar(1)
+                enemy_path = os.path.join('sprites', 'Troll.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
             elif user_input == menu_items[2]:
-                enemy = PlayerAvatar(3)
+                enemy = PlayerAvatar(2)
+                enemy_path = os.path.join('sprites', 'Orc.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
             elif user_input == menu_items[3]:
-                enemy = PlayerAvatar(4)
+                enemy = PlayerAvatar(3)
+                enemy_path = os.path.join('sprites', 'Elf.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
             elif user_input == menu_items[4]:
-                enemy = PlayerAvatar(5)
+                enemy = PlayerAvatar(4)
+                enemy_path = os.path.join('sprites', 'Magician.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
 
         screen.blit(background, min_coord)
-        screen.blit(character, (300, 400))
+        screen.blit(character, (100, 400))
+        screen.blit(enemy_sprite, (500, 400))
         game_over = False
 
         hitPoints = [25, 25]
@@ -116,8 +132,8 @@ def main():
         newAction = ''
 
         while not game_over:
-            stat_string1 = "Player 1: " + str(hitPoints[0]) + "   "
-            stat_string2 = "Player 2: " + str(hitPoints[1])
+            stat_string1 = "Player: " + str(hitPoints[0]) + "   "
+            stat_string2 = "Enemy: " + str(hitPoints[1])
             menu_items = ['Attack', 'Strong Attack', 'Parry', 'Heal']
             ability = Menu(stat_string1 + stat_string2, menu_path, (500, 350), font_file, (250, 25))
             for item in menu_items:
@@ -210,10 +226,12 @@ def main():
         if hitPoints[0]<=0:
             screen.blit(loss, min_coord)
             pygame.display.flip()
+            sleep(3)
         else:
             screen.blit(win, min_coord)
             pygame.display.flip()
-        output = [hitPoints[0], hitPoints[1], turnCounter, agressiveness]
+            sleep(3)
+        output = [hitPoints[0], hitPoints[1], turnCounter]
 
         
 class PlayerAvatar:
