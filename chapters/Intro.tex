@@ -1,6 +1,26 @@
 % !TEX root = ../IS.tex
 \chapter{Introduction}
-As the computing power of personal computers has increased, the depth and variety of interactive computer games has similarly increased. The earliest video games - Spacewar! (1962) and Pong (1972), for example - required two human players, and did not have any digital opponents. By the late 70's, games like Pursuit (1975), Space Invaders (1978), and Asteroids (1979) introduced computer-controlled opponents which moved in set patterns. In Space Invaders, enemies move in horizontal lines and approach the player when the line hits a wall, slowly speeding up as more ships are destroyed. Asteroids, in addition to the titular rocks, has two saucers: one shoots randomly, the other targets the player directly. As time progressed, the intelligence of these enemies was improved with more intricate patterns (as in the space shooter Galaga (1981)) or in more heavily-scripted responses to inputs (as in the first-person shooter Half-Life (1998)) \cite{schw04}.
+As the computing power of personal computers has increased, the depth and variety of interactive computer games has similarly increased. The earliest video games - Spacewar! (1962) and Pong (1972), for example - required two human players, and did not have any digital opponents. By the late 70's, games like \textit{Pursuit} (1975), \textit{Space Invaders} (1978), and \textit{Asteroids} (1979) introduced computer-controlled opponents which moved in set patterns.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=9cm]{figures/space-invaders.jpg}
+  \caption{A screenshot from the game \textit{Space Invaders}.}
+  \label{fig:SpaceInvaders}
+\end{figure}
+
+In Space Invaders, enemies move in horizontal lines and occasionally shoot at the player, as shown in Figure \ref{fig:SpaceInvaders}. The player can only move horizontally, to dodge projectiles and hide behind shields. When the line of enemies hits a wall, the ships advance toward the player. As more enemy ships are destroyed, the lines become faster and faster, making them harder to hit. If a ship advances all the way to the player, the game ends and the player loses. Although the game becomes more difficult as the game progresses - ships become faster and shields become damaged - this difficulty has little to do with decisions made by the enemy ships; they just continue moving across the screen and shooting wildly.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/Asteroids.jpg}
+  \caption{A screenshot from the game \textit{Asteroids}}
+  \label{fig:Asteroids}
+\end{figure}
+
+In Asteroids, the player's ship is freely movable in space. The ship must avoid or destroy asteroids and two different types of flying saucers. One saucer shoots randomly, the other targets the player directly. In addition, the asteroids break into smaller asteroids as the player shoots them. Again, the difficulty of the game increases as smaller, faster asteroids fly by, but this does not reflect any choices made by the asteroids. Only the second saucer, which directly targets the player, has a semblance of intelligence. We infer from the nature of the gameplay that the saucer wants to destroy the player. By shooting right at the player, this enemy takes steps to achieve this goal. In contrast, the saucer which shoots randomly will sometimes try to achieve their goal (when the randomly-fired projectile moves in the general direction of the player) and sometimes will not (when the projectile moves in the complete opposite direction).\\
+
+As time progressed, the intelligence of these enemies was improved with more intricate patterns (as in the space shooter Galaga (1981)) or in more heavily-scripted responses to inputs (as in the first-person shooter Half-Life (1998)) \cite{schw04}.
 
 \begin{figure}[H]
   \centering
@@ -12,7 +32,7 @@ Galaga, for example, uses curves and loops in the flight paths of enemy spaceshi
 
 In more recent titles, AI systems begin to show more intelligence. Some of this comes from more complex routines, as seen in the final boss of the game \textit{Final Fantasy IX}.
 
-\lstset{caption={Section of AI script for Necron, a boss fight in the game \textit{Final Fantasy IX} \protect\cite{ff9necron}.}, language=ff9code, label={lst:ff9Necron}}
+\lstset{caption={Section of AI script for Necron, an enemy in the game \textit{Final Fantasy IX} \protect\cite{ff9necron}.}, language=ff9code, label={lst:ff9Necron}}
 \begin{lstlisting}
   set selectedattack = RandomAttack( attacklist )
   if ( selectedattack == Flare )
@@ -23,8 +43,6 @@ In more recent titles, AI systems begin to show more intelligence. Some of this 
   set SV_Target = SV_PlayerTeam
 \end{lstlisting}
 
-The boss, named Necron, has a variety of possible actions, three of which are shown in Listing \ref{lst:ff9Necron}. A random attack is selected from the list in line 1. For two of these attacks, a random character in the player's team is selected, provided that they do not have one of the listed special statuses, in lines 3 and 5. Two of these statuses (PETRIFY and DEATH) refer to when a character controlled by the player can no longer perform actions of their own. The REFLECT status, on the other hand, prevents a player character from being affected by magic spells and inflicting the spell on its caster instead. These checks improve the percieved ``intelligence'' of the boss; the AI does not waste actions attacking incapacitated players or causing itself harm from reflected magic.\\
+The boss, named Necron, has a variety of possible actions, three of which are shown in Listing \ref{lst:ff9Necron}. A random attack is selected from the list in line 1. For two of these attacks, a random character in the player's team is selected, provided that they do not have one of the listed special statuses, in lines 3 and 5. Two of these statuses (PETRIFY and DEATH) refer to when a character controlled by the player can no longer perform actions of their own. The REFLECT status, on the other hand, prevents a player character from being affected by magic spells and inflicting the spell on its caster instead. These checks improve the perceived ``intelligence'' of the boss; the AI does not waste actions attacking incapacitated players or causing itself harm from reflected magic.\\
 
-While the \textit{Final Fantasy IX} example employs predetermined choices (apart from some random selection), other forms of intelligence come from more open-ended coding. For example, stealth games feature guards who must react to a variety of situations. One technique for such AI is to use fuzzy logic \cite{schw04}. Fuzzy logic deals with sets where membership is on a continuum \cite{zade65}; this concept will be discussed in detail later. For now, it is sufficient to understand that a guard in a stealth game would use this type of logic to transition from a calm state to a suspicious state to an alerted state as the player's presence is detected \cite{schw04}. But, since a player may intentionally create distractions to exploit this suspicion, the AI for that guard cannot be too strongly scripted; what one player may do as a distraction another player may do accidentally, and the AI must account for these differences in play.\\
-
-In many role-playing games (RPGs), the heroes live in fantastical worlds and often have the ability to quickly heal themselves of their wounds with a quick potion or magic spell. While the player-controlled characters have these abilities, their AI-controlled opponents frequently do not. In rare cases where these enemies can heal themselves, this ability is often relegated to one-time uses determined by the game designers. This thesis concerns itself with designing an AI that can decide when it will use a healing ability, and use game theory to analyze the resulting game.
+In many role-playing games (RPGs) like \textit{Final Fantasy IX}, the heroes live in fantastical worlds and often have the ability to heal themselves of their wounds with a quick potion or magic spell. While the player-controlled characters have these abilities, their AI-controlled opponents frequently do not. In rare cases where these enemies can heal themselves, this ability is often relegated to one-time uses determined by the game designers. For instance, an enemy may heal itself when it is close to death, but only the first time. This thesis concerns itself with designing an AI that can decide when it will use a healing ability, and use game theory to analyze the resulting game.
