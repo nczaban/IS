@@ -83,36 +83,37 @@ def main():
         for item in menu_items:
             menu.add_item(item)
         display_menu = True
+        ai_model = 0
         while display_menu:
             menu.show(screen)
             pygame.display.flip()
             event = pygame.event.wait()
-            user_input = menu.check_input(event)
-            if user_input == menu_items[0]:
+            ai_model = menu.check_input(event)
+            if ai_model == menu_items[0]:
                 enemy = PlayerAvatar(0)
                 enemy_path = os.path.join('sprites', 'Goblin.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
-            elif user_input == menu_items[1]:
+            elif ai_model == menu_items[1]:
                 enemy = PlayerAvatar(1)
                 enemy_path = os.path.join('sprites', 'Troll.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
-            elif user_input == menu_items[2]:
+            elif ai_model == menu_items[2]:
                 enemy = PlayerAvatar(2)
                 enemy_path = os.path.join('sprites', 'Orc.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
-            elif user_input == menu_items[3]:
+            elif ai_model == menu_items[3]:
                 enemy = PlayerAvatar(3)
                 enemy_path = os.path.join('sprites', 'Elf.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 display_menu = False
-            elif user_input == menu_items[4]:
+            elif ai_model == menu_items[4]:
                 enemy = PlayerAvatar(4)
                 enemy_path = os.path.join('sprites', 'Magician.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
@@ -148,6 +149,10 @@ def main():
                     pygame.display.flip()
                     event = pygame.event.wait()
                     user_input = ability.check_input(event)
+                    screen.blit(background, min_coord)
+                    screen.blit(character, (100, 400))
+                    screen.blit(enemy_sprite, (500, 400))
+
                     if(user_input == menu_items[3] and hitPoints[0] <= 25 and player.healTurns>0):
                         hitPoints[0] += 4
                         if(hitPoints[0] > 25):
@@ -211,7 +216,7 @@ def main():
                     damage = Menu("+4 HP", menu_path, (100, 100), font_file, (550, 380))
                     damage.show(screen)
                     pygame.display.flip()
-                    sleep(.2)
+                    sleep(.7)
                     print("Enemy healed")
                     enemy.healTurns -= 1
                 elif(newAction == 'A'):
@@ -220,7 +225,7 @@ def main():
                         damage = Menu("-3 HP", menu_path, (100, 100), font_file, (550, 380))
                         damage.show(screen)
                         pygame.display.flip()
-                        sleep(.2)
+                        sleep(.7)
                         print("Enemy attacked, but the player parried!")
                         print("Enemy lost 3 HP")
                     else:
@@ -228,7 +233,7 @@ def main():
                         damage = Menu("-5 HP", menu_path, (100, 100), font_file, (150, 380))
                         damage.show(screen)
                         pygame.display.flip()
-                        sleep(.2)
+                        sleep(.7)
                         print("Enemy attacked")
                         print("Player lost 5 HP")
                 elif(newAction == 'S'):
@@ -238,21 +243,20 @@ def main():
                         damage = Menu("-7 HP", menu_path, (100, 100), font_file, (150, 380))
                         damage.show(screen)
                         pygame.display.flip()
-                        sleep(.2)
+                        sleep(.7)
                         print("Enemy made a strong attack")
                         print("Player lost 7 HP")
                     else:
                         damage = Menu("Miss!", menu_path, (100, 100), font_file, (150, 380))
                         damage.show(screen)
                         pygame.display.flip()
-                        sleep(.2)
+                        sleep(.7)
                         print("Enemy made a strong attack, but missed!")
                 elif(newAction == 'P'):
                     enemy.isParrying = True
                     print("Enemy is preparing to parry")
             isPlayer0Turn = not isPlayer0Turn
             healthLevels.append(hitPoints.copy())
-
             player.hp = hitPoints[0]
             enemy.hp = hitPoints[1]
 
@@ -273,8 +277,8 @@ def main():
             screen.blit(win, min_coord)
             pygame.display.flip()
             sleep(3)
-        output = [hitPoints[0], hitPoints[1], turnCounter]
-
+        output = [ai_model, hitPoints, turnCounter]
+        writeGame(output, healthLevels)
         
 class PlayerAvatar:
     def __init__(self, model):
@@ -351,7 +355,7 @@ class PlayerAvatar:
         if (self.hp < enemyHP) and (self.healTurns > 0):
             newAction = "H"
         else:
-            newAction = "A"x
+            newAction = "A"
 def writeGame(output, healthLevels):
     for i in healthLevels:
         output.append(i)
