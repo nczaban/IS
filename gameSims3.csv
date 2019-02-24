@@ -28,3 +28,13 @@ Goblin,[-4, 16],16,A,S,A,P,A,S,P,H,P,H,S,A,P,P,P,S
 Goblin,[-6, 10],18,S,A,S,H,A,S,A,S,H,A,H,P,A,A,A,S,P,S
 Goblin,[-6, 9],28,S,P,P,S,S,H,S,P,P,H,S,A,S,S,P,S,S,A,P,P,P,P,P,A,P,S,P,S
 Goblin,[25, -3],15,S,P,P,H,P,H,S,S,S,S,S,P,S,P,S
+Troll,[10, 0],9,A,A,A,A,A,A,S,H,S
+Troll,[10, 0],11,P,H,P,A,S,A,A,A,A,A,A
+Troll,[10, 0],9,P,A,S,A,A,A,A,A,A
+Troll,[15, 0],13,P,H,P,H,P,A,S,A,A,A,A,S,A
+Troll,[5, -2],13,P,H,P,A,S,A,S,A,S,A,A,A,A
+Orc,[10, -2],13,A,A,A,A,A,H,A,H,A,A,P,A,S
+Orc,[10, 0],13,A,A,A,A,A,H,P,A,A,H,A,A,A
+Orc,[15, -1],15,P,A,A,A,A,H,P,A,P,A,A,H,A,A,A
+Orc,[15, -1],15,A,A,P,A,A,H,P,A,A,H,P,A,A,A,A
+Orc,[15, 0],13,P,A,A,A,A,H,A,H,P,A,A,A,S
