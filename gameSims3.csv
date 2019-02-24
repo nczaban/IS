@@ -23,3 +23,8 @@ Magician,[10, -6],47,A,A,S,A,P,A,S,H,A,H,A,P,P,P,P,P,A,P,H,P,P,P,P,P,P,P,A,P,P,P
 Magician,[8, -1],33,S,A,A,A,P,A,P,H,H,A,A,H,S,A,H,A,S,P,S,P,S,P,S,P,S,P,S,P,S,P,S,P,S
 Magician,[17, -2],15,P,A,A,A,S,H,P,A,A,H,A,P,A,P,S
 Magician,[15, -6],37,A,A,S,A,P,A,A,H,A,H,S,P,S,P,P,P,P,P,P,P,P,P,P,P,P,P,S,P,S,P,P,P,P,P,S,P,S
+Goblin,[-3, 3],18,A,H,A,S,A,H,A,A,A,P,A,S,H,S,S,A,A,A
+Goblin,[-4, 16],16,A,S,A,P,A,S,P,H,P,H,S,A,P,P,P,S
+Goblin,[-6, 10],18,S,A,S,H,A,S,A,S,H,A,H,P,A,A,A,S,P,S
+Goblin,[-6, 9],28,S,P,P,S,S,H,S,P,P,H,S,A,S,S,P,S,S,A,P,P,P,P,P,A,P,S,P,S
+Goblin,[25, -3],15,S,P,P,H,P,H,S,S,S,S,S,P,S,P,S
