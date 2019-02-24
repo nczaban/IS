@@ -19,6 +19,14 @@ basketball.m
 #Folders
 OtherFiles/
 References/
+__pycache__/
 
 #GIMP image files - things being edited
 figures/ExampleGrid.xcf
+figures/0006.png
+figures/0007.png
+figures/0008.png
+figures/0009.png
+
+"Byrnes Edits.pdf"
+"Pierce Edits.pdf"
