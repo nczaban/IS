@@ -7,7 +7,7 @@ For this thesis, a 2D, turn-based role-playing game (RPG) was created. In an RPG
 \begin{figure}[H]
   \centering
   \includegraphics[width=9cm]{figures/Earthbound.png}
-  \caption{A screenshot of a battle from the turn-based role-playing game \textit{Earthbound}.}
+  \caption{A screenshot of a battle from the turn-based role-playing game \textit{Earthbound} \cite{earthbound94}.}
   \label{fig:Earthbound}
 \end{figure}
 
@@ -36,7 +36,7 @@ A game theoretic angle is used on the second attempt. The HP of both players is 
 \begin{figure}[H]
   \centering
   \includegraphics[width=15cm]{figures/GameTree.png}
-  \caption{The extensive-form tree for a simplified game. Each player has 10 HP, and can only heal themselves twice.}
+  \caption{The extensive-form tree for a simplified game. Each player starts with 10 hit points (HP). At each node, a player can choose to heal themselves or attack their opponent. Attacking reduces the opponent's HP by 5 points. Healing increases the decision maker's HP by 4 points; they can only heal themselves twice per game.}
   \label{fig:gameTree}
 \end{figure}
 
@@ -45,20 +45,39 @@ In Figure \ref{fig:gameTree}, player 1's nodes are denoted by a small dash to th
 \begin{figure}[H]
   \centering
   \includegraphics[width=4cm]{figures/GameSubtree.png}
-  \caption{A subtree of the extensive-form representation}
+  \caption{A subtree of the extensive-form representation in Figure \ref{fig:gameTree}. This subtree contains one of player 2's only winning outcomes.}
   \label{fig:gameSubtree}
 \end{figure}
 
-For example, in this subtree, both player 1 and 2 have a winning outcome. However, the critical decision is made by player 1. Thus, in any game which reaches this subtree, player 1 chooses to attack on their turn, since that choice leads to their victory.\\
+For example, in the subtree shown in Figure \ref{fig:gameSubtree}, both player 1 and 2 have a winning outcome. However, the critical decision is made by player 1. If player 1 chooses to heal, then player 2 will win in 3 more turns. If player 1 chooses to attack, then player 1 will eventually win. Thus, in any game which reaches this subtree, player 1 chooses to attack on their turn, since that choice leads to their victory.\\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=9cm]{figures/GameSubtree2.png}
-  \caption{A larger subtree of the extensive-form representation}
+  \includegraphics[width=8cm]{figures/GameSubtree2.png}
+  \caption{A second subtree of the extensive-form representation in Figure \ref{fig:gameTree}. This subtree contains two more of player 2's winning outcomes.}
   \label{fig:gameSubtree2}
 \end{figure}
 
-The remainder of player 2's winning outcomes can be seen in the subtree in Figure \ref{fig:gameSubtree2}. At the root node of this subtree, player 1 is making their choice. If they choose to heal, the game moves into the right child. Player 2's first choice on the right child's subtree either results in a win (if player 2 attacks) or a loss (if player 2 heals). Thus, an intelligent player 2 would always attack at this stage, since it is a guaranteed win. However, if player 1 knows that this is a guaranteed win for their opponent, player 1 can avoid this threat by attacking instead of healing at the root node.\\
+Two more of player 2's winning outcomes can be seen in the subtree in Figure \ref{fig:gameSubtree2}. At the root node of this subtree, player 1 is making their choice. If they choose to heal, the game moves into the right child. Player 2's first choice on the right child's subtree either results in a win (if player 2 attacks) or a loss (if player 2 heals). Thus, an intelligent player 2 would always attack at this stage, since it is a guaranteed win. However, if player 1 knows that this is a guaranteed win for their opponent, player 1 can avoid this threat by attacking instead of healing at the root node.\\
+
+If player 1 decides to avoid the subtree in Figure \ref{fig:gameSubtree2}, player 2 has the next choice. If player 2 decides to heal at this new node, then the resulting subtree is identical to the one found in Figure \ref{fig:gameSubtree}. This subtree contains player 2's final winning outcome, but once again player 1 can avoid this outcome with ease.\\
+
+We can prove that player 1 will always win this game through the backwards induction algorithm discussed in Chapter 2. Recall that the algorithm recurses through a game tree and, at each node, returns the child node which gives the player acting at the parent node the most utility. For the example in Figure \ref{fig:gameTree}, the first node to be checked is the root node.\\
+
+\begin{figure}
+  \centering
+  \includegraphics[height=3cm]{figures/Backwards1.png}
+  \caption{The first step of the Backward Induction algorithm on Figure \ref{fig:gameTree}. The algorithm has recursed to the leftmost leaf node, and will next recurse through the right children of the preceding node.}
+\end{figure}
+
+Since it is not a leaf node, the algorithm is called on the root's children, starting with the leftmost child. The root node only has one child, since players cannot heal when their HP is maxed out. This process continues until the leftmost leaf node. The utility at this node is (5, 0), and the preceding node is a choice node for player 1. Thus, the utility of the left child at this point is 5. The recursion proceeds along the right children of this node.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{figures/Backwards2.png}
+  \caption{The second step of the Backward Induction algorithm on Figure \ref{fig:gameTree}. The algorithm must recurse through the subtree to find }
+\end{figure}
+  The next node is a choice node for player 2. Again, the algorithm uses recursion to find the 
 
 In this limited model, it is clear that healing is not a viable strategy. The HP recovered by one player is not enough to offset the damage dealt by their opponent. At the most, choosing to heal only delays the inevitable.\\
 
