@@ -140,6 +140,7 @@ def main():
         isPlayer0Turn = True
         healthLevels = []
         healthLevels.append(hitPoints.copy())
+        actions = []
         newAction = ''
 
         while not game_over:
@@ -185,7 +186,7 @@ def main():
                         if(hitPoints[0] > 25):
                             hitPoints[0] = 25
                         print("Player healed")
-
+                        actions.append('H')
                         damage = Menu("+4 HP", menu_path, (100, 100), font_file, (150, 380))
                         damage.show(screen)
                         pygame.display.flip()
@@ -193,6 +194,7 @@ def main():
                         player.healTurns -= 1
                         display_menu = False
                     elif(user_input == menu_items[0]):
+                        actions.append('A')
                         if enemy.isParrying:
                             hitPoints[0] -= 3
                             damage = Menu("-3 HP", menu_path, (100, 100), font_file, (150, 380))
@@ -212,6 +214,7 @@ def main():
                         display_menu = False
                     elif(user_input == menu_items[1]):
                         r=random()
+                        actions.append('S')
                         if r<.6:
                             hitPoints[1] -= 7
                             damage = Menu("-7 HP", menu_path, (100, 100), font_file, (550, 380))
@@ -229,6 +232,7 @@ def main():
                         display_menu = False
                     elif(user_input == menu_items[2]):
                         player.isParrying = True
+                        actions.append('P')
                         print("Player is preparing to parry")
                         screen.blit(background, min_coord)
                         if player.isParrying:
@@ -245,6 +249,7 @@ def main():
                 sleep(.5)
                 enemy.isParrying = False
                 newAction = enemy.helperAIFunc(hitPoints[0])
+                actions.append(newAction)
                 if(newAction == 'H'):
                     hitPoints[1] += 4
                     if(hitPoints[1] > 25):
@@ -313,8 +318,9 @@ def main():
             screen.blit(win, min_coord)
             pygame.display.flip()
             sleep(3)
+        player.healTurns = 2
         output = [ai_model, hitPoints, turnCounter]
-        writeGame(output, healthLevels)
+        writeGame(output, actions)
 
 
         
