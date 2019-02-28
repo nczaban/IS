@@ -388,7 +388,7 @@ class PlayerAvatar:
         else:
             newAction = "A"
         return newAction
-
+    
     # AI Model 4 - Whenever the HP of the AI drops below 50%, the AI heals if possible. Else,
     # the AI does a normal
     def fiftyPercentAI(self):
