@@ -90,7 +90,7 @@ The algorithm begins at the root node of the tree. Since the root is not a leaf 
 \begin{figure}[H]
   \centering
   \includegraphics[width=11cm]{figures/Backwards1.png}
-  \caption{The tree examined by the backwards induction algorithm after recursing to the circled subtree in Figure \ref{fig:condensedTree}.}
+  \caption{The tree examined by the backwards induction algorithm after recursing to the red circled subtree in Figure \ref{fig:condensedTree}. The blue circled subtree is the next recursive step of the algorithm.}
   \label{fig:backwards1}
 \end{figure}
 Examining the root of the subtree in Figure \ref{fig:backwards1}, we find that the left child of the root is a leaf node. Thus, since the root is a decision node for player 1, the utility of this entire subtree will be the maximum utility for player 1 between the leaf node (5, 0) and the utility of the right child, which is its own subtree. Once again, the backwards induction algorithm is called recursively, this time on the subtree with root $R$. On the recursive call, the left child of $R$ is the subtree circled in blue.\\
@@ -98,21 +98,47 @@ Examining the root of the subtree in Figure \ref{fig:backwards1}, we find that t
 \begin{figure}[H]
   \centering
   \includegraphics[width=12cm]{figures/Backwards2.png}
-  \caption{The steps taken by the backwards induction algorithm after reaching the circled subtree in Figure \ref{fig:backwards1}}
+  \caption{The steps taken by the backwards induction algorithm after reaching the circled subtree in Figure \ref{fig:backwards1}.}
   \label{fig:backwards2}
 \end{figure}
 As the algorithm continues to recurse through the game tree, it will eventually reach the pair of leaf nodes at the bottom of the leftmost tree in Figure \ref{fig:backwards2}. The preceding decision node is a choice for player 2, so player 2 will make whichever choice gives them more utility. In this example, both leaf nodes provide player 2 with -3 utility, so the utility of the decision node is (3, 0). This utility value is moved up the tree to the next decision node, as shown in Figure \ref{fig:backwards2}. These steps continue up the subtree. The next decision node again has a tie between (3, 0) and (3, 0), but the root of the subtree has a choice between (3, 0) and (4, 0). Since the root of this subtree is a decision node for player 1, that player will prefer to attack and reach the (4, 0) leaf node for 4 utility. Thus, the utility of the circled subtree in Figure \ref{fig:backwards1} is (4, 0).\\
 
-\textbf{To be continued...}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=11cm]{figures/Backwards3.png}
+  \caption{The subtree in Figure \ref{fig:backwards1}, after the backwards induction steps performed in Figure \ref{fig:backwards2}.}
+  \label{fig:backwards3}
+\end{figure}
+
+Thus, after exploring the subtree in Figure \ref{fig:backwards2}, the left child of node $R$ is changed from a subtree to a single leaf node, the leaf with utility (4, 0). Now that the left child of $R$ is a leaf node, the algorithm continues along the right subtree of $R$, circled in green.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=14cm]{figures/Backwards4.png}
+  \caption{The steps taken by the backwards induction algorithm after reaching the circled subtree in Figure \ref{fig:backwards3}.}
+  \label{fig:backwards4}
+\end{figure}
+
+In the new subtree, the induction algorithm again determines which of the leaf nodes to bring up the tree. The parent of the leaf nodes decides which leaf provides the most utility for that player. In the first step, along the bottom of the tree and from the left, player 2 makes a choice between (3, 0) and (3, 0); player 1 makes a choice between (4,0) and (3, 0); player 2 makes a choice between (0, 4) and (0, 3). Respectively, the algorithm chooses (3, 0), (4, 0), and (0, 4). Each of these best leaf nodes are moved up the tree, resulting in the second tree in Figure \ref{fig:backwards4}. From here, extraneous branches are removed and three more decisions are made: player 1 chooses between (4, 0) and (3, 0); player 1 chooses between (4, 0) and (0, 3); player 2 chooses between (0, 4) and (5, 0). Respectively, the new utilities of the decision nodes are (4, 0), (4, 0), and (0, 4), creating the third tree in Figure \ref{fig:backwards4}. The next decision is made by Player 2, and is a tie between the two (4, 0) nodes. Then, in the fourth tree shown in Figure \ref{fig:backwards4}, Player 1 makes their choice between the (4, 0) and (0, 4) nodes. Since Player 1 wins on the (4, 0) node, this is the utility of the entire subtree.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=15cm]{figures/Backwards5.png}
+  \caption{The full game tree, after the backwards induction algorithm has recursed through half of the tree.}
+  \label{fig:backwards5}
+\end{figure}
+  
+Now that most of the left side of the tree has been explored by the backwards induction algorithm, we return to view the full tree in Figure \ref{fig:backwards5}. The node $R$, a decision node for Player 2, must choose between two identical leaf nodes, both with (4, 0) utility. Thus, $R$ given a utility value of (4, 0). For the final decision on the left subtree, Player 1 chooses between a (5, 0) leaf node and a (4, 0) leaf node, and will select the former. Next, the backwards induction algorithm will move to the right subtree of Figure \ref{fig:backwards5}.
+
 
 \subsubsection{Analysis}
-Player 1 has a huge advantige in this game by taking the first action. If both players only attack, then Player 1 wins the game. In fact, Player 1 can only lose by choosing to heal at certain points in the game. If Player 1 only attacks, then Player 2 has no chance of victory.
+Player 1 has a huge advantage in this game by taking the first action. If both players only choose to attack, then Player 1 wins the game. The utility of this outcome is (5, 0). In fact, Player 1 can only lose by choosing to heal at certain points in the game.\\
 
-In this limited model, it is clear that healing is not a viable strategy. Since players can only attack or heal, choosing to heal will either have no effect on utility or a negative effect on utility. If one player heals and the other player immediately attacks, then the first player has a net loss of 1 HP. The HP recovered by one player is not enough to offset the damage dealt by their opponent. If one player heals and their opponent also heals, then the difference in utility is zero. Since the only available actions are healing and attacking, then situations where both players heal at the same time only . At the most, choosing to heal only delays the inevitable.\\
+In all four paths where player 2 won, there is a node where player 1 chose to heal from 9 HP to 10 HP. If Player 1 only attacks, then Player 2 has no chance of victory. Since the normal amount of HP recovered by healing is 4 HP, we can see that player 1 is wasting potential HP by using one of their turns to heal when their HP is already close to the HP cap. We may infer that, in games with larger HP caps, the same effects would appear. It is much more useful for a player to heal when their HP is closer to zero.\\
 
-In the four paths where player 2 won, there is a node where player 1 chose to heal from 9 HP to 10 HP. Since the normal amount of HP recovered by healing is 4 HP, we can see that player 1 is wasting potential HP by using one of their turns to heal when their HP is already close to the HP cap. We may infer that, in games with larger HP caps, the same effects would appear. It is much more useful for a player to heal when their HP is closer to zero.\\
+In this limited model, it is clear that healing is not a viable strategy. Since players can only attack or heal, one player's choice to heal will either have no effect on their utility or a negative effect on their utility. If Player 2 heals and Player 1 immediately attacks, then Player 2 has a net loss of 1 HP. The HP recovered by a player is not enough to offset the damage dealt by their opponent. If a player heals and their opponent also heals, then the difference in utility is zero. Situations where both players heal at the same time does not change the overall performance of the players. If Player 2 was losing to Player 1, and both players heal, then Player 2 will still be losing to Player 1. At the most, choosing to heal only delays the inevitable.\\
 
-Now that some patterns in the game are identified, we expand the game and build a prototype using Python and the pygame library.
+Now that some patterns in the game are identified, we expand the choices of the game and build a prototype using Python and the pygame library.
 
 \section{Game Engine}
 Python was chosen as the development language for this game. Python is an extremely portable language: anyone with Python installed can run the code. Python also has a robust library for two-dimensional games called pygame, which was essential in creating this game. Specifically, Python 3 was used for better compatibility with the pygame library and for the copy() function for arrays.
@@ -219,7 +245,7 @@ Each non-player character has a respective AI model which it uses. The goblin us
 
 In addition to the default sprites shown in Figure \ref{fig:SpriteSheet}, characters have a second sprite for when they are parrying. The Troll and Orc characters are unable to parry, so only four of these sprites were created. These variants are shown in Figure \ref{fig:ParrySheet}: the player character, the elf, the magician, and the goblin all have parry sprites.\\
 
-At runtime, the game starts at a menu screen, where the five enemy characters are listed. When the HP of either the player or the AI falls to 0 or lower, the round ends. A final screen is shown to either celebrate the player's victory or lament their failure.
+At runtime, the game starts at a menu screen, where the five enemy characters are listed. When the HP of either the player or the AI falls to 0 or lower, the round ends. A final screen is shown to either celebrate the player's victory or lament their failure. The menu was made using code from a \textit{Tetris} clone made with pygame created by Dimitris Strovolidis, released under the GNU General Public License, version 3 \cite{tetris}. This code contains a ``menu'' class which allows both for interactive menus and easily-positioned text. The enemy characters are listed in this menu, and players are able to select which opponent they wish to fight.
 
 \section{Playtesting and Survey}
 To test the effectiveness of these AI models, a group of participants were surveyed to play the various models. Each participant played five rounds against one of the models. The program collects data on wins and losses, as well as the sequence of actions taken by both the human player and the AI opponent. In addition to this game data, a short survey was given to each participant. Subjects were asked to answer the first three questions before playing the game. These questions asked participants to rate, on a scale of 1 to 5, their interests in video games, strategic board games, and RPGs, respectively. A score of 1 indicated little or no interest, while a score of 5 indicated a strong interest. After the three questions, participants were given a short description of the game, including the possible actions that players could take in the game. After the participant completed the five rounds, they were asked three more questions. These questions asked them to rate, on a scale of 1 to 5, how fun they found the game, how understandable the controls were, and how aggressive or passive their playstyle. 1 indicates a rating of not fun, that the controls were not understandable at all, and that the player used a very passive playstyle, respectively. A 5 rating indicated that the participant had a lot of fun, that the controls were very understandable, and that their playstyle was very aggressive, respectively.\\
