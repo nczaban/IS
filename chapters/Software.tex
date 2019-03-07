@@ -11,11 +11,11 @@ For this thesis, a 2D, turn-based role-playing game (RPG) was created, titled \t
   \label{fig:Earthbound}
 \end{figure}
 
-For instance, observe the battle shown in Figure \ref{fig:Earthbound} from the game \textit{Earthbound}. The computer opponent is shown in the center of the screen. At the top, the actions available to the player are listed. Players have the choice of making a melee attack (Bash), casting a magical spell (PSI), using an item (Goodies), or reducing damage taken (Defend). Players can also select Auto Fight to have the computer make all the choices for them, or they can Run Away and escape from the battle. At the bottom, the hit points (HP) and psychic points (PP) of the character are shown - these correspond to the character's health and their magical abilities.
+For instance, observe the battle shown in Figure \ref{fig:Earthbound} from the game \textit{Earthbound}. The computer opponent is shown in the center of the screen. At the top, the actions available to the player are listed. Players have the choice of making a melee attack (Bash), casting a magical spell (PSI), using an item (Goods), or reducing damage taken (Defend). Players can also select Auto Fight to have the computer make all the choices for them, or they can Run Away and escape from the battle. At the bottom, the hit points (HP) and psychic points (PP) of the character are shown - these correspond to the character's health and their magical abilities.
 
 Specific to turn-based RPGs, the player has as much time as they want to decide on their strategy. This is in contrast to an action RPG, where combat takes place in real-time. Generally, action RPGs use 3D environments to better accommodate the real-time battles, but this is not always the case. In the game created for this thesis, a turn-based approach is better suited because it emphasizes player strategy. Action RPGs may have similar lists of commands and actions, but these actions frequently have a corresponding skill component.\\
 
-Take for example a basic attack. In a turn-based RPG, this action requires little from the player: they select that choice from a list, and their in-game character attacks the opposing player. Depending on the game, this attack may or may not be successful - the opponent could dodge or block the hit - but the success or failure is determined by the game through the stats both players - if for instance a character is nimble enough to dodge, or defensive enough to block a strike. An action RPG, on the other hand, determines whether an attack misses or hits through hit-boxes. A hit-box is a hidden area tied to some in-game object; when hit-boxes intersect, something happens depending on the types of objects. For this example, an attack would be successful if the hit-box of the character's attack (their sword, fist, magic spell, etc.) intersects with the hit-box of their opponent's body. The attack would fail if these hit-boxes do not intersect. Thus, the overall success of a character in an action RPG is dependent on a player's skill in making hit-boxes collide. This type of gameplay does not lend itself well to game theory analysis, as a player could make all the right decisions but still lose from lack of skill.\\
+Take for example a basic attack. In a turn-based RPG, this action requires little from the player: they select that choice from a list, and their in-game character attacks the opposing player. Depending on the game, this attack may or may not be successful - the opponent could dodge or block the hit - but the success or failure is determined by the game through the stats of both players - if for instance a character has a high enough agility to dodge, or a high enough defensive to block the strike; the role-playing aspect of turn-based RPGs often boils down to how players build these stats. An action RPG, on the other hand, determines whether an attack misses or hits through hit-boxes. A hit-box is a hidden area tied to some in-game object; when hit-boxes intersect, something happens depending on the types of objects. For this example, an attack would be successful if the hit-box of the character's attack (their sword, fist, magic spell, etc.) intersects with the hit-box of their opponent's body. The attack would fail if these hit-boxes do not intersect. Thus, the overall success of a character in an action RPG is dependent on a player's skill in making hit-boxes collide. This type of gameplay does not lend itself well to game theory analysis, as a player could make all the right decisions but still lose from lack of skill.\\
 
 \begin{figure}[H]
   \centering
@@ -24,16 +24,16 @@ Take for example a basic attack. In a turn-based RPG, this action requires littl
   \label{fig:Xenoblade}
 \end{figure}
 
-For more a concrete example, regard a battle from the action RPG \textit{Xenoblade Chronicles}, as shown in Figure \ref{fig:Xenoblade}. In this game, the player can move freely in 3D space. The character shown has four abilities, represented as icons along the bottom of the screen. The two red-tinted abilities are attacks, as is the shaded center ability. The blue ability on the right is a healing spell. The skill component of this game comes with the two red abilities; these abilities do more damage and cause additional affects when performed at certain angles. For instance, the leftmost ability does more damage when used on an opponent's side, while the second red ability does more damage when used from an opponent's back. Thus, two players could use the same series of abilities but have different outcomes based on how their attacks were positioned.\\
+For a more concrete example, regard a battle from the action RPG \textit{Xenoblade Chronicles}, as shown in Figure \ref{fig:Xenoblade}. In this game, the player can move freely in 3D space. The character shown has four abilities, represented as icons along the bottom of the screen. The two red-tinted abilities are attacks, as is the shaded center ability. The blue ability on the right is a healing spell. The skill component of this game comes with the two red abilities; these abilities do more damage and cause additional affects when performed at certain angles. For instance, the leftmost ability does more damage when used on an opponent's side, while the second red ability does more damage when used from an opponent's back. Thus, two players could use the same series of abilities but have different outcomes based on how their attacks were positioned.\\
 
 Similarly, the game presented in this thesis is a two-dimensional game. With a turn-based RPG, since the gameplay involves choosing actions from a list, the only difference between a 2D and a 3D turn-based RPG is the graphical quality. A 2D game uses sprites, while 3D games use polygonal models. A two-dimensional game was chosen to simplify development.\\
 
-To begin building an AI model, we first create a simulation of the \textit{Cave Escape}. The simulation has two players, each with 25 health points (HP). In this first simulation, both players have two possible actions per turn which are randomly selected: attack the other player, reducing their opponents HP by 5 points, or heal themselves, increasing their HP by 4 points. Players can not heal above their starting value of 25 HP; any extra health points are discarded. Each action has a 50\% chance of occurring. The game runs until one player's HP is reduced to 0. The total number of turns and the sequence of actions are recorded into a CSV file. After running 4500 simulations, the data is imported into Matlab. A subset of the games are used as a training set for a decision tree, which predicts the player that wins the game.\\
+To begin building an AI model, we first create a simulation of the \textit{Cave Escape}. The simulation has two players, each with 25 health points (HP). In this first simulation, both players have two possible actions per turn which are randomly selected: attack the other player, reducing their opponents HP by 5 points, or heal themselves, increasing their HP by 4 points. Players can not heal above their starting value of 25 HP; any extra health points are discarded. Each action has a 50\% chance of occurring. The game runs until one player's HP is reduced to 0. The total number of turns and the sequence of actions are recorded into a CSV file. After running 4500 simulations, the data is imported into MATLAB. A subset of the games are used as a training set for a decision tree, which predicts the player that wins the game.\\
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=13cm]{figures/firstDecisionTree.png}
-  \caption{The decision tree generated from 4000 simulations of the game. This tree predicts 0 when player 1 wins and 1 when player 2 wins.}
+  \caption{The decision tree generated from 4000 simulations of the game. The predicted attribute is a Boolean value of 0 when player 1 wins and 1 when player 2 wins.}
   \label{fig:decisionTree1}
 \end{figure}
 
@@ -106,7 +106,9 @@ As the algorithm continues to recurse through the game tree, it will eventually 
 \textbf{To be continued...}
 
 \subsubsection{Analysis}
-In this limited model, it is clear that healing is not a viable strategy. Since players can only attack or heal, choosing to heal will either have no affect on utility or a negative affect on utility. If one player heals and their opponent also heals, then the overall change in . The HP recovered by one player is not enough to offset the damage dealt by their opponent. At the most, choosing to heal only delays the inevitable.\\
+Player 1 has a huge advantige in this game by taking the first action. If both players only attack, then Player 1 wins the game. In fact, Player 1 can only lose by choosing to heal at certain points in the game. If Player 1 only attacks, then Player 2 has no chance of victory.
+
+In this limited model, it is clear that healing is not a viable strategy. Since players can only attack or heal, choosing to heal will either have no effect on utility or a negative effect on utility. If one player heals and the other player immediately attacks, then the first player has a net loss of 1 HP. The HP recovered by one player is not enough to offset the damage dealt by their opponent. If one player heals and their opponent also heals, then the difference in utility is zero. Since the only available actions are healing and attacking, then situations where both players heal at the same time only . At the most, choosing to heal only delays the inevitable.\\
 
 In the four paths where player 2 won, there is a node where player 1 chose to heal from 9 HP to 10 HP. Since the normal amount of HP recovered by healing is 4 HP, we can see that player 1 is wasting potential HP by using one of their turns to heal when their HP is already close to the HP cap. We may infer that, in games with larger HP caps, the same effects would appear. It is much more useful for a player to heal when their HP is closer to zero.\\
 
@@ -220,4 +222,49 @@ In addition to the default sprites shown in Figure \ref{fig:SpriteSheet}, charac
 At runtime, the game starts at a menu screen, where the five enemy characters are listed. When the HP of either the player or the AI falls to 0 or lower, the round ends. A final screen is shown to either celebrate the player's victory or lament their failure.
 
 \section{Playtesting and Survey}
-To test the effectiveness of these AI models, a group of participants were surveyed to play the various models. Each participant played five rounds against one of the models. The program collects data on wins and losses, as well as the sequence of actions taken by both the human player and the AI opponent. In addition to this game data, a short survey was given to each participant. Subjects were asked to answer the first three questions before playing the game. These questions asked participants to rate, on a scale of 1 to 5, their interests in video games, strategic board games, and RPGs, respectively. A score of 1 indicated little or no interest, while a score of 5 indicated a strong interest. After the three questions, participants were given a short description of the game, including the possible actions that players could take in the game. After the participant completed the five rounds, they were asked three more questions. These questions asked them to rate, on a scale of 1 to 5, how fun they found the game, how understandable the controls were, and how aggressive or passive their playstyle. 1 indicates a rating of not fun, that the controls were not understandable at all, and that the player used a very passive playstyle, respectively. A 5 rating indicated that the participant had a lot of fun, that the controls were very understandable, and that their playstyle was very aggressive, respectively.
+To test the effectiveness of these AI models, a group of participants were surveyed to play the various models. Each participant played five rounds against one of the models. The program collects data on wins and losses, as well as the sequence of actions taken by both the human player and the AI opponent. In addition to this game data, a short survey was given to each participant. Subjects were asked to answer the first three questions before playing the game. These questions asked participants to rate, on a scale of 1 to 5, their interests in video games, strategic board games, and RPGs, respectively. A score of 1 indicated little or no interest, while a score of 5 indicated a strong interest. After the three questions, participants were given a short description of the game, including the possible actions that players could take in the game. After the participant completed the five rounds, they were asked three more questions. These questions asked them to rate, on a scale of 1 to 5, how fun they found the game, how understandable the controls were, and how aggressive or passive their playstyle. 1 indicates a rating of not fun, that the controls were not understandable at all, and that the player used a very passive playstyle, respectively. A 5 rating indicated that the participant had a lot of fun, that the controls were very understandable, and that their playstyle was very aggressive, respectively.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/goblinWins.png}
+  \caption{The win/loss percentages for the randomAI() function, assigned to the Goblin character.}
+  \label{fig:pieGoblin}
+\end{figure}
+After 15 individual games against the Goblin AI - using the randomAI function - the win percentage for the survey participants are as shown in \ref{fig:pieGoblin}: a 67\% win percentage for the human player, and a 33\% win percentage for the Goblin. Since this AI model uses a random number generator to determine its actions, this win percentage suggests that unpredictability is more difficult for human players to defeat. Furthermore, we can see that the expanded version of the game, with 25 HP instead of 10 and two more abilities, has more outcomes where player 2 can win.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/trollWins.png}
+  \caption{The win/loss percentages for the aggressiveRandomAI() function, assigned to the Troll character.}
+  \label{fig:pieTroll}
+\end{figure}
+
+The Troll AI fared much worse than the Goblin, as seen in Figure \ref{fig:pieTroll}. The aggressive AI was only able to win 20\% of its games. In comparison to the Goblin, the Troll is less likely to use strong attacks; the Goblin can use a strong attack whenever, but the Troll must first expend both of their healing turns before it can use a strong attack. Additionally, the Goblin can parry while the Troll cannot. Thus, at any particular turn of the game, the Troll has a more limited move set than the Goblin.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/orcWins.png}
+  \caption{The win/loss percentages for the fiftyPercentAI() function, assigned to the Orc character.}
+  \label{fig:pieOrc}
+\end{figure}
+
+The Orc AI performed the worst of all, as is evident from Figure \ref{fig:pieOrc}. Not a single person lost to the Orc after 15 trials. The Orc also has the most limited move set of the five models, only able to heal and use normal attacks. Seeing as the Orc has the same available moves as the players in the simple simulation in Figure \ref{fig:gameTree}, it is unsurprising that the Orc has trouble winning games.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/elfWins.png}
+  \caption{The win/loss percentages for the comparativeAI() function, assigned to the Elf character.}
+  \label{fig:pieElf}
+\end{figure}
+
+Figure \ref{fig:pieElf} shows that the comparativeAI() function was only slightly successful. After 10 trials, the human players won 90\% of the games while the AI won 10\% of the games. Since this model uses parries frequently, a player is able to safely heal themselves without immediately losing that HP on the Elf's next attack. Furthermore, a successful parry deals 3 damage, but a successful strong attack deals 7 damage. Thus, a player can take a few hit from parries but still come out ahead with strong attacks.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{figures/magicianWins.png}
+  \caption{The win/loss percentages for the scalingDifficulty() function, assigned to the Magician character.}
+  \label{fig:pieMagician}
+\end{figure}
+
+Finally, the Magician character had the best overall record, as seen in Figure \ref{fig:pieMagician}: a win rate of 60\% for the player and 40\% for the Magician. Like the Goblin, the Magician is able to perform all four of the available actions, which the other three AI models could not do. It may be the case that, by limiting the available actions for the other AI models, they were handicapped in a way that the Goblin and Magician were not.\\
+
