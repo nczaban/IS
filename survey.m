@@ -64,12 +64,12 @@ clear g o t e m i
 % counts = hist(orcWins);
 % pie(counts)
 % pause
-% counts = hist(elfWins);
-% pie(counts)
-% pause
-% counts = hist(magicianWins);
-% pie(counts)
-
+counts = hist(elfWins);
+pie(counts)
+pause
+counts = hist(magicianWins);
+pie(counts)
+pause
 
 %% Analyze the proportion of player actions per game
 [x, y]=size(txt);
@@ -125,38 +125,31 @@ clear g o t e m i j x y
 
 [x,y] = size(antiGoblinActions);
 for i=1:y
-    A(i) = sum(antiGoblinActions(:,1));
+    A(i) = sum(antiGoblinActions(:,i));
 end
-pie(A)
-quit
+%pie(A)
 
 [x,y] = size(antiTrollActions);
 for i=1:y
-    A(i) = sum(antiTrollActions(:,1));
+    A(i) = sum(antiTrollActions(:,i));
 end
-counts = hist(A);
-pie(counts)
-pause
+%pie(A)
 
 [x,y] = size(antiOrcActions);
 for i=1:y
-    A(i) = sum(antiOrcActions(:,1));
+    A(i) = sum(antiOrcActions(:,i));
 end
-counts = hist(A);
-pie(counts)
-pause
+%pie(A)
 
 [x,y] = size(antiElfActions);
 for i=1:y
-    A(i) = sum(antiElfActions(:,1));
+    A(i) = sum(antiElfActions(:,i));
 end
-counts = hist(A);
-pie(counts)
+pie(A)
 pause
 
 [x,y] = size(antiMagicianActions);
 for i=1:y
     A(i) = sum(antiMagicianActions(:,i));
 end
-counts = hist(A);
-pie(counts)
+pie(A)
