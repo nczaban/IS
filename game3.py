@@ -81,7 +81,7 @@ def main():
     enemy = PlayerAvatar(3)
 
     while True:
-        menu_items = ['Goblin', 'Troll', 'Orc', 'Elf', 'Magician']
+        menu_items = ['Goblin', 'Troll', 'Orc', 'Elf', 'Magician', 'Beserker', 'Knight']
         menu = Menu("Choose an Opponent", menu_path, screen_res, font_file, (350, 75))
         for item in menu_items:
             menu.add_item(item)
@@ -121,14 +121,31 @@ def main():
                 guard_path = os.path.join('sprites', 'Elf_Parry.png')
                 guard_sprite = pygame.image.load(guard_path).convert_alpha()
                 guard_sprite = pygame.transform.scale(guard_sprite, (128, 256))
-
                 display_menu = False
+
             elif ai_model == menu_items[4]:
                 enemy = PlayerAvatar(5)
                 enemy_path = os.path.join('sprites', 'Magician.png')
                 enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
                 enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
                 guard_path = os.path.join('sprites', 'Magician_Parry.png')
+                guard_sprite = pygame.image.load(guard_path).convert_alpha()
+                guard_sprite = pygame.transform.scale(guard_sprite, (128, 256))
+                display_menu = False
+
+            elif ai_model == menu_items[5]:
+                enemy = PlayerAvatar(6)
+                enemy_path = os.path.join('sprites', 'Beserker.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
+                display_menu = False
+
+            elif ai_model == menu_items[6]:
+                enemy = PlayerAvatar(7)
+                enemy_path = os.path.join('sprites', 'Knight.png')
+                enemy_sprite = pygame.image.load(enemy_path).convert_alpha()
+                enemy_sprite = pygame.transform.scale(enemy_sprite, (128, 256))
+                guard_path = os.path.join('sprites', 'Knight_Parry.png')
                 guard_sprite = pygame.image.load(guard_path).convert_alpha()
                 guard_sprite = pygame.transform.scale(guard_sprite, (128, 256))
                 display_menu = False
@@ -248,7 +265,7 @@ def main():
             else:
                 sleep(.5)
                 enemy.isParrying = False
-                newAction = enemy.helperAIFunc(hitPoints[0])
+                newAction = enemy.helperAIFunc(hitPoints[0], player.isParrying)
                 actions.append(newAction)
                 if(newAction == 'H'):
                     hitPoints[1] += 4
@@ -335,7 +352,7 @@ class PlayerAvatar:
 
     # AI Helper Function - Picks the appropriate function to call, and passes the correct
     # information
-    def helperAIFunc(self, enemyHP):
+    def helperAIFunc(self, enemyHP, isParrying):
         if self.AI_MODEL == 1:
             return self.randomAI()
         elif self.AI_MODEL == 2:
@@ -346,6 +363,10 @@ class PlayerAvatar:
             return self.comparativeAI(enemyHP)
         elif self.AI_MODEL == 5:
             return self.scalingDifficulty(enemyHP)
+        elif self.AI_MODEL == 6:
+            return "A"
+        elif self.AI_MODEL == 7:
+            return self.parryCountering(enemyHP, isParrying)
         else:
             return self.limitedRandomAI()
             
@@ -431,6 +452,24 @@ class PlayerAvatar:
             newAction = "A"
         return newAction
 
+    # AI Model 7: When the player uses a parry, the AI uses a strong attack rather than a
+    # normal attack. Otherwise, the AI uses the same decision as the scalingDifficulty AI
+    # in model 6.
+    def parryCountering(self, enemyHP, isParrying):
+        newAction = ""
+        if (1.0*self.hp/self.maxHP < .5) and (self.healTurns == 2):
+            newAction = "H"
+        elif (1.0*self.hp/self.maxHP >= .5 and isParrying == False):
+            newAction = "A"
+        elif (self.hp < enemyHP) and (self.healTurns == 1):
+            newAction = "H"
+        elif (self.hp >= enemyHP) and (1.0*self.hp/self.maxHP < .5):
+            newAction = "S"
+        elif (self.hp < enemyHP) and (self.healTurns == 0):
+            newAction = "P"
+        else:
+            newAction = "S"
+        return newAction
 
 def writeGame(output, healthLevels):
     for i in healthLevels:
