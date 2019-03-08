@@ -232,7 +232,7 @@ The visual design of the game was left fairly simple, to avoid distracting playe
   \label{fig:ingame}
 \end{figure}
 
-An individual sprite was created for the player character and each of the five AI models, as shown in Figure \ref{fig:SpriteSheet}. These sprites are layered on a bluish-purple background symbolizing the cave interior. The list of possible actions is also shown on-screen, positioned above the player character as in Figure \ref{fig:ingame}. Next to the ``Heal'' option, the number of remaining healing turns is listed and updated after each turn. The HP of both players is also updated after every turn. Additionally, after players select an action, the resulting change in HP is shown above the head of the respective target. The right image in Figure \ref{fig:ingame} shows that the orc was hit by a strong attack made by the player, and took 7 points of damage.\\
+An individual sprite was created for the player character and each of the five AI models, as shown in Figure \ref{fig:SpriteSheet}. These sprites are overlaid on a bluish-purple background symbolizing the cave interior. The list of possible actions is also shown on-screen, positioned above the player character as in Figure \ref{fig:ingame}. Next to the ``Heal'' option, the number of remaining healing turns is listed and updated after each turn. The HP of both players is also updated after every turn. Additionally, after players select an action, the resulting change in HP is shown above the head of the respective target. The right image in Figure \ref{fig:ingame} shows that the orc was hit by a strong attack made by the player, and took 7 points of damage.\\
 
 Each non-player character has a respective AI model which it uses. The goblin uses the \texttt{randomAI()} function in Figure \ref{fig:AI2}, where all actions have a 25\% chance of being chosen. The troll uses \texttt{aggressiveRandomAI()}, as seen in Figure \ref{fig:AI3}. This character attacks more often that it heals, and can perform strong attacks after both healing turns are spent. The orc uses the \texttt{fiftyPercentAI()} function from Figure \ref{fig:AI4}. The elf is assigned to the \texttt{comparativeAI()} function seen in Figure \ref{fig:AI5}, and finally the magician uses the \texttt{scalingDifficulty()} function from Figure \ref{fig:AI6}.
 
@@ -266,7 +266,7 @@ To test the effectiveness of these AI models, a group of participants were surve
     \midrule
     \textbf{4} & Elf   & 4     & 5     & 4     & 4     & 5     & 1 \\
     \midrule
-    \rowcolor[rgb]{ .851,  .851,  .851} \textbf{5} & Mage  & 5     & 3     & 4     & 5     & 5     & 4 \\
+    \rowcolor[rgb]{ .851,  .851,  .851} \textbf{5} & Magician  & 5     & 3     & 4     & 5     & 5     & 4 \\
     \midrule
     \textbf{6} & Goblin & 5     & 5     & 5     & 3     & 5     & 4 \\
     \midrule
@@ -276,7 +276,7 @@ To test the effectiveness of these AI models, a group of participants were surve
     \midrule
     \rowcolor[rgb]{ .851,  .851,  .851} \textbf{9} & Elf   & 2     & 3     & 1     & 4     & 5     & 4 \\
     \midrule
-    \textbf{10} & Mage  & 2     & 2     & 1     & 2     & 4     & 3 \\
+    \textbf{10} & Magician  & 2     & 2     & 1     & 2     & 4     & 3 \\
     \midrule
     \rowcolor[rgb]{ .851,  .851,  .851} \textbf{11} & Goblin & 4     & 5     & 4     & 5     & 3     & 5 \\
     \midrule
@@ -286,7 +286,7 @@ To test the effectiveness of these AI models, a group of participants were surve
     \midrule
     \textbf{14} & Elf   & 3     & 4     & 2     & 3     & 5     & 5 \\
     \midrule
-    \rowcolor[rgb]{ .851,  .851,  .851} \textbf{15} & Mage  & 4     & 3     & 3     & 4     & 5     & 4 \\
+    \rowcolor[rgb]{ .851,  .851,  .851} \textbf{15} & Magician  & 4     & 3     & 3     & 4     & 5     & 4 \\
     \midrule
     \textbf{16} & Goblin & 2     & 2     & 2     & 5     & 5     & 4 \\
     \bottomrule
@@ -298,49 +298,63 @@ The responses given by the survey participants are recorded in Table \ref{tab:su
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{figures/goblinWins.png}
-  \caption{The win/loss percentages for the randomAI() function, assigned to the Goblin character.}
+  \includegraphics[width=7.75cm]{figures/goblinWins.png}
+  \includegraphics[width=7cm]{figures/actionsGoblin.png}
+  \caption{On left, the win/loss percentages for the randomAI() function, assigned to the Goblin character. On right, the percentage of actions players used against the Goblin.}
   \label{fig:pieGoblin}
 \end{figure}
-After 15 individual games against the Goblin AI - using the randomAI function - the win percentage for the survey participants are as shown in \ref{fig:pieGoblin}: a 67\% win percentage for the human player, and a 33\% win percentage for the Goblin. Since this AI model uses a random number generator to determine its actions, this win percentage suggests that unpredictability is more difficult for human players to defeat. Furthermore, we can see that the expanded version of the game, with 25 HP instead of 10 and two more abilities, has more outcomes where player 2 can win.\\
+After 15 individual games against the Goblin AI - using the randomAI function - the win percentage for the survey participants are as shown in the left chart in Figure \ref{fig:pieGoblin}: a 67\% win percentage for the human player, and a 33\% win percentage for the Goblin. Since this AI model uses a random number generator to determine its actions, this win percentage suggests that unpredictability is more difficult for human players to defeat. Furthermore, we can see that the expanded version of the game, with 25 HP instead of 10 and two more abilities, has more outcomes where player 2 can win.\\
 
-Participants who played this AI model rated their enjoyment on average as 4 out of 5. These same participants rated their playstyle as 4.5 out of 5, indicating that they played very aggressively.
+Participants who played this AI model rated their enjoyment on average as 4 out of 5. These same participants rated their playstyle as 4.5 out of 5, indicating that they played very aggressively. However, as shown in the right chart of Figure \ref{fig:pieGoblin}, players had a fairly even split between normal attacks, strong attacks, and parries. Healing, since it is limited to twice per round, is necessarily less common. While as a whole players did opt to use offensive moves instead of defensive moves, their aggression is somewhat overstated.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=8cm]{figures/trollWins.png}
-  \caption{The win/loss percentages for the aggressiveRandomAI() function, assigned to the Troll character.}
+  \includegraphics[width=7cm]{figures/actionsTroll.png}
+  \caption{On left, the win/loss percentages for the aggressiveRandomAI() function, assigned to the Troll character. On right, the percentage of actions players used against the Troll.}
   \label{fig:pieTroll}
 \end{figure}
 
-The Troll AI fared much worse than the Goblin, as seen in Figure \ref{fig:pieTroll}. The aggressive AI was only able to win 20\% of its games. In comparison to the Goblin, the Troll is less likely to use strong attacks; the Goblin can use a strong attack whenever, but the Troll must first expend both of their healing turns before it can use a strong attack. Additionally, the Goblin can parry while the Troll cannot. Thus, at any particular turn of the game, the Troll has a more limited move set than the Goblin.\\
+The Troll AI fared much worse than the Goblin, as seen in the left chart of Figure \ref{fig:pieTroll}. The aggressive AI was only able to win 20\% of its games. In comparison to the Goblin, the Troll is less likely to use strong attacks; the Goblin can use a strong attack whenever, but the Troll must first expend both of their healing turns before it can use a strong attack. Additionally, the Goblin can parry while the Troll cannot. Thus, at any particular turn of the game, the Troll has a more limited move set than the Goblin.\\
 
-Participants who played this AI model rated their enjoyment on average as 3 out of 5. They rated their playstye as 3.6 out of 5, indicating that they leaned towards aggresive playstyles.
+Participants who played this AI model rated their enjoyment on average as 3 out of 5, the lowest of all the models. They rated their playstyle as 3.6 out of 5, indicating that they leaned towards aggressive playstyles. In comparison to the actions taken against the Goblin in the right chart of Figure \ref{fig:pieGoblin}, this self-identification is correct: players who fought the Troll tended to parry more than players who fought the Goblin, as shown on the right chart of Figure \ref{fig:pieTroll}. Players who fought the Goblin parried 27\% of the time, while players who fought the Troll parried 36\% of the time.\\
+
+Since the Troll primarily uses normal attacks, this increase in parrying is to be expected. With such an increase, we can infer that players were able to guess at the decisions made by the Troll, and expected the Troll to use normal attacks. This is supported by the win/loss percentages as well, as players were more successful fighting the Troll than the Goblin.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{figures/orcWins.png}
-  \caption{The win/loss percentages for the fiftyPercentAI() function, assigned to the Orc character.}
+  \includegraphics[width=7cm]{figures/orcWins.png}
+  \includegraphics[width=7cm]{figures/actionsOrc.png}
+  \caption{On left, the win/loss percentages for the fiftyPercentAI() function, assigned to the Orc character. On right, the percentage of actions players used against the Orc.}
   \label{fig:pieOrc}
 \end{figure}
 
-The Orc AI performed the worst of all, as is evident from Figure \ref{fig:pieOrc}. Not a single person lost to the Orc after 15 trials. The Orc also has the most limited move set of the five models, only able to heal and use normal attacks. Seeing as the Orc has the same available moves as the players in the simple simulation in Figure \ref{fig:gameTree}, it is unsurprising that the Orc has trouble winning games.
+The Orc AI performed the worst of all, as is evident from the left chart of Figure \ref{fig:pieOrc}. Not a single person lost to the Orc after 15 trials. The Orc also has the most limited move set of the five models, only able to heal and use normal attacks. Seeing as the Orc has the same available moves as the players in the simple simulation in Figure \ref{fig:gameTree}, it is unsurprising that the Orc has trouble winning games.\\
+
+Participants who played this AI model rated their enjoyment on average as 4.6 out of 5. They rated their playstyle as 3.3 out of 5, indicating that they leaned towards aggressive play, but were slightly more defensive than players who fought the Troll. As shown in the right chart of Figure \ref{fig:pieOrc}, players who fought the Orc healed less often than players who fought the Goblin or Troll, but parried more than those same players. This data suggests that players did not feel as threatened by the Orc as they did the Troll or Goblin. As with the Troll, the Orc relies on normal attacks. Furthermore, unlike the Troll, the Orc does use any strong attacks which would counteract a player's parry. Thus, players can once again guess at the decisions made by the Orc. Given that the Orc did not win a single battle, these players appear to be correct.\\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{figures/elfWins.png}
-  \caption{The win/loss percentages for the comparativeAI() function, assigned to the Elf character.}
+  \includegraphics[width=7.25cm]{figures/elfWins.png}
+  \includegraphics[width=7cm]{figures/actionsElf.png}
+  \caption{On left, the win/loss percentages for the comparativeAI() function, assigned to the Elf character. On right, the percentage of actions players used against the Elf.}
   \label{fig:pieElf}
 \end{figure}
 
-Figure \ref{fig:pieElf} shows that the comparativeAI() function was only slightly successful. After 10 trials, the human players won 90\% of the games while the AI won 10\% of the games. Since this model uses parries frequently, a player is able to safely heal themselves without immediately losing that HP on the Elf's next attack. Furthermore, a successful parry deals 3 damage, but a successful strong attack deals 7 damage. Thus, a player can take a few hit from parries but still come out ahead with strong attacks.
+The left chart of Figure \ref{fig:pieElf} shows that the comparativeAI() function was only slightly successful. Human players won 93\% of the games while the AI won 7\% of the games. Since this model uses parries frequently, a player is able to safely heal themselves without immediately losing that HP on the Elf's next attack. Furthermore, a successful parry deals 3 points of damage while a successful strong attack deals 7 points of damage. If a player chooses to use a normal attack twice followed by a strong attack, they will lose 6 HP from the Elf's parry but will still have a net . Thus, a player can take a few hits from parries but still come out ahead with strong attacks. This difference gives players the opportunity to learn that strong attacks cannot be parried.
+
+As seen in the right chart of Figure \ref{fig:pieElf}, players who fought the Elf used more strong attacks than against any of the AI opponents. Since the Elf tries to parry after it runs out of healing turns, the number of strong attacks predictably increases as players try to break through their opponent's parry. While not as low as against the Orc, players who fought the Elf chose to heal slightly less than against the Goblin and Troll. Since the Elf is on the defense for much of each round, players are likely basing their decisions on ways to break through the Elf's parry and not on keeping their character alive.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{figures/magicianWins.png}
-  \caption{The win/loss percentages for the scalingDifficulty() function, assigned to the Magician character.}
+  \includegraphics[width=8.5cm]{figures/magicianWins.png}
+  \includegraphics[width=6.5cm]{figures/actionsMagician.png}
+  \caption{On left, the win/loss percentages for the scalingDifficulty() function, assigned to the Magician character. On right, the percentage of actions players used against the Magician.}
   \label{fig:pieMagician}
 \end{figure}
 
-Finally, the Magician character had the best overall record, as seen in Figure \ref{fig:pieMagician}: a win rate of 60\% for the player and 40\% for the Magician. Like the Goblin, the Magician is able to perform all four of the available actions, which the other three AI models could not do. It may be the case that, by limiting the available actions for the other AI models, they were handicapped in a way that the Goblin and Magician were not.\\
+Finally, the Magician character had the best overall record, as seen in the left chart of Figure \ref{fig:pieMagician}: a win rate of 60\% for the player and 40\% for the Magician. Like the Goblin, the Magician is able to perform all four of the available actions, which the other three AI models could not do. Given the similar win/loss rates for the Goblin and Magician, it may be the case that, by limiting the available actions for the other AI models, they were handicapped in a way that the Goblin and Magician were not.\\
 
+
+
+While the player can choose their actions to play strategically, some of the AI models can be easily beaten if the player chooses to attack every turn. In casual observation, the Troll and Orc can be reliably beaten by only attacking. The Goblin can occasionally be defeated with only normal attacks, but will occasionally defeat the player. Like the early version of the game explored in Figure \ref{fig:gameTree}, the human player has a tremendous advantage by taking the first turn. However, the addition of parries and strong attacks allows for second player in this version of the game to win, while the second player in the first version could only win if Player 1 chose to heal at specific moments. If the human player chooses to only attack, the Magician and Elf cannot be defeated. Since they stop parrying if their HP is above the player's HP, these AI models are able to stay ahead.
