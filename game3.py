@@ -457,7 +457,9 @@ class PlayerAvatar:
     # in model 6.
     def parryCountering(self, enemyHP, isParrying):
         newAction = ""
-        if (1.0*self.hp/self.maxHP < .5) and (self.healTurns == 2):
+        if (isParrying == True):
+            newAction = "S"
+        elif (1.0*self.hp/self.maxHP < .5) and (self.healTurns == 2):
             newAction = "H"
         elif (1.0*self.hp/self.maxHP >= .5 and isParrying == False):
             newAction = "A"
