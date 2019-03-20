@@ -159,7 +159,7 @@ For the expanded version of the game, several things were changed from the game 
 
 The two players in the game begin with 25 HP each, and are able to heal twice per game. These values are stored in a PlayerAvatar class. This class also stores the type of AI used for the computer player. The class has a helper function, which is called from within the main game loop. This helper function checks which AI model is used, then calls that model's respective function.\\
 
-Six different AI models were created. In all models, the AI checks to see if any healing turns remain; if not, the AI defaults to a normal attack. Three of the models rely on a random number generator.\\
+Eight different AI models were created. In all models, the AI checks to see if any healing turns remain; if not, the AI defaults to a normal attack. Three of the models rely on a random number generator.\\
 
 \begin{figure}[H]
   \centering
@@ -168,7 +168,7 @@ Six different AI models were created. In all models, the AI checks to see if any
   \label{fig:AI1}
 \end{figure}
 
-The first AI model, the \texttt{limitedRandomAI()} function, chooses randomly to attack or heal with a 50/50 chance of either, but will attack instead if the AI has already healed itself twice. This is shown by the decision tree in Figure \ref{fig:AI1}. The variable $r$ is given a random value between 0 and 1, and the first decision in the tree is based on the value of $r$. After that, the tree has either reached a leaf node (for $r\ge .5$) or must make a second decision, this time based on the number of heal turns remaining. Given the limited success player 2 had in the original game tree in Figure \ref{fig:gameTree}, this model was not used in the final version of the game. Instead, a different model was used which could perform all four possible actions.\\
+The first AI model, the \texttt{limitedRandomAI()} function, chooses randomly to attack or heal with a 50/50 chance of either, but will attack instead if the AI has already healed itself twice. This is shown by the decision tree in Figure \ref{fig:AI1}. The variable $r$ is given a random value between 0 and 1, and the first decision in the tree is based on the value of $r$. After that, the tree has either reached a leaf node (for $r\ge .5$) or must make a second decision, this time based on the number of healing turns remaining. Given the limited success player 2 had in the original game tree in Figure \ref{fig:gameTree}, this model was not used in the final version of the game. Instead, a different model was used which could perform all four possible actions.\\
 
 \begin{figure}[H]
   \centering
@@ -176,7 +176,27 @@ The first AI model, the \texttt{limitedRandomAI()} function, chooses randomly to
   \caption{The decision tree for the \texttt{randomAI()} function.}
   \label{fig:AI2}
 \end{figure}
-The second model, \texttt{randomAI()}, has a 25\% chance of attacking, healing, parrying, or using a strong attack. Again, Figure \ref{fig:AI2} shows that if the random number generator chooses to heal, but all healing turns have been used, the AI does a normal attack instead. This choice was made to effect a kind of desperation to fights: when an opponent no longer can heal themselves, they become more offensive to try and win the battle. This kind of behavior - where the AI changes their strategy after all healing turns have been spent - is incorporated into all the models.\\
+The second model, \texttt{randomAI()}, has a 25\% chance of attacking, healing, parrying, or using a strong attack. Again, Figure \ref{fig:AI2} shows that if the random number generator chooses to heal, but all healing turns have been used, the AI does a normal attack instead. This choice was made to affect a sense of desperation in the AI: when an opponent no longer can heal themselves, they become more offensive to try and win the battle. This kind of behavior - where the AI changes their strategy after all healing turns have been spent - is incorporated into all the models.\\
+
+\lstset{language=python, label=lst:randomAI, caption={The \texttt{randomAI()} function.}}
+\begin{lstlisting}
+# AI Model 2 - Randomly choose between 4 actions: Attack, Strong Attack, Parry, and Heal.
+# If no heal turns remain, the AI does a normal attack
+def randomAI(self):
+  newAction = ""
+  r=random()
+  if(r<.25 and self.healTurns > 0):
+    newAction = "H"
+  elif(r<.5):
+    newAction = "A"
+  elif(r<.75):
+    newAction = "S"
+  else:
+    newAction = "P"
+  return newAction
+\end{lstlisting}
+
+Listing \ref{lst:randomAI} shows the code used to create the decision tree in Figure \ref{fig:AI2}. In the code, each range of values is compared to the random variable $r$ - Python's \texttt{random()} function returns a number in the range $[0, 1)$ - and the action is determined by the range into which $r$ falls. Since Python executes each line of code sequentially, lower bounds on the ranges are not needed; the lower bounds are implicit from the previous \texttt{if} or \texttt{elif} statements. In comparison with the tree, the program condenses the two Attack nodes together with the first \texttt{elif} clause. Since the first \texttt{if} statement checks for both \texttt{r<.25} and \texttt{self.healTurns>0}, the two branches of the decision tree leading to the Heal leaf node are both covered. This format cannot be done directly with decision trees, since each decision node in the tree must use a single variable to split its branches.
 
 \begin{figure}[H]
   \centering
@@ -186,6 +206,25 @@ The second model, \texttt{randomAI()}, has a 25\% chance of attacking, healing, 
 \end{figure}
 
 The third model, \texttt{aggressiveRandomAI()}, is the final model which uses a random number generator. For this model, there is an additional variable given to the AI player, the aggressiveness stat. Rather than evenly splitting up actions 50-50, the choice between attacking and healing is split along this aggressiveness, which is a real number between 0 and 1. For this thesis, the aggressiveness was set to .25, leading to an AI which attacked 75\% of the time and healed 25\% of the time. As can be seen in the decision tree in Figure \ref{fig:AI3}, the AI uses strong attacks when the random number $r$ is below the aggressiveness stat and the two allotted heal turns are expended.
+
+\lstset{language=python, label=lst:aggressiveAI, caption={The \texttt{aggressiveRandomAI()} function.}}
+\begin{lstlisting}
+# AI Model 3 - Use agressiveness statistic to determine how frequently the AI attacks.
+# If the AI is randomly chosen to heal, but has expended all healing turns, it uses a
+# strong attack instead.
+def aggressiveRandomAI(self):
+  newAction = ""
+  r=random()
+  if r<self.aggressiveness and self.healTurns > 0:
+    newAction = "H"
+  elif r<self.aggressiveness:
+    newAction = "S"
+  else:
+    newAction = "A"
+  return newAction
+\end{lstlisting}
+
+Like in the \texttt{randomAI()} function, the \texttt{aggressiveRandomAI()} function in Listing \ref{lst:aggressiveAI} is able to condense branches and nodes with \texttt{elif} and \texttt{else} statements.
 
 \begin{figure}[H]
   \centering
@@ -203,7 +242,7 @@ In the fourth model, \texttt{fiftyPercentAI()}, the AI only heals when its healt
   \label{fig:AI5}
 \end{figure}
 
-The fifth model uses similar tactics as fourth, but instead of using 50\% as the threshold, the \texttt{comparativeAI()} function heals whenever its HP drops below the player's HP, as seen in Figure \ref{fig:AI5}. Additionally, when the AI has expended all its healing turns and its HP falls below the player's HP, the AI uses a parry instead of an attack. Over the course of a game, the AI will defend itself, relying on counter-attacks to weaken the player before making attacks of its own.
+The fifth model uses similar tactics as the fourth, but instead of using 50\% as the threshold, the \texttt{comparativeAI()} function heals whenever its HP drops below the player's HP, as seen in Figure \ref{fig:AI5}. Additionally, when the AI has expended all its healing turns and its HP falls below the player's HP, the AI uses a parry instead of an attack. Over the course of a game, the AI will defend itself, relying on counter-attacks to weaken the player before making attacks of its own.
 
 \begin{figure}[H]
   \centering
@@ -212,7 +251,24 @@ The fifth model uses similar tactics as fourth, but instead of using 50\% as the
   \label{fig:AI6}
 \end{figure}
 
-Finally, the \texttt{scalingDifficulty()} model in Figure \ref{fig:AI6} is a loose combination of the \texttt{fiftyPercentAI()} and \texttt{comparativeAI()} functions. As in \ref{fig:AI4}, the AI performs a normal attack whenever the AI's HP is above 50\% of its maximum. In this model, the two available healing turns are used in different circumstances. The first healing turn is used when the AI drops below 50\% HP for the first time. If their HP drops below 50\% after this first healing turn, the AI becomes more strategic. If the AI is below 50\% but still has a greater HP value than the player, then the AI will use strong attacks. However, if the AI is both below 50\% and below the player's HP, then it will use its second healing turn if available and parry if no healing turns remain.\\
+The \texttt{scalingDifficulty()} model in Figure \ref{fig:AI6} is a loose combination of the \texttt{fiftyPercentAI()} and \texttt{comparativeAI()} functions. As in \ref{fig:AI4}, the AI performs a normal attack whenever the AI's HP is above 50\% of its maximum. In this model, the two available healing turns are used in different circumstances. The first healing turn is used when the AI drops below 50\% HP for the first time. If their HP drops below 50\% after this first healing turn, the AI becomes more strategic. If the AI is below 50\% but still has a greater HP value than the player, then the AI will use strong attacks. However, if the AI is both below 50\% and below the player's HP, then it will use its second healing turn if available and parry if no healing turns remain.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1cm]{figures/AIAttack.png}
+  \caption{The decision tree for a baseline AI model, which only uses normal attacks.}
+  \label{fig:AI7}
+  \end{figure}
+
+After some preliminary testing, the final two models were created. The first of these is a baseline model, which only uses normal attacks.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{figures/AIParry.png}
+  \caption{The decision tree for the \texttt{parryCountering()} function.}
+  \label{fig:AI8}
+\end{figure}
+The second of these new models was designed to be more offensive and use strong attacks whenever the human player chose to parry.\\
 
 \subsection{Visual Design}
 The visual design of the game was left fairly simple, to avoid distracting players from the strategic elements of the game. Icons for the player character and enemy opponents were created in the GNU Image Manipulation Program (GIMP), then imported as pygame sprites using the \texttt{pygame.image.load()} function. Since these sprites had a transparency component, the function \texttt{convert\_alpha()} was also used to preserve this transparency in pygame.\\
@@ -354,7 +410,5 @@ As seen in the right chart of Figure \ref{fig:pieElf}, players who fought the El
 \end{figure}
 
 Finally, the Magician character had the best overall record, as seen in the left chart of Figure \ref{fig:pieMagician}: a win rate of 60\% for the player and 40\% for the Magician. Like the Goblin, the Magician is able to perform all four of the available actions, which the other three AI models could not do. Given the similar win/loss rates for the Goblin and Magician, it may be the case that, by limiting the available actions for the other AI models, they were handicapped in a way that the Goblin and Magician were not.\\
-
-
 
 While the player can choose their actions to play strategically, some of the AI models can be easily beaten if the player chooses to attack every turn. In casual observation, the Troll and Orc can be reliably beaten by only attacking. The Goblin can occasionally be defeated with only normal attacks, but will occasionally defeat the player. Like the early version of the game explored in Figure \ref{fig:gameTree}, the human player has a tremendous advantage by taking the first turn. However, the addition of parries and strong attacks allows for second player in this version of the game to win, while the second player in the first version could only win if Player 1 chose to heal at specific moments. If the human player chooses to only attack, the Magician and Elf cannot be defeated. Since they stop parrying if their HP is above the player's HP, these AI models are able to stay ahead.
