@@ -30,7 +30,7 @@ The preferences of these players are represented using a utility function. In ga
   A game is ``zero-sum'' if an action made by one player increases their utility by an amount equal to the loss in utility for the second player from that same action. Specifically, for an action $a$ and utility functions $u_1$ for player 1 and $u_2$ for player 2, $u_1(a)+u_2(a)=0$. Zero-sum games can only have two players \cite{shoh09}.
 \end{define}
 
-In a zero-sum game, every action which changes utility affects both players in the game. For every loss in utility, the other player gains an equal amount. Zero-sum games are a subset of \textit{constant-sum} games. In contrast with zero-sum, a constant-sum game will have an action $a$ where $u_1(a)+u_2(a)$ equal to a constant $c$ \cite{shoh09}.
+In a zero-sum game, every action which changes utility affects both players in the game. For every loss in utility, the other player gains an equal amount. Zero-sum games are a subset of \textit{constant-sum} games. In contrast with zero-sum, a constant-sum game will have an action $a$ where $u_1(a)+u_2(a)$ is equal to a constant $c$ \cite{shoh09}.
 
 \begin{exmp}
   The card game War is a zero-sum game. In War, two players play the top card of their deck simultaneously. Whoever played the higher value card takes both cards and places them at the bottom of their deck. In the event of a tie, both players play two cards face-down and a third card face-up. The winner of this exchange takes all cards in play. The utility of each card can be measured by its face value, and the utility of each player is equal to the sum of the utility of all cards in their deck. Suppose that there is a round where Player 1 plays a 10 and Player 2 plays a Queen. Player 2 takes the 10, gaining 10 utility points while Player 1 loses those same 10 points. Let $u_1(a)$ represent the utility for player 1 of an interaction $a$ and $u_2(a)$ represent the utility for player 2 of an interaction $a$. Thus, if player 1 plays an 8 and player 2 plays a 4, player 1 will keep the 8 and take the 4. The utility $u_1((8, 4))=4$ since player 1 gained a 4 and $u_2((8, 4))=-4$ since player 2 lost a 4. Thus, $u_1(a)+u_2(a)=4-4=0$. This holds after every play in the game, so War is a zero-sum game.
@@ -202,9 +202,7 @@ Not all games have a Nash equilibrium; take the normal-form representation of ro
   \end{figure}
 \end{exmp}
 
-Every row and every column in this Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. For every situation where Player 1's choice provides the most utility, there exists another, equally-likely situation where the same choice would provide the least utility (in this case, negative utility) and a third equally likely situation where that choice provides no utility. Therefore, there can be no Nash equilibrium.\\
-
-
+Every row and every column in Figure \ref{fig:RPS} has the same three results, and none of the choices is a winning strategy for more than one situation. Rock may beat Scissors, but it loses to Paper. If the Nash equilibrium of Player 1 is investigated, each possible action by Player 2 results in a different best response for Player 1. For every situation where Player 1's choice provides the most utility, there exists another, equally-likely situation where the same choice would provide the least utility (in this case, negative utility) and a third equally likely situation where that choice provides no utility. Therefore, there can be no Nash equilibrium.\\
 
 \subsection{Non-Simultaneous Games}
 It is important to recognize in these two examples that both players are making their choice simultaneously. Games without simultaneous actions are not so easily expressed in normal form. For example, take a game of tic-tac-toe. For simplicity, assume that the game is played with a 2x2 board instead of a 3x3 board. Assume the utility function awards players 1 point for winning the game, -1 point for losing the game, and 0 points for a draw. Let UL be a piece in the upper left square, UR the upper right square, LL the lower left square, and LR the lower right square. We position Player 1 on the left side of the matrix, and Player 2 on the top of the matrix. Assume Player 1 has the first turn.\\
@@ -261,10 +259,10 @@ In a turn-based, or an extensive-form game, players do not make simultaneous act
 
 These games are represented in graph-theoretic trees. Specifically, extensive-form games are represented with \textit{rooted trees}.
 \begin{define}
-  A rooted tree is a pair $(V, E)$, where $V$ (known as the vertex set) is a finite set and $E$ (known as the edge set) is a binary relation on $V$ \cite{corm09}. Elements of $V$ are referred to as vertices or nodes, and elements of $E$ are referred to as edges. Trees are acyclic, meaning that there are no paths with at least one edge $<v_1, v_2, \dots, v_k>$ where $v_1=v_k$. Trees are connected, meaning every vertex in $V$ can be reached from all other vertices in $V$. One element $v\in V$ is denoted as the root.
+  A rooted tree is a pair $(V, E)$, where $V$ (known as the vertex set) is a finite set and $E$ (known as the edge set) is a binary relation on $V$ \cite{corm09}. Elements of $V$ are referred to as vertices or nodes, and elements of $E$ are referred to as edges. Trees are acyclic, meaning that no cycles exist in the graph; there is no path which moves away from a node $a$ by edge $e$ and returns to $a$ by a different edge. Trees are connected, meaning every vertex in $V$ can be reached from all other vertices in $V$. One element $v\in V$ is denoted as the root.
 \end{define}
 
-Trees are particularly useful for describing these types of games due to the parent/child relationship of the nodes in a rooted tree. 
+These types of graphs are called trees due to the visualization in a tree-like diagram, showing the \textit{root} and \textit{children} (see Figure \ref{fig:sharingTree}).
 
 \begin{define}
   A finite perfect information game in extensive form is a tuple $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ where:
@@ -295,7 +293,7 @@ As in the normal-form definition, there are $n$ players in the game, contained i
 
 Figure \ref{fig:sharingTree} shows six leaf nodes of this tree - the elements of the set $Z$ - while the other nodes are contained in $H$. The $H$ nodes are labeled either 1 or 2, denoting from the $\rho$ function which player is making the choice at that node. The $Z$ nodes each have a pair, denoting the utility each player will gain if the game ends in that particular way. The actions $A$ are denoted in the lines connecting the nodes together. In this game, the three actions from the root node are the methods of sharing 2 presents between 2 people. The second player, once the first player has distributed the presents in a particular way, chooses whether to accept the distribution or not.\\
 
-To explore this definition, return to the game of tic-tac-toe. Let $N=\{N_1, N_2\}$ be the set of players in the game. In this game, $A$ is the set of open spaces on which a player can place their symbol; for the first move of the game, $A$ is the set of 9 open spaces on the board, for the second move, $A$ is the set of the remaining 8 spaces. For a game of tic-tac-toe, $H$ contains configuration of the board where neither player has three in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has three in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which in tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
+To explore this definition, return to the game of 2x2 tic-tac-toe. Let $N=\{N_1, N_2\}$ be the set of players in the game. In this game, $A$ is the set of open spaces on which a player can place their symbol; for the first move of the game, $A$ is the set of 4 open spaces on the board, for the second move, $A$ is the set of the remaining 3 spaces. For a game of tic-tac-toe, $H$ contains configurations of the board where neither player has two in a row and there are still open squares on the board. $Z$, on the other hand, contains the board configurations where one player has two in a row or all spaces have been claimed. For tic-tac-toe, the $\chi$ function removes illegal actions from a node, which for tic-tac-toe would be playing on an occupied square. Thus, the $\chi$ function leaves the choice nodes at each successive turn with fewer and fewer available actions. Since there are only two players, the $\rho$ function alternates between players after each action.
 
 \begin{figure}[H]
   \centering
@@ -311,27 +309,16 @@ Nash equilibria can be found in extensive-form games as well, and are defined th
 \begin{define}
   Let $G = (N, A, H, Z, \chi, \rho, \sigma, u)$ be a perfect-information extensive-form game. The pure strategies of player $i$ consist of the Cartesian product $\Pi_{h\in H, \rho(h)=i}\chi(h)$ \cite{shoh09}.
 \end{define}
-Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form game, it is not necessary to introduce probabilities to determine a Nash equilibrium. Instead, Nash equilibria can be found using backwards induction. The pseudocode below describes the process of finding a subgame-perfect equilibrium from the bottom of an extensive tree upward.
-%\begin{algorithm}
-%  \caption{Backwards Induction \cite{shoh09}}
-%  \begin{algorithmic}[1]
-%    \Procedure {BackwardInduction}{node $h$}
-%    \If{$h\in Z$}
-%    \State Return $u(h)$
-%    \Comment If $h$ is a leaf node, return the utility of that outcome
-%    \EndIf
-%    \For{$a\in\chi(h)$}
-%    \State $util\_at\_child \gets BackwardInduction(\sigma(h, a))$
-%    \Comment Recursively check each child of $h$
-%    \If{$util\_at\_child_{\rho(h)}>best\_util_{\rho(h)}$}
-%    \State $best\_util\gets util\_at\_child$\\
-%    \Comment $best\_util$ holds the utility which is maximized for the player $\rho(h)$
-%    \EndIf
-%    \EndFor
-%    \State Return $best\_util$
-%    \EndProcedure
-%  \end{algorithmic}
-%\end{algorithm}
+Given a perfect-information game, a player's pure strategy is the set of choices mapped by $\chi$ from each of that player's choice nodes $h$. It is a complete specification of the choices that a player determines they should make \cite{shoh09}. Since the actions of all other players are known in an extensive-form game, it is not necessary to introduce probabilities to determine a Nash equilibrium. Instead, Nash equilibria can be found using backwards induction.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4cm]{figures/ExampleBackwardInduction.png}
+  \caption{A small extensive-form tree. The outcome is dependent on the player mapped by $\rho(h)$.}
+  \label{fig:BackwardInduction}
+\end{figure}
+
+Backwards induction determines a dominant strategy for a particular game. This strategy works on the assumption that players act optimally, and will thus always choose a leaf node which maximizes their utility. Therefore, a decision node $n$ with a set of leaf nodes as its children is equivalent to the leaf which maximizes the utility of the deciding player. For example, examine the extensive-form tree for a two-player game in Figure \ref{fig:BackwardInduction}. with a root and two child nodes. Both of these children are leaf or terminal nodes. At the leaf node $a$, player 1 has positive utility while player 2 has negative utility; at leaf node $b$, player 2 has positive utility and player 1 has negative utility. Since both players are utility-maximizing agents, the choice of the outcome is determined by whichever player happens to be making the decision, as mapped by $\rho(h)$. Suppose that Figure \ref{fig:BackwardInduction} is a subtree in a larger game. Further suppose that, in this larger game, the subtree in Figure \ref{fig:BackwardInduction} always has player 1 making the choice at node $h$. Given this scenario, player 1 will always perform the action that gets them to node $a$. Thus, a tree where node $h$ is replaced by $a$, with $b$ being removed from the tree entirely, is equivalent to the current tree in Figure \ref{fig:BackwardInduction}. If the entire tree for a game is mapped out, then this process can be repeated all the way up to a root node; at that point, the outcome of the game can be determined before the game even begins. The pseudocode below describes the process of finding a subgame-perfect equilibrium from the bottom of an extensive tree upward.\\
 
 \lstset{language=pseudocode, label={lst:BackwInd}, caption={The Backward Induction algorithm for extensive-form game trees \cite{shoh09}.}}
 \begin{lstlisting}[language=pseudocode]
@@ -352,16 +339,7 @@ Given a perfect-information game, a player's pure strategy is the set of choices
   end Procedure
 \end{lstlisting}
 
-Backwards induction determines a dominant strategy for a particular game. The algorithm in Listing \ref{lst:BackwInd} has a base case at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 6. Since the child nodes may have their own children, line 7 recursively checks each child and gets the utility of that node. In lines 9 and 10, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 14.\\
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=4cm]{figures/ExampleBackwardInduction.png}
-  \caption{A small extensive-form tree. The outcome is dependent on the player mapped by $\rho(h)$.}
-  \label{fig:BackwardInduction}
-\end{figure}
-
-For example, examine the extensive-form tree for a two-player game in Figure \ref{fig:BackwardInduction}. with a root and two child, terminal nodes. At the leaf node $a$, player 1 has positive utility while player 2 has negative utility; at leaf node $b$, player 2 has positive utility and player 1 has negative utility. Since both players are utility-maximizing agents, the choice of the outcome is determined by whichever player happens to be making the decision, as mapped by $\rho(h)$. Suppose that Figure \ref{fig:BackwardInduction} is a subtree in a larger game. Further suppose that, in this larger game, the subtree in Figure \ref{fig:BackwardInduction} always has player 1 making the choice at node $h$. Given this scenario, player 1 will always perform the action that gets them to node $a$. Thus, node $h$ can be replaced by $a$, with $b$ being removed from the tree entirely, and the rest of the game will be unchanged. If the entire tree for a game is mapped out, then this process can be repeated all the way up to a root node; at that point, the outcome of the game can be determined before the game even begins.\\
+The algorithm in Listing \ref{lst:BackwInd} has a base case at line 2, where $h$ is in the set of terminal nodes in $Z$, or the leaves of the extensive-form tree. At these leaves the game is over, and the utility of that outcome is returned by the algorithm. When the node in question is not a terminal node, the algorithm checks the utility of each of that node's children at line 6. Since the child nodes may have their own children, line 7 recursively checks each child and gets the utility of that node. In lines 9 and 10, the backwards induction algorithm determines which node provides the player at node $h$ (as determined by the mapping function $\rho$) the maximum amount of utility. This node is returned in line 14.\\
 
 \begin{figure}[H]
   \centering
@@ -375,7 +353,7 @@ Not all game trees can be reduced with the backwards induction algorithm. In Fig
 \begin{exmp}
   Player 1 has a choice between $A$ and $B$ on their first turn. If Player 1 chooses $B$, then they make a second choice between $C$ and $D$. Player 2 only has one choice: if Player 1 chooses $A$, then Player 2 chooses between $L$ and $R$.
 \end{exmp}
-Using the backwards induction algorithm on the left subtree of Figure \ref{fig:noBackward}, we find that the outcome (1, 2) - the leaf node reached by the choices $\{A, R\}$ - is preferred by Player 2 to the outcome (0, 0) - the leaf node reached by the choices $\{A, L\}$. Thus, Player 2's choice node is given the utility (1, 2). On the right child of the tree in Figure \ref{fig:noBackward}, Player 1 makes a similar choice between (1, 1) - from the choices $\{B, C\}$ - and (0, 0) - from the choices $\{B, D\}$. Thus, the right child has a utility value of (1, 1). Now, the algorithm can find the expected utility value of the root node. Since Player 1 is making the decision at the root, their choices have equal utility values: 1. Thus, Player 1 should have no preference to choosing $A$ or $B$. However, Player 2 does have a preference in this matter, but no way to influence Player 1's choice.
+Using the backwards induction algorithm on the left subtree of Figure \ref{fig:noBackward}, we find that the outcome (1, 2) - the leaf node reached by the choices $\{A, R\}$ - is preferred by Player 2 to the outcome (0, 0) - the leaf node reached by the choices $\{A, L\}$. Thus, Player 2's choice node is replaced with the leaf node with utility (1, 2). On the right subtree in Figure \ref{fig:noBackward}, Player 1 makes a similar choice between (1, 1) - from the choices $\{B, C\}$ - and (0, 0) - from the choices $\{B, D\}$. Thus, the right child of the root is replaced with the leaf node with a utility value of (1, 1). Now, the algorithm can find the expected utility value of the root node. Since Player 1 is making the decision at the root, their choices have equal utility values: 1. Thus, Player 1 should have no preference to choosing $A$ or $B$. However, Player 2 does have a preference in this matter, but no way to influence Player 1's choice. Backwards induction is insufficient in this game to predict, with complete accuracy, whether the final outcome of the game will be (1,2) or (1,1).
 
 \section{Other Games}
 While normal-form and extensive-form games are the two largest categories of games, there are other types of games independent of the former two. One such type is \textit{repeated games} and \textit{stochastic games}.\\
@@ -385,7 +363,7 @@ Compared to the games previously discussed, referred to as \textit{one-shot game
   In poker, players are dealt a hand of playing cards and make bets on their hands; for instance, a player may bet \$100 that their hand has a higher rank than the hands of their opponents. These bets go into a communal pot, which is awarded at the end of the game. After a bet, the other players then have a chance to call the bet (adding in \$100 of their own to the bet), raising the bet (for instance, betting \$150 that their hand has the highest rank), or folding (exiting the game with no chance to regain the money in the pot). After a certain number of betting rounds, all players who have not folded show their hands, and the player with the highest ranking hand wins the money in the pot. The number of cards dealt, whether cards are dealt face-up or face-down, and the rank of various hands depend on the poker variant.
 \end{exmp}
 
-Suppose in the poker example that the same group of players play ten rounds against each other. After the first few rounds, players can infer some of the strategies employed by other players by earlier repetitions of the game. For instance, suppose a player always bluffs, pretending that they have a high-ranking hand even when they have a worthless hand. When this player, who we'll denote as player $A$, first bluffs in this manner, they may convince other players to fold. Thus, player $A$ may win some early rounds by deception. However, if in repeated games other players recognize player $A$'s strategy, they will become less susceptible to player $A$'s lies. In this way, the repeated nature of the game creates incentives fundamentally different from those of a one-shot game \cite{mail06}.\\
+Suppose in the poker example that the same group of players play ten rounds against each other. After the first few rounds, players can infer some of the strategies employed by other players by earlier repetitions of the game. For instance, suppose a player always bluffs, pretending that they have a high-ranking hand even when they have a worthless hand. When this player, who we denote as player $A$, first bluffs in this manner, they may convince other players to fold. Thus, player $A$ may win some early rounds by deception. However, if in repeated games other players recognize player $A$'s strategy, they will become less susceptible to player $A$'s lies. In this way, the repeated nature of the game creates incentives fundamentally different from those of a one-shot game \cite{mail06}.\\
 
 There is a repeated version of the Prisoner's Dilemma as well. As established in Figure \ref{fig:NashEquil}, the Nash equilibrium of the game is for both players to defect and to both serve three years in jail. This equilibrium comes about because players value the short-term goal of reaching a (0, -4) utility outcome \cite{osbo94} and both players are assumed to play optimally. However, it is possible that, without loss of generality, player 2 will not play optimally and choose to cooperate instead of defect as the Nash equilibrium would suggest. Since the original version of the Prisoner's Dilemma is a one-shot game, this scenario would greatly benefit player 1. However, in a repeated game, the defection strategy is no longer optimal.\\
 
