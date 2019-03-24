@@ -1,0 +1,481 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:latexdraw="http://latexdraw.sourceforge.net/namespaces/latexdraw"
+    version="1.1" baseProfile="full">
+    <g>
+        <g latexdraw:type="dot" id="id1639372744"
+            latexdraw:size="20.133720790783837" latexdraw:dotShape="*" latexdraw:position="1060.0 20.0">
+            <path
+                d="M 1069.2924865188236 20.0 C 1069.2924865188236 25.132098592354353 1065.1320985923546 29.29248651882331 1060.0000000000002 29.29248651882331 C 1054.8679014076458 29.29248651882331 1050.7075134811769 25.132098592354353 1050.7075134811769 20.0 C 1050.7075134811769 14.867901407645647 1054.8679014076458 10.70751348117669 1060.0000000000002 10.70751348117669 C 1065.1320985923546 10.70751348117669 1069.2924865188236 14.867901407645647 1069.2924865188236 20.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.2583575248718262"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id2145941298"
+            latexdraw:size="20.133720790783837" latexdraw:dotShape="*" latexdraw:position="1020.0 100.0">
+            <path
+                d="M 1029.2924865188234 100.0 C 1029.2924865188234 105.13209859235435 1025.1320985923544 109.29248651882331 1020.0 109.29248651882331 C 1014.8679014076456 109.29248651882331 1010.7075134811766 105.13209859235435 1010.7075134811766 100.0 C 1010.7075134811766 94.86790140764565 1014.8679014076456 90.70751348117669 1020.0 90.70751348117669 C 1025.1320985923544 90.70751348117669 1029.2924865188234 94.86790140764565 1029.2924865188234 100.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.2583575248718262"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id545035484">
+            <polyline points="1060.0,20.0 1020.0,100.0 1020.0,100.0 "
+                stroke-width="2.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id719665637"
+            latexdraw:size="20.133720790783837" latexdraw:dotShape="*" latexdraw:position="1580.0 180.0">
+            <path
+                d="M 1589.2924865188236 180.0 C 1589.2924865188236 185.13209859235434 1585.1320985923546 189.2924865188233 1580.0000000000002 189.2924865188233 C 1574.8679014076458 189.2924865188233 1570.7075134811769 185.13209859235434 1570.7075134811769 180.0 C 1570.7075134811769 174.86790140764563 1574.8679014076458 170.70751348117668 1580.0000000000002 170.70751348117668 C 1585.1320985923546 170.70751348117668 1589.2924865188236 174.86790140764563 1589.2924865188236 180.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.2583575248718262"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id1249240624"
+            latexdraw:size="20.133720790783837" latexdraw:dotShape="*" latexdraw:position="1520.0 260.0">
+            <path
+                d="M 1529.2924865188236 260.0 C 1529.2924865188236 265.13209859235434 1525.1320985923546 269.2924865188233 1520.0000000000002 269.2924865188233 C 1514.8679014076458 269.2924865188233 1510.7075134811769 265.13209859235434 1510.7075134811769 260.0 C 1510.7075134811769 254.86790140764563 1514.8679014076458 250.70751348117668 1520.0000000000002 250.70751348117668 C 1525.1320985923546 250.70751348117668 1529.2924865188236 254.86790140764563 1529.2924865188236 260.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.2583575248718262"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id242125508"
+            latexdraw:size="19.68090981464893" latexdraw:dotShape="*" latexdraw:position="1740.0 340.0">
+            <path
+                d="M 1749.0834968375302 340.0 C 1749.0834968375302 345.01667677850423 1745.016676778504 349.0834968375303 1739.9999999999998 349.0834968375303 C 1734.9833232214955 349.0834968375303 1730.9165031624696 345.01667677850423 1730.9165031624696 340.0 C 1730.9165031624696 334.98332322149577 1734.9833232214955 330.9165031624697 1739.9999999999998 330.9165031624697 C 1745.016676778504 330.9165031624697 1749.0834968375302 334.98332322149577 1749.0834968375302 340.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.230056881904602"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id1069212216"
+            latexdraw:size="19.68090981464893" latexdraw:dotShape="*" latexdraw:position="1680.0 420.0">
+            <path
+                d="M 1689.0834968375302 420.0 C 1689.0834968375302 425.01667677850423 1685.016676778504 429.0834968375303 1679.9999999999998 429.0834968375303 C 1674.9833232214955 429.0834968375303 1670.9165031624696 425.01667677850423 1670.9165031624696 420.0 C 1670.9165031624696 414.98332322149577 1674.9833232214955 410.9165031624697 1679.9999999999998 410.9165031624697 C 1685.016676778504 410.9165031624697 1689.0834968375302 414.98332322149577 1689.0834968375302 420.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.230056881904602"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1963705632">
+            <polyline points="1020.0,100.0 1580.0,180.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id420396460">
+            <polyline
+                points="1060.4011623723516,19.5988376276485 1040.2674415815677,19.5988376276485 1040.2674415815677,19.5988376276485 "
+                stroke-width="2.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id2008989879">
+            <polyline points="1580.0,180.0 1560.0,180.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id53520011">
+            <polyline points="1740.0,340.0 1720.0,340.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id1740514490"
+            latexdraw:size="19.68090981464893" latexdraw:dotShape="*" latexdraw:position="1640.0 500.0">
+            <path
+                d="M 1649.0834968375302 500.0 C 1649.0834968375302 505.01667677850423 1645.016676778504 509.0834968375303 1639.9999999999998 509.0834968375303 C 1634.9833232214955 509.0834968375303 1630.9165031624696 505.01667677850423 1630.9165031624696 500.0 C 1630.9165031624696 494.98332322149577 1634.9833232214955 490.9165031624697 1639.9999999999998 490.9165031624697 C 1645.016676778504 490.9165031624697 1649.0834968375302 494.98332322149577 1649.0834968375302 500.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.230056881904602"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id1924671183"
+            latexdraw:size="19.68090981464893" latexdraw:dotShape="*" latexdraw:position="1580.0 580.0">
+            <path
+                d="M 1589.0834968375302 580.0 C 1589.0834968375302 585.0166767785042 1585.016676778504 589.0834968375303 1579.9999999999998 589.0834968375303 C 1574.9833232214955 589.0834968375303 1570.9165031624696 585.0166767785042 1570.9165031624696 580.0 C 1570.9165031624696 574.9833232214959 1574.9833232214955 570.9165031624698 1579.9999999999998 570.9165031624698 C 1585.016676778504 570.9165031624698 1589.0834968375302 574.9833232214959 1589.0834968375302 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.230056881904602"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="text" id="id516064860" fill="black" latexdraw:position="bl">
+            <text x="1563.7005297277751" y="621.9655021707663">5, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1282706569">
+            <polyline points="1640.0,500.0 1620.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1676290891">
+            <polyline
+                points="1580.668603953919,180.13372079078363 1520.0,260.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id640943050">
+            <polyline points="1520.0,260.0 1740.0,340.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id580365024" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1040.0 340.0">
+            <path
+                d="M 1049.2307692307693 340.0 C 1049.2307692307693 345.09801307536117 1045.0980130753612 349.2307692307692 1040.0 349.2307692307692 C 1034.9019869246388 349.2307692307692 1030.7692307692307 345.09801307536117 1030.7692307692307 340.0 C 1030.7692307692307 334.90198692463883 1034.9019869246388 330.7692307692308 1040.0 330.7692307692308 C 1045.0980130753612 330.7692307692308 1049.2307692307693 334.90198692463883 1049.2307692307693 340.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id204293787">
+            <polyline points="1040.0,340.0 1020.0,340.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id679660494" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="960.0 420.0">
+            <path
+                d="M 969.2307692307692 420.0 C 969.2307692307692 425.09801307536117 965.0980130753611 429.2307692307692 960.0 429.2307692307692 C 954.9019869246388 429.2307692307692 950.7692307692307 425.09801307536117 950.7692307692307 420.0 C 950.7692307692307 414.90198692463883 954.9019869246388 410.7692307692308 960.0 410.7692307692308 C 965.0980130753611 410.7692307692308 969.2307692307692 414.90198692463883 969.2307692307692 420.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id858125696">
+            <circle cx="960.0" cy="420.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id354457247" fill="black" latexdraw:position="bl">
+            <text x="940.0" y="460.0">5, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id154527822">
+            <polyline points="1040.0,340.0 960.0,419.99999999999994 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id766773365">
+            <polyline points="1520.0,260.0 1040.0,340.0 1040.0,340.0 "
+                stroke-width="2.0" stroke="black" fill="none" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="circle" id="id442507106">
+            <circle cx="1580.0" cy="580.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="dot" id="id232847694" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1160.0 420.0">
+            <path
+                d="M 1169.2307692307693 420.0 C 1169.2307692307693 425.09801307536117 1165.0980130753612 429.2307692307692 1160.0 429.2307692307692 C 1154.9019869246388 429.2307692307692 1150.7692307692307 425.09801307536117 1150.7692307692307 420.0 C 1150.7692307692307 414.90198692463883 1154.9019869246388 410.7692307692308 1160.0 410.7692307692308 C 1165.0980130753612 410.7692307692308 1169.2307692307693 414.90198692463883 1169.2307692307693 420.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id618271745" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1300.0 500.0">
+            <path
+                d="M 1309.2307692307693 500.0 C 1309.2307692307693 505.09801307536117 1305.0980130753612 509.2307692307692 1300.0 509.2307692307692 C 1294.9019869246388 509.2307692307692 1290.7692307692307 505.09801307536117 1290.7692307692307 500.0 C 1290.7692307692307 494.90198692463883 1294.9019869246388 490.7692307692308 1300.0 490.7692307692308 C 1305.0980130753612 490.7692307692308 1309.2307692307693 494.90198692463883 1309.2307692307693 500.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id2076257687" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1400.0 580.0">
+            <path
+                d="M 1409.2307692307693 580.0 C 1409.2307692307693 585.0980130753611 1405.0980130753612 589.2307692307692 1400.0 589.2307692307692 C 1394.9019869246388 589.2307692307692 1390.7692307692307 585.0980130753611 1390.7692307692307 580.0 C 1390.7692307692307 574.9019869246388 1394.9019869246388 570.7692307692307 1400.0 570.7692307692307 C 1405.0980130753612 570.7692307692307 1409.2307692307693 574.9019869246388 1409.2307692307693 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="text" id="id273940967" fill="black" latexdraw:position="bl">
+            <text x="1380.0" y="620.0">0, 3</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1644903407">
+            <polyline points="1300.0,500.0 1280.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1705727938">
+            <polyline points="1300.0,500.0 1400.0,580.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1848620205">
+            <polyline points="1160.0,420.0 1300.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1042134779">
+            <polyline points="1040.0,340.0 1160.0,420.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id2044528345" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1240.0 580.0">
+            <path
+                d="M 1249.2307692307693 580.0 C 1249.2307692307693 585.0980130753611 1245.0980130753612 589.2307692307692 1240.0 589.2307692307692 C 1234.9019869246388 589.2307692307692 1230.7692307692307 585.0980130753611 1230.7692307692307 580.0 C 1230.7692307692307 574.9019869246388 1234.9019869246388 570.7692307692307 1240.0 570.7692307692307 C 1245.0980130753612 570.7692307692307 1249.2307692307693 574.9019869246388 1249.2307692307693 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id336585957" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1200.0 660.0">
+            <path
+                d="M 1209.2307692307693 660.0 C 1209.2307692307693 665.0980130753611 1205.0980130753612 669.2307692307692 1200.0 669.2307692307692 C 1194.9019869246388 669.2307692307692 1190.7692307692307 665.0980130753611 1190.7692307692307 660.0 C 1190.7692307692307 654.9019869246388 1194.9019869246388 650.7692307692307 1200.0 650.7692307692307 C 1205.0980130753612 650.7692307692307 1209.2307692307693 654.9019869246388 1209.2307692307693 660.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id1293336131" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1160.0 740.0">
+            <path
+                d="M 1169.2307692307693 740.0 C 1169.2307692307693 745.0980130753611 1165.0980130753612 749.2307692307692 1160.0 749.2307692307692 C 1154.9019869246388 749.2307692307692 1150.7692307692307 745.0980130753611 1150.7692307692307 740.0 C 1150.7692307692307 734.9019869246388 1154.9019869246388 730.7692307692307 1160.0 730.7692307692307 C 1165.0980130753612 730.7692307692307 1169.2307692307693 734.9019869246388 1169.2307692307693 740.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id1343336180">
+            <circle cx="1160.0" cy="740.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id961089987" fill="black" latexdraw:position="bl">
+            <text x="1140.0" y="780.0">4, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1693609488">
+            <polyline points="1240.0,580.0 1200.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id2123048138">
+            <polyline points="1200.0,660.0 1180.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id2026412248">
+            <polyline points="1300.0,500.0 1240.0,580.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id2119655811" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1020.0 500.0">
+            <path
+                d="M 1029.2307692307693 500.0 C 1029.2307692307693 505.09801307536117 1025.0980130753612 509.2307692307692 1020.0 509.2307692307692 C 1014.9019869246388 509.2307692307692 1010.7692307692307 505.09801307536117 1010.7692307692307 500.0 C 1010.7692307692307 494.90198692463883 1014.9019869246388 490.7692307692308 1020.0 490.7692307692308 C 1025.0980130753612 490.7692307692308 1029.2307692307693 494.90198692463883 1029.2307692307693 500.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id580306337" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="960.0 580.0">
+            <path
+                d="M 969.2307692307692 580.0 C 969.2307692307692 585.0980130753611 965.0980130753611 589.2307692307692 960.0 589.2307692307692 C 954.9019869246388 589.2307692307692 950.7692307692307 585.0980130753611 950.7692307692307 580.0 C 950.7692307692307 574.9019869246388 954.9019869246388 570.7692307692307 960.0 570.7692307692307 C 965.0980130753611 570.7692307692307 969.2307692307692 574.9019869246388 969.2307692307692 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id1400485712">
+            <circle cx="960.0" cy="580.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id1463400906" fill="black" latexdraw:position="bl">
+            <text x="940.0" y="620.0">4, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1239701322">
+            <polyline points="1020.0,500.0 1000.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id654201974">
+            <polyline points="1020.0,500.0 960.0,580.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1470500933">
+            <polyline points="1160.0,420.0 1020.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id2071019345" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1060.0 580.0">
+            <path
+                d="M 1069.2307692307693 580.0 C 1069.2307692307693 585.0980130753611 1065.0980130753612 589.2307692307692 1060.0 589.2307692307692 C 1054.9019869246388 589.2307692307692 1050.7692307692307 585.0980130753611 1050.7692307692307 580.0 C 1050.7692307692307 574.9019869246388 1054.9019869246388 570.7692307692307 1060.0 570.7692307692307 C 1065.0980130753612 570.7692307692307 1069.2307692307693 574.9019869246388 1069.2307692307693 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="dot" id="id989056624" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1100.0 660.0">
+            <path
+                d="M 1109.2307692307693 660.0 C 1109.2307692307693 665.0980130753611 1105.0980130753612 669.2307692307692 1100.0 669.2307692307692 C 1094.9019869246388 669.2307692307692 1090.7692307692307 665.0980130753611 1090.7692307692307 660.0 C 1090.7692307692307 654.9019869246388 1094.9019869246388 650.7692307692307 1100.0 650.7692307692307 C 1105.0980130753612 650.7692307692307 1109.2307692307693 654.9019869246388 1109.2307692307693 660.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id587230504">
+            <circle cx="1100.0" cy="660.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id1203743466" fill="black" latexdraw:position="bl">
+            <text x="1080.0" y="700.0">3, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1744234008">
+            <polyline points="1060.0,580.0 1100.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1708774315">
+            <polyline points="1060.0,580.0 1020.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id261961423" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1020.0 660.0">
+            <path
+                d="M 1029.2307692307693 660.0 C 1029.2307692307693 665.0980130753611 1025.0980130753612 669.2307692307692 1020.0 669.2307692307692 C 1014.9019869246388 669.2307692307692 1010.7692307692307 665.0980130753611 1010.7692307692307 660.0 C 1010.7692307692307 654.9019869246388 1014.9019869246388 650.7692307692307 1020.0 650.7692307692307 C 1025.0980130753612 650.7692307692307 1029.2307692307693 654.9019869246388 1029.2307692307693 660.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id820319762">
+            <circle cx="1020.0" cy="660.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id450878730" fill="black" latexdraw:position="bl">
+            <text x="1000.0" y="700.0">3, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id34737605">
+            <polyline points="1060.0,580.0 1020.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id462550874">
+            <polyline points="1020.0,100.0 280.0,180.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id2071488137" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="280.0 180.0">
+            <path
+                d="M 289.2307692307692 180.0 C 289.2307692307692 185.09801307536117 285.09801307536117 189.23076923076923 280.0 189.23076923076923 C 274.90198692463883 189.23076923076923 270.7692307692308 185.09801307536117 270.7692307692308 180.0 C 270.7692307692308 174.90198692463883 274.90198692463883 170.76923076923077 280.0 170.76923076923077 C 285.09801307536117 170.76923076923077 289.2307692307692 174.90198692463883 289.2307692307692 180.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="text" id="id251027993" fill="black" latexdraw:position="bl">
+            <text x="260.0" y="220.0">5, 0</text>
+        </g>
+        <g latexdraw:type="circle" id="id381714422">
+            <circle cx="280.0" cy="180.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1083133775">
+            <polyline points="1740.0,340.0 1680.0,420.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id641111456">
+            <polyline points="1640.0,500.0 1580.0,580.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id208900387" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1680.0 580.0">
+            <path
+                d="M 1689.2307692307693 580.0 C 1689.2307692307693 585.0980130753611 1685.0980130753612 589.2307692307692 1680.0 589.2307692307692 C 1674.9019869246388 589.2307692307692 1670.7692307692307 585.0980130753611 1670.7692307692307 580.0 C 1670.7692307692307 574.9019869246388 1674.9019869246388 570.7692307692307 1680.0 570.7692307692307 C 1685.0980130753612 570.7692307692307 1689.2307692307693 574.9019869246388 1689.2307692307693 580.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1903801490">
+            <polyline points="1640.0,500.0 1680.0,580.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id903346329" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1640.0 660.0">
+            <path
+                d="M 1649.2307692307693 660.0 C 1649.2307692307693 665.0980130753611 1645.0980130753612 669.2307692307692 1640.0 669.2307692307692 C 1634.9019869246388 669.2307692307692 1630.7692307692307 665.0980130753611 1630.7692307692307 660.0 C 1630.7692307692307 654.9019869246388 1634.9019869246388 650.7692307692307 1640.0 650.7692307692307 C 1645.0980130753612 650.7692307692307 1649.2307692307693 654.9019869246388 1649.2307692307693 660.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1863722332">
+            <polyline points="1680.0,580.0 1640.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id747106671" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1580.0 740.0">
+            <path
+                d="M 1589.2307692307693 740.0 C 1589.2307692307693 745.0980130753611 1585.0980130753612 749.2307692307692 1580.0 749.2307692307692 C 1574.9019869246388 749.2307692307692 1570.7692307692307 745.0980130753611 1570.7692307692307 740.0 C 1570.7692307692307 734.9019869246388 1574.9019869246388 730.7692307692307 1580.0 730.7692307692307 C 1585.0980130753612 730.7692307692307 1589.2307692307693 734.9019869246388 1589.2307692307693 740.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id533405729">
+            <circle cx="1580.0" cy="740.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1554673571">
+            <polyline points="1640.0,660.0 1580.0,740.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id353112187">
+            <polyline points="1640.0,660.0 1680.0,740.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="text" id="id780687431" fill="black" latexdraw:position="bl">
+            <text x="1560.0" y="780.0">4, 0</text>
+        </g>
+        <g latexdraw:type="dot" id="id1542593061" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1680.0 740.0">
+            <path
+                d="M 1689.2307692307693 740.0 C 1689.2307692307693 745.0980130753611 1685.0980130753612 749.2307692307692 1680.0 749.2307692307692 C 1674.9019869246388 749.2307692307692 1670.7692307692307 745.0980130753611 1670.7692307692307 740.0 C 1670.7692307692307 734.9019869246388 1674.9019869246388 730.7692307692307 1680.0 730.7692307692307 C 1685.0980130753612 730.7692307692307 1689.2307692307693 734.9019869246388 1689.2307692307693 740.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id294909412">
+            <circle cx="1680.0" cy="740.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id1924150491" fill="black" latexdraw:position="bl">
+            <text x="1660.0" y="780.0">3, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id2088948668">
+            <polyline points="1200.0,660.0 1160.0,740.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id2006237802">
+            <polyline points="1200.0,660.0 1240.0,740.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id1845758638" latexdraw:size="20.0"
+            latexdraw:dotShape="*" latexdraw:position="1240.0 740.0">
+            <path
+                d="M 1249.2307692307693 740.0 C 1249.2307692307693 745.0980130753611 1245.0980130753612 749.2307692307692 1240.0 749.2307692307692 C 1234.9019869246388 749.2307692307692 1230.7692307692307 745.0980130753611 1230.7692307692307 740.0 C 1230.7692307692307 734.9019869246388 1234.9019869246388 730.7692307692307 1240.0 730.7692307692307 C 1245.0980130753612 730.7692307692307 1249.2307692307693 734.9019869246388 1249.2307692307693 740.0 z "
+                fill="black" stroke-linecap="square"
+                stroke-linejoin="butt" stroke-width="1.25"
+                stroke-miterlimit="10.0" stroke-dashoffset="0.0" stroke="black"/>
+        </g>
+        <g latexdraw:type="circle" id="id1244693985">
+            <circle cx="1240.0" cy="740.0" r="19.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id649355807" fill="black" latexdraw:position="bl">
+            <text x="1220.0" y="780.0">3, 0</text>
+        </g>
+        <g latexdraw:type="joinedLines" id="id1751512229">
+            <polyline points="1680.0,420.0 1640.0,500.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="rhombus" id="id502409797" latexdraw:points="1380.0 560.0 1420.0 560.0 1380.0 600.0 1420.0 600.0">
+            <polygon
+                points="1400.0,561.4142135623731 1418.585786437627,580.0 1400.0,598.5857864376269 1381.414213562373,580.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="joinedLines" id="id225548368">
+            <polyline points="1640.0,660.0 1620.0,660.0 "
+                stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+        </g>
+        <g latexdraw:type="ellipse" id="id1139433403">
+            <ellipse cx="1160.0" cy="550.0" rx="279.0" ry="269.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="#ff0031" fill="none"/>
+        </g>
+    </g>
+    <defs/>
+    <metadata>
+        <latexdraw:metadata>
+            <latexdraw:latexIncludes/>
+            <latexdraw:displayXScale>true</latexdraw:displayXScale>
+            <latexdraw:displayYScale>true</latexdraw:displayYScale>
+            <latexdraw:unit>CM</latexdraw:unit>
+            <latexdraw:zoom>1.0</latexdraw:zoom>
+            <latexdraw:magneticGridStyle>CUSTOMISED</latexdraw:magneticGridStyle>
+            <latexdraw:gridGap>20</latexdraw:gridGap>
+            <latexdraw:magneticGrid>true</latexdraw:magneticGrid>
+            <latexdraw:version>3.3.8</latexdraw:version>
+            <latexdraw:size>
+                <latexdraw:width>1861</latexdraw:width>
+                <latexdraw:height>1056</latexdraw:height>
+            </latexdraw:size>
+            <latexdraw:position>
+                <latexdraw:x>59.0</latexdraw:x>
+                <latexdraw:y>24.0</latexdraw:y>
+            </latexdraw:position>
+        </latexdraw:metadata>
+    </metadata>
+</svg>
